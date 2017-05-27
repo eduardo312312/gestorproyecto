@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bean:beans xmlns:bean="http://www.springframework.org/schema/beans"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/security"
+ xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd">
+ <http auto-config="true">
+ <intercept-url pattern="/index" access="hasAnyRole('ROLE_ADMINISTRADOR')" />
+ <intercept-url pattern="/tasks" access="hasAnyRole('ROLE_ADMINISTRADOR')" />
+  <intercept-url pattern="/reportperformance" access="hasAnyRole('ROLE_ADMINISTRADOR')" />
+   
+   
+ <access-denied-handler error-page="/403" />
+  <form-login 
+		login-page="/login" 
+		 default-target-url="/index" 
+		authentication-failure-url="/login?error" 
+		username-parameter="username"
+		password-parameter="password" />
+	  <logout logout-success-url="/login?logout" logout-url="/j_spring_security_logout" />
+	  <csrf/>
+ </http>
+<authentication-manager alias="authenticationManager">
+    <authentication-provider>
+        <jdbc-user-service data-source-ref="dataSource"
+       users-by-username-query="
+         SELECT systemuser.login  USERNAME, systemuser.PASSWORD, 
+CASE systemuser.stateid WHEN 1 THEN 'true' ELSE 'false' END as ENABLED
+         FROM systemuser 
+         WHERE systemuser.login=?;"
+       authorities-by-username-query="
+       select systemuser.login USERNAME, 'ROLE_'||systemuser.comment ROLENAME from systemuser 
+where systemuser.stateid=1 and systemuser.login=?;"
+        />
+    </authentication-provider>
+</authentication-manager>
+</bean:beans>
+

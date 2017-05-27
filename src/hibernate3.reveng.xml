@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+  <table-filter match-name="activity"/>
+  <table-filter match-name="businessline"/>
+  <table-filter match-name="businesssubjecttype"/>
+  <table-filter match-name="businessubject"/>
+  <table-filter match-name="detailfile"/>
+  <table-filter match-name="document"/>
+  <table-filter match-name="documenttype"/>
+  <table-filter match-name="entitytype"/>
+  <table-filter match-name="grouptype"/>
+  <table-filter match-name="marketline"/>
+  <table-filter match-name="permission"/>
+  <table-filter match-name="permissionprofile"/>
+  <table-filter match-name="phase"/>
+  <table-filter match-name="portfolio"/>
+  <table-filter match-name="processgrouptype"/>
+  <table-filter match-name="profile"/>
+  <table-filter match-name="project"/>
+  <table-filter match-name="state"/>
+  <table-filter match-name="systemuser"/>
+  <table-filter match-name="task"/>
+  <table-filter match-name="taskdetail"/>
+  <table-filter match-name="taskhistory"/>
+  <table-filter match-name="typepayment"/>
+  <table-filter match-name="userprofile"/>
+</hibernate-reverse-engineering>

@@ -1,0 +1,25 @@
+ul.assistance-list{
+	margin:0;
+	padding:0;
+	list-style: none;
+}
+.assistance-list li{
+	margin:0;
+	padding:5px;
+	border:1px solid #ccc;
+	display:inline-block;
+}
+
+.assistance-list li.assist{
+	background:white;
+}
+.assistance-list li.justified{
+	
+}
+.assistance-list li.free{
+	
+}
+.assistance-list li.no_assist{
+	background:#ff8080;
+	color:white;
+}

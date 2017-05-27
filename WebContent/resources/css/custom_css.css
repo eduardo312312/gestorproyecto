@@ -1,0 +1,858 @@
+body{
+	 background-image: url(../../resources/img/bg3.jpg);
+	 background-repeat: no-repeat;
+}
+ #side-menu .active > a {
+        background-color: #1ab394;
+    }
+    
+#paginator-content{text-align: center;}
+#paginator-content>div{display:inline-block; vertical-align: top;}
+.pagination{margin:0 !important;}
+    
+#myModal2 .modal-dialog {
+	width:90%;
+}
+
+
+
+
+
+
+
+#myModal_lending .modal-dialog {
+	width:75%;
+}
+#new-order .modal-dialog {
+	width:80%;
+	height: 80% !important;
+	  padding: 5% 5% 5% 5%;
+}
+
+#myModal_expense .modal-dialog {
+	width:40%;
+}
+
+#myModal_unsubscribe .modal-dialog {
+	width:55%;
+
+}
+#modal-orderdetail-properties .modal-dialog {
+	width:95%;
+
+}
+.modal-footer{
+	padding: 1px !important;
+	padding-bottom: 1px !important;
+	padding-left:  1px !important;
+	padding-top: 1px !important;
+	padding-right: 1px !important;
+}
+
+
+
+
+
+#myModal3 .modal-dialog {
+	width:80%;
+}
+#myModal_Prestamo .modal-dialog {
+	width:50%;
+}
+
+#myModal_reg_order .modal-dialog{
+
+    width:95%;  
+        height:95%;
+}
+
+#myModal_reg_order_detail .modal-dialog{
+
+    width:95%;  
+        height:95%;
+}
+
+#myModal_reg_order_detail2 .modal-dialog{
+
+    width:95%;  
+      height:95%;
+      padding: 5% 5% 5% 5%;
+}
+
+
+
+#myModal_productores .modal-dialog{
+
+    width:70%;
+      
+}
+
+#myModal_properties .modal-dialog{
+
+    width:95%;
+    padding: 10% 10% 10% 10%;
+      
+}
+
+#modal-product-properties .modal-dialog{
+
+    width:95%;
+    padding: 10% 10% 10% 10%;
+      
+}
+
+#modal-product-properties-order .modal-dialog{
+
+    width:95%;
+    padding: 5% 5% 5% 5%;
+      
+}
+#modal-confirm1 .modal-dialog{
+
+   width:95%;
+    padding: 5% 5% 5% 5%;
+      
+}
+#modal-confirm2 .modal-dialog{
+
+    width:95%;
+    padding: 5% 5% 5% 5%;
+      
+}
+
+
+
+
+#myModal_productores .modal_scrolable{
+	height:450px;
+	
+}
+
+#modal-orderdetail-properties{
+	z-index:1351 !important;
+}
+
+#my_modal_orderdetaillist{
+	z-index:1360 !important;
+}
+
+#modal-product-properties-order{
+
+  z-index:1600 !important;
+      
+}
+
+#myModal_detalles_impresion
+{
+
+  z-index:1100 !important;
+      
+}
+
+#modal-confirm1{
+
+  z-index:1380 !important;
+      
+}
+
+#myModal_reg_order_detail2{
+
+    z-index:1420!important;
+}
+
+
+#modal-confirm2{
+
+  z-index:1460 !important;
+      
+}
+
+
+
+
+
+#myModal_Client{
+	z-index:1450 !important;
+}
+#myModal_detalle_apertura{
+	z-index:1350 !important;
+}
+#myModal_detalle_cierre{
+	z-index:1350 !important;
+}
+
+
+
+#modal-confirm-admin .modal-dialog{
+
+    width:25%;
+      
+}
+#modal-detail-assistance .modal-dialog{
+
+    width:25%;
+      
+}
+
+
+#myModal_Client .modal-dialog{
+
+    width:95%;
+      
+}
+
+
+#myModal_reg_order_pago .modal-dialog{
+
+    width:60%;
+      
+}
+#myModal_pago_liquidacion .modal-dialog{
+	width:65%;
+	
+}
+
+
+
+
+#myModal_normal .modal-dialog{
+	width:50%;
+}
+
+#myModal_apertura .modal-dialog{
+	width:50%;
+}
+
+
+#myModal_user .modal-dialog{
+	width:40%;
+}
+
+#myModal_pago_liquidacion_print .modal-dialog{
+    width:25cm;
+    /*height: 700px;  */
+        
+}
+
+#myModal_guia_remision .modal-dialog{
+    width:37cm;
+    /*height: 700px;  */
+        
+}
+
+
+
+#myModal_pago_liquidacion_print table{
+
+    border-color: rgba(111,111,111,0.2) transparent;
+        
+}
+#myModal_pago_liquidacion_print2 table{
+
+    border-color: rgba(111,111,111,0.2) transparent;
+        
+}
+
+#myModal_pago_liquidacion_print2 .modal-dialog{
+
+    width:720px;
+    height: 700px;  
+        
+}
+
+
+
+
+
+.tabla_busqueda_producto{
+	width:40px;
+}
+
+.letra_ingreso_prod{
+	font-size:14px;
+	color:black;
+}
+.letra_impresion{
+	font-size:15px;
+	color:black;
+}
+
+
+
+
+.center {
+    display: block;
+    text-align: center;
+}
+.ancho_edit_item{
+	width: 60px;
+	text-align: right;
+}
+.ancho_edit_item_texto{
+	width: 240px;
+}
+.side_desplegable{
+	padding: 10px 5px;
+}
+.price{
+	text-align: right;
+	width:30px;
+}
+.ancho_fijo_numeros{
+	width:60px;
+}
+.ancho_fijo_texto{
+	width:240px;
+}
+
+.titulos
+{
+	background-color: #F2F2F2;
+	
+
+}
+#BordeSideMenu
+{
+	padding-left: 15px;
+
+
+}
+#BordeSideMenuSub
+{
+	padding-left: 40px;
+
+
+}
+
+.sidemenu_titulo_nive2
+{
+		padding-left: 40px;
+
+
+}
+.sidemenu_titulo_nive3
+{
+
+}
+.sidemenu_color_letra
+{
+
+}
+.color_letra_blaco
+{
+	color : white;
+}
+.datepicker{
+	z-index:1450 !important;
+}
+
+
+#myModal_normal{
+	z-index:1250 !important;
+}
+#modal-detail-assistance{
+
+ z-index:1355 !important;
+      
+}
+
+#myModal_Prestamo{
+	z-index:1300 !important;
+}
+}
+#myModal{
+	z-index:1350 !important;
+}
+#myModal2{
+	z-index:1250 !important;
+}
+
+/* //Estilos para la tabla responsive vertical */
+  
+.table_v{
+     width: 100%;
+}
+ 
+.thead_v{
+    display: block;
+}
+.tbody_v{
+    display: block;
+}
+.tr_v{
+    display: block;
+}
+.td_v{
+    display: block;
+}
+.th_v{
+    display: block;
+}
+     
+.tr_v:after{
+   content: ' ';
+            display: block;
+            visibility: hidden;
+            clear: both; 
+}   
+
+.thead_v th
+{
+ height: 30px;
+
+            /*text-align: left;*/   
+}
+
+.tbody_v{
+   height: 240px;
+            overflow-y: auto;  
+}      
+
+
+.thead_v{
+      /* fallback */ 
+}
+
+.tbody_v td{
+    width: 17%;
+            float: left; 
+}
+
+.thead_v th{
+    width: 17%;
+            float: left;
+}
+
+
+.modal_header{
+	padding: 1px 1px !important;
+}
+    
+.modal_scrolable{
+/* 	overflow-x:hidden; */
+/* 	height:500px; ESCROLABLE SIMPLE*/
+
+ max-height:calc(100vh - 150px);
+    overflow-y:auto;
+    overflow-x:auto;
+
+
+}
+
+.modal_scrolable2{
+	overflow-y:hidden;
+	width:500px;
+}
+
+
+
+#div_busqueda_order{  overflow-y: hidden; overflow: scroll; width: 100%; min-height:80px; max-height: 150px; border:1px solid #ccc; }
+.div_busqueda_order a{
+	color:#676a6c;
+}
+
+.div_busqueda_order,.div_busqueda_venta  {  width: 120px; height: 110px;  float: left; margin: 1em; border-color: black; border:1px solid; border-style: solid; margin:3px;  box-shadow: 10px 10px 5px #CCC; background:#fff; }
+.div_busqueda_order:hover{background:#efefef;}
+  
+
+#div_busqueda_order_detail{  overflow-y: hidden; overflow: scroll; width: 100%; min-height:80px; max-height: 150px; border:1px solid #ccc; }
+.div_busqueda_order_detail a{
+	color:#676a6c;
+}
+
+.div_busqueda_order_detail {  width: 120px; height: 110px;  float: left; margin: 1em; border-color: black; border:1px solid; border-style: solid; margin:3px;  box-shadow: 10px 10px 5px #CCC; background:#fff; }
+.div_busqueda_order_detail{background:#efefef;}
+  
+
+  
+  
+  
+#div_busqueda_venta {  overflow-y: hidden; overflow: scroll; width: 700px; max-height: 180px;border:solid; }
+.div_busqueda_venta a{
+	color:#676a6c;
+}
+ 
+#myModal_boleta_impresora_termica .modal-dialog{
+    width:auto;
+    height: auto;  
+}
+#myModal_boleta_impresora_termica table{
+
+    border-color: rgba(111,111,111,0.2) transparent;
+        
+}
+
+#myModal_detalles_impresion .modal-dialog{
+    width:auto;
+    height: auto;  
+}
+
+
+
+
+
+.table th{
+	background:#333 !important;
+	color:white;
+	font-size:20px !important;
+	text-align: center;
+}
+
+
+.table td{
+	
+	font-weight: bold;
+	color:black;
+	font-size:17px !important;
+	
+	text-align: center;
+}
+.tabla_cocina2 td{
+	
+	
+	font-size:2.8vw !important;
+	
+}
+
+
+.centrar_titulo h5
+{
+	font-size:25px !important;
+}
+
+/* .div_impresion_venta  */
+/* { */
+/* 	padding:0px !important; */
+/* 	font-size: 12px !important; */
+/* } */
+
+
+
+
+.table td, .table th{
+	padding:3px !important;
+
+}
+
+.tabla_cocina2 th{
+	background:#c0c0c0!important;
+	color:white;
+	font-size:3vw !important;
+	text-align: center;
+	padding:2px !important;
+}
+
+.tabla_cocina td, .tabla_cocina th{
+	 border:3px solid black !important;
+	text-align: left; 
+	
+
+}
+.tabla_cocina th{
+	font-size: 3vw !important;
+	
+
+}
+
+.tabla_cocina2 td, .tabla_cocina th{
+	 border:1px solid  #808080!important;
+
+}
+
+
+
+
+#page-wrapper{
+	min-height: 800px !important;
+}
+
+.sombreado{
+	background:#1ab394;
+	color:white !important;;
+}
+.btnclose{
+	background-color: #252525!important;
+    border-color: white !important;
+    box-shadow: 0 0 0 #16987e inset, 0 5px 0 0 #0c0c0c, 0 10px 5px #999999 !important;
+   
+}
+
+.centrar_titulo > h5{
+	text-align: center!important;
+	text-transform: uppercase!important;
+	font-size: 15px;
+	 background-color: #ffffff;
+    border-color: #e7eaec;
+    border-image: none;
+    border-style: solid solid none;
+    border-width: 4px 0 0;
+    color: inherit;
+    height: 48px;
+    margin-bottom: 0;
+    padding: 14px 15px 7px;
+	
+}
+
+.toast{
+	text-align:left!important;
+}
+
+.toast-success
+{
+	text-align:left!important;
+}
+
+
+/*BRIAN*/
+ .navbar, .navbar-fixed-top{
+ 	box-shadow:1px 1px 5px #888;
+ }
+  #side-menu .level1 li a{
+ padding-left: 25px;
+ padding-right: 5px;
+ }
+ #BordeSideMenu span{
+ font-family: "open sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+ }
+ #side-menu{
+ padding-top:30px;
+ }
+ #side-menu .level1{
+ 	
+ 	display: none;
+ }
+ .navbar .selected{
+ background: #eee;
+ }
+/*---------*/
+
+/* Estilo para formato estibador */
+#fsize{
+/* 	padding-top:4cm; */
+	font-family:Arial;
+/* 	letter-spacing: 3px; */
+/* 	position: relative; */
+	width: 24cm;
+	
+}
+
+.ftitle{
+	font-family: cursive;
+	font-size: 15px;
+}
+.ftitle2{
+	font-family: Arial;
+	font-size: 10px;
+}
+#fsize .cabecera{
+width:1.5cm;	
+border:2px solid #000;
+ float: left;
+ font-size:10px;
+	
+}
+.estibador{
+	font-size: 9px;
+	font-family: Arial;
+}
+
+.estibador th{
+	width:1.7cm;
+	border:1px solid black;
+}
+.estibador td{
+	border:1px solid black;
+}
+
+#fsize .content{
+width:1.5cm;	
+border:1.5px solid #000;
+ float: left;
+ height: 0.8cm;
+	
+}
+/*******/
+
+
+/***ESTILOS DE LA GUIA DE REMISION****/
+#gremision{
+	padding-top:4.4cm;
+	font-family: sans;
+	letter-spacing: 3px;
+	position: relative;
+	font-size: 9px;
+	width: 35cm;
+}
+
+#gremision .punto_partida{
+/* 	text-align: right; */
+/* 	line-height: 1cm; */
+/* font-size:10px; */
+
+	 float: left;
+	 padding-left: 2.3cm;
+	 font-family: sans;
+}
+ .fecha_partida{
+
+	 float: left;
+	 padding-left: 4.3cm;
+	 font-family: sans;
+}
+ .ruc{
+
+	
+	 padding-left: 5.6cm;
+	
+}
+ .razon{
+
+	 
+	 padding-left: 3.7cm;
+	
+}
+
+#gremision .punto_llegada{
+/* 	text-align: right; */
+/* 	line-height: 1cm; */
+/* font-size:10px; */
+	 float: left;
+	 padding-left: 7.3cm;
+	 font-family: sans;
+}
+
+#gremision .detail{
+	padding-top:2cm;
+/* 	margin-top:4.5cm; */
+	height: 4cm;
+	padding-left:0.9cm;
+}
+#gremision .row{
+
+	height: 0.55cm;
+
+}
+
+
+#gremision .datee{
+	text-align: right;
+	line-height: 1cm;
+}
+
+#gremision .datee span:nth-child(3){
+	padding-left:1cm;
+}
+
+#gremision .datee span:nth-child(2){
+	padding-left:1cm;
+}
+#gremision .producer{
+	padding-left:4cm;
+	line-height: 0.7cm;
+}
+#gremision .procedence{
+	display: inline-block;
+	line-height: 0.7cm;
+	padding-left:4cm;
+	width:78%;
+}
+
+#gremision .driver{
+	display: inline-block;
+	line-height: 0.7cm;
+}
+
+#gremision .detail{
+	margin-top:0.75cm;
+	height: 10cm;
+}
+
+#gremision .detail .row div:nth-child(1){
+	text-align: center;
+}
+
+#gremision .total{
+	margin-top:1cm;
+	text-align: right;
+	line-height: 0.7cm;
+}
+/***                                        ****/
+#my_modal_orderdetaillist .modal-dialog {
+  width: 100% !important;
+  height: 100% !important;
+  padding: 0;
+
+}
+
+
+
+#my_modal_orderdetaillist .modal-content
+{
+	height: 100% !important;
+  border-radius: 0;
+}
+
+.letra_bordeada {
+	
+text-align:center !important;
+color: #fff;
+/* background: #eee; */
+font-family: impact;
+font-size: 29px;
+letter-spacing: 1px;
+text-shadow: -3px -3px 3px #000000, 3px -3px 3px #000000, -3px 3px 3px #000000, 3px 3px 3px #000000;
+}
+
+.letra_bordeada2 {
+	
+text-align:left!important;
+color: #000000;
+/* background: #eee; */
+font-family:  oblique bold;
+font-size: 3.8vw !important;
+font-weight: 900;
+font-style:italic;
+letter-spacing: 1px;
+text-shadow: -3px -3px 3px #fff, 3px -3px 3px #fff, -3px 3px 3px #fff, 3px 3px 3px #fff;
+}
+.transparent
+{
+	opacity:0.6;
+	
+}
+.precio_catalogo
+{
+	color:black !important;
+	background-color: rgba(255, 255, 255, .4);
+	border-color: white !important;
+	font-size: 3.8vw !important;
+	text-shadow: -1px -1px 1px #bbb71a, 1px -1px 1px #bbb71a, -1px 1px 1px #bbb71a, 1px 1px 1px #bbb71a !important;
+}
+
+
+
+.good_border
+{
+	-webkit-box-shadow: 0 3px 2px #777;
+	-moz-box-shadow: 0 3px 2px #777;
+	box-shadow: 0 3px 2px #777;
+}
+
+.alineacion_c{
+	text-align:center !important;
+}
+
+.alineacion_d{
+	text-align: right  !important;
+}
+.alineacion_i{
+	text-align: left  !important;
+}
+/* $(".modal").live("domchanged", function() { */
+/*     $(this).css("data-keyboard", "false"); */
+/*   $(this).css("data-backdrop","static" );    */
+   
+/* }); */
+/*TOAST PERSONALIZADO CSS*/
+
+
