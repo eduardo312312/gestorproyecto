@@ -85,7 +85,7 @@ $('.datepicker').datepicker({
                 <br>
             <div class="centrar_titulo">
                 <h2><span>Entregables y estimaciones</span></h2>
-                <h2><span>Actividad: {{activity.shortname}} - {{activity.name}} </span></h2>
+<!--                 <h2><span>Actividad: {{activity.shortname}}  {{activity.name}} </span></h2> -->
 <!--                 <h3><span class="col-md-6">Fecha de Inicio: {{activity.startdate}}</span><span class="col-md-6">Fecha de Fin: {{activity.enddate}}</span></h3> -->
                 
             </div>

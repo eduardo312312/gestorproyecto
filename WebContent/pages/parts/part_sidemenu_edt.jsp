@@ -13,12 +13,10 @@
 
         <div class="sidebar-collapse">
             <ul class="nav" id="side-menu" style="display: block;">
-            
-            
-<!--                 <li class="nav-header"> -->
-<!--                     <div class="dropdown profile-element"> <span> -->
-<!--                             <img alt="image" class="img-circle" width="100%" height="100%" src="resources/img/logo.png"> -->
-<!--                              </span> -->
+                <li class="nav-header">
+                    <div class="dropdown profile-element"> <span>
+                            <img alt="image" class="img-circle" width="100%" height="100%" src="resources/img/logo.png">
+                             </span>
 <!--                         <a data-toggle="dropdown" class="dropdown-toggle" href="#"> -->
 <!--                             <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">David Williams</strong> -->
 <!--                              </span> <span class="text-muted text-xs block">Project Director <b class="caret"></b></span> </span> </a> -->
@@ -29,13 +27,11 @@
 <!--                             <li class="divider"></li> -->
 <!--                             <li><a href="login.html">Logout</a></li> -->
 <!--                         </ul> -->
-<!--                     </div> -->
-<!--                     <div class="logo-element"> -->
-<!--                         IN+ -->
-<!--                     </div> -->
-<!--                 </li> -->
-
-
+                    </div>
+                    <div class="logo-element">
+                        IN+
+                    </div>
+                </li>
                 
                
 <!--                 <li class="active" ng-repeat="item in detailsedt"> -->
