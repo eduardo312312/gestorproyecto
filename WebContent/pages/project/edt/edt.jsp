@@ -84,7 +84,9 @@ $('.datepicker').datepicker({
                 <br>
                 <br>
             <div class="centrar_titulo">
-                <h5>Detalle</h5>
+                <h2><span>Entregables y estimaciones</span></h2>
+                <h2><span>Actividad: {{activity.shortname}} - {{activity.name}} </span></h2>
+<!--                 <h3><span class="col-md-6">Fecha de Inicio: {{activity.startdate}}</span><span class="col-md-6">Fecha de Fin: {{activity.enddate}}</span></h3> -->
                 
             </div>
             <div class="ibox-content">
@@ -159,27 +161,53 @@ $('.datepicker').datepicker({
        <div class="row"><div class="col-md-12">
        <p>{{message}}</p>
        
-       <div class="table-responsive">
+      <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover " id="exportable" ng-cloak>
+            <thead>
+            <tr>
+                <th>Codigo</th>
+                <th>Descripcion</th>
+                <th>Revision</th>
+                <th>H. ESTIMADAS</th>
+                <th>H. REAL</th>
+                <th>P. ESTIMADO</th> 
+                <th>P. REAL</th>                 
+                <th>F. INICIO</th>
+                <th>F. FIN</th>
+                <th>Responsable</th>
+                <th>ACCION</th>
+         
             
-            <li ng-click="alert('item.name')" ng-repeat="item in detailsedt"><span>{{item.name}}</span>
-                <ul>
-                <li ng-click="alert('item2.phase.name')" ng-repeat="item2 in item.detail"><span>{{item2.phase.name}}</span>
-                		<ul>
-                		<li ng-click="alert('item3.name')" ng-repeat="item3 in item2.phase.detail" > <span>{{item3.name}} </span> 
-                		<ul>
-                		  <li ng-click="alert('item4.name')" ng-repeat="item4 in item3.detail" ><span> {{item4.name}}</span>  </li>
-                		  </ul>
-                		
-                		
-                		</li>
-                		  
-                		
-                		</ul>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr ng-repeat="item in tasks.list ">
+                <!--<td> <img  src={{product.path_image}} alt="Logo Viento Sur" height="30" width="30"/> </td>-->
+               <td>{{ item.shortname }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.description }}</td>
+                <td>{{ item.estimatehour }} </td>
+                <td>{{ item.realhour }} </td>
+                <td>{{ item.estimateamount }} </td>
+                <td>{{ item.realamount }} </td>
+                <td>{{ item.startdate | date:'dd/MM/yyyy'}} </td>
+                <td>{{ item.enddate | date:'dd/MM/yyyy'}} </td>                
+                <td>T. Pendiente</td>
+<!--                 <td>{{ item.enddate | date:'dd/MM/yyyy'}} </td> -->
+     
+                <td class="center">
+<!--                	    <button title="Propiedades" type="button" ng-click="new_asign_properties(product.id)"  data-toggle="modal" data-target="#modal-product-properties" class="btn btn-success btn-sm"><i class="fa fa-sort-amount-asc"></i></button> -->
+                    <button title="Editar" type="button" ng-click="edit(item)"  data-toggle="modal" data-target="#myModal" class="btn btn-warning btn-sm" onclick="clearuploadfile()"><i class="fa fa-edit"></i></button>
+                    <button title="Eliminar"  type="button"  ng-click="edit(item)" onclick='question_remove()' class="btn btn-danger btn-sm" href><i class="fa fa-trash-o"></i></button>
+              
+                </td>
                 
-                </li>
-                </ul>
-            </li>
+            </tr>
             
+            </tbody>
+    
+            </table>
             </div>
              
 </div></div>
@@ -299,7 +327,7 @@ $('.datepicker').datepicker({
 									<datalist id="activities_list">
 									<option ng-repeat="item in activities.list" id="{{item.activity.id}}" value={{item.show}} > 
 									</datalist>
-                                    <div class="col-sm-9"><input id="activityy" type="text" class="form-control" ng-change="select_activity()" ng-model="task.actividad" list="activities_list"  ></div>
+                                    <div class="col-sm-9"><input ng-disabled="true"  id="activityy" type="text" class="form-control" ng-change="select_activity()" ng-model="task.actividad" list="activities_list"  ></div>
                                     
                                 </div>
                                  

@@ -20,6 +20,12 @@ app.factory('TaskService', function($http) {
 		list_activities:function(params){return $http.post('task/list_activities',params ,{headers:csrf_header});},//
 		list_project_to_edt:function(params){return $http.post('task/list_view_edt',params ,{headers:csrf_header});},//
 	
+		
+		
+		
+		
+		
+		
 		remove:function(params){
 	        return $http({method:'DELETE',url:'subtransactiondetail/'+params,headers:csrf_header} );  
 	        },

@@ -125,9 +125,19 @@ public String projectid="";
 			Phase phase=(Phase) item[1];
 			Project project=(Project) item[2];
 			
-			System.out.println("actividad:"+activity.getName());
+//			System.out.println("actividad111:"+activity.getName());
 			map1.put("id", activity.getId() );
+			map1.put("idforli", "task"+activity.getId() );
 			map1.put("name", activity.getName().toString() );
+			
+			
+			if( activity.getShortname()!=null) map1.put("shortname", activity.getShortname().toString() );
+//			 map1.put("enddate", activity.getEnddate() );
+//			 map1.put("startdate", activity.getState() );
+			
+			
+			//map1.put("enddate", activity.getName().toString() );
+//			System.out.println("actividad2222:"+activity.getName());
 			
 			map2.put("id", phase.getId() );
 			map2.put("name", phase.getName() );
@@ -143,7 +153,7 @@ public String projectid="";
 			
 	     	list2.add(map);
 		}
-		System.out.println("list view driver serv4");
+	//	System.out.println("list view driver serv4");
 		return list2;
 	}
 	
@@ -154,9 +164,9 @@ public List<Map>  get_edt_detail_activity(String activityid){
 		List<Map> list2=new ArrayList<Map>();
 		
 		
-			
+			System.out.println("repo edt detail act1");
 		list=this.repository.get_tasks(activityid);
-		
+		System.out.println("repo edt detail act2");
 		
 		for(Object[] item:list){
 			Map map=new HashMap();
@@ -173,7 +183,7 @@ public List<Map>  get_edt_detail_activity(String activityid){
 		}
 		
 		
-		System.out.println("list view driver serv4");
+		//System.out.println("list view driver serv4");
 		return list2;
 	}
 	
@@ -198,6 +208,7 @@ public List<Map>  get_edt_detail_activity(String activityid){
 			Phase phase=(Phase) item[1];		
 			
 			map.put("id",activity.getId());
+			map.put("idforli","act"+activity.getId());
 			map.put("name",activity.getName());
 			map.put("detail", get_edt_detail_activity(Integer.toString(activity.getId())));
 			
@@ -207,13 +218,13 @@ public List<Map>  get_edt_detail_activity(String activityid){
 		}
 		
 		
-		System.out.println("list view driver serv4");
+		//System.out.println("list view driver serv4");
 		return list2;
 	}
 	
 	//devuelve proyectos..
 	public List<Map>  get_edt_detail_project(String projectid){
-		
+		System.out.println("ENTRO A DETALLE DE PROYECTOOOOOOOOOOOO");
 //		System.out.println("list view driver serv1");
 		List<Object[]> list=new ArrayList<Object[]>();
 		List<Map> list2=new ArrayList<Map>();
@@ -232,10 +243,11 @@ public List<Map>  get_edt_detail_activity(String activityid){
 			this.setprojectid( Integer.toString(projectobj.getId()));
 			this.setprojectname(projectobj.getName().toString());			
 			map.put("id", phase.getId());
+			map.put("idforli","pha"+ phase.getId());
 			map.put("name", phase.getName());	
 			map.put("detail", get_edt_detail_phase(Integer.toString(phase.getId())));//llena de actividades
 			
-		    //map1.put("phase", map);			
+		 		
 	     	list2.add(map);
 		}
 		project.put("id",this.getprojectid());
