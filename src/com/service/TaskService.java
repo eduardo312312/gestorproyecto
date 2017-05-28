@@ -201,7 +201,7 @@ public List<Map>  get_edt_detail_activity(String activityid){
 			map.put("name",activity.getName());
 			map.put("detail", get_edt_detail_activity(Integer.toString(activity.getId())));
 			
-			map1.put("activity", map);		
+		//	map1.put("activity", map);		
 			
 	     	list2.add(map);
 		}
@@ -235,8 +235,8 @@ public List<Map>  get_edt_detail_activity(String activityid){
 			map.put("name", phase.getName());	
 			map.put("detail", get_edt_detail_phase(Integer.toString(phase.getId())));//llena de actividades
 			
-		    map1.put("phase", map);			
-	     	list2.add(map1);
+		    //map1.put("phase", map);			
+	     	list2.add(map);
 		}
 		project.put("id",this.getprojectid());
 		project.put("name",this.getprojectname());

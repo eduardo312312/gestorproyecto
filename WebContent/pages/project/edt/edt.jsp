@@ -84,7 +84,7 @@ $('.datepicker').datepicker({
                 <br>
                 <br>
             <div class="centrar_titulo">
-                <h5>Registro de Tareas</h5>
+                <h5>Detalle</h5>
                 
             </div>
             <div class="ibox-content">

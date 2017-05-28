@@ -30,7 +30,7 @@
                     <a title='Configuraciones' id="BordeSideMenu" > <span>{{item.name}}</span></a>
                     <ul >
 
-                          <li ng-repeat="item2 in item.detail"  id="tareas"><a title='Productos'  > <span>{{item2.phase.name}}</span></a></li>
+                          <li ng-repeat="item2 in item.detail[0]"  id="tareas"><a title='Productos'  > <span>{{item2.name}}</span></a></li>
                          
                    
 
