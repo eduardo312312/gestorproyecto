@@ -44,6 +44,7 @@ app.controller('EdtController', function ($scope,TaskService) {
 	$scope.list=function()
 	{
 		
+		$scope.load();
 		
 		$scope.tasks.list=[];
 		$scope.message="Cargando...";
@@ -110,12 +111,12 @@ app.controller('EdtController', function ($scope,TaskService) {
 //			console.log(data.list);
 			$scope.activities.list=data.list;
 			
-			$scope.activity=$scope.activities.list[0].activity;//muestro de la primera actividad por defecto. y le doy sombreado
-		    
-		    $scope.tasks.params.activityid=$scope.activity.id;
+			
+		 //   $scope.tasks.params.activityid=$scope.activity.id;
 		 
 			
-			$scope.task.activityid=$scope.activity.id;
+//			$scope.task.activityid=$scope.activity.id;
+		    
 			//console.debug("id de actividad: "+"#act"+$scope.activity.id)
 			//$("#act"+$scope.activity.id).parent().parent().find("li").trigger("click");
 //			var project=$scope.tasks[0].project.name;
@@ -340,10 +341,9 @@ app.controller('EdtController', function ($scope,TaskService) {
 	$scope.process_activity=function(id)
 	{//se sobre entiende que todas las modificaciones, creaciones u eliminaciones de registros son de la actividad con id "id" ingresado....
 	
-	
+//	alert(id);
 		
-		$scope.tasks.params.activityid=id;
-		
+		$scope.tasks.params.activityid=id;		
 		$scope.task.activityid=id;// mando un id de actividad fijo para todos los procesos con esta tabla.
 		console.log('process_activity'+id);
 		$scope.list();
