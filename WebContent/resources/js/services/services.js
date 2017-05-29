@@ -96,6 +96,25 @@ app.factory('TaskService', function($http) {
 
 
 
+app.factory('ProjectService', function($http) {
+	
+
+	return {
+		
+		 save_project:function(params){return $http.post('project',params ,{headers:csrf_header});},
+		 search_project: function (params) {
+	        	return $http.post('project/'+params ,{},{headers:csrf_header});
+	    		 }
+		 
+		 //
+		
+	}
+});
+
+
+
+
+
 app.factory('OrderService', function($http) {
 
 	return {

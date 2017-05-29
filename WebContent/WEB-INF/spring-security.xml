@@ -6,6 +6,8 @@
  <intercept-url pattern="/index" access="hasAnyRole('ROLE_ADMINISTRADOR')" />
  <intercept-url pattern="/tasks" access="hasAnyRole('ROLE_ADMINISTRADOR')" />
   <intercept-url pattern="/reportperformance" access="hasAnyRole('ROLE_ADMINISTRADOR')" />
+   <intercept-url pattern="/indexfile" access="hasAnyRole('ROLE_ADMINISTRADOR')" />
+    <intercept-url pattern="edt" access="hasAnyRole('ROLE_ADMINISTRADOR')" />
    
    
  <access-denied-handler error-page="/403" />

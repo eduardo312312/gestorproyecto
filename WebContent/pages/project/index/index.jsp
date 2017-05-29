@@ -87,7 +87,7 @@ $('.datepicker').datepicker({
              <br>
                 <br>
                 <h3>Ficha de Inicio</h3>
-                <h3>6611221 - GYM - INGENIERIA DE DETALLE - PLANTA INMACULADA</h3>
+                <h3>{{project2.shortname}} - {{project2.name}}</h3>
             </div>
             <div class="ibox-content ">
 <!--             <div class="row"> -->
@@ -153,14 +153,14 @@ $('.datepicker').datepicker({
                                <div class="row" style="margin-top: 10px !important;">
                                  <label class="col-md-2 control-label alineacion_i">Estado</label>
                                
-                               <div class="col-md-10">
-                                 <select  ng-model="project.state">
+                               <div class="col-md-4">
+                                 <select  class="form-control m-b" ng-model="project.state">
                                               <option></option>
                                         <option>Activo</option>
-                                        <option>Inactivo</option>
-                                        <option>Espera Aprobacion</option>
-                                        <option>En Curso</option>
-                                        <option>Terminado</option>
+<!--                                         <option>Inactivo</option> -->
+<!--                                         <option>Espera Aprobacion</option> -->
+<!--                                         <option>En Curso</option> -->
+<!--                                         <option>Terminado</option> -->
                                         </select> 
                                  </div>
                                  
@@ -278,7 +278,7 @@ $('.datepicker').datepicker({
                                  <label class="col-md-2 control-label alineacion_i" ng-model="project.location" >Ubicacion:</label>
                                     <div class="col-md-2">
                                     
-                                    <select  ng-model="filter.status">
+                                    <select  class="form-control m-b" ng-model="project.location">
                                               
                                         <option>	Amazonas	</option>
 										<option>	Ancash	</option>
@@ -314,11 +314,11 @@ $('.datepicker').datepicker({
                                     
                                     
                                
-                                 <label class="col-md-2 control-label alineacion_i" ng-model="totalamount" >Monto del Contrato:</label>
-                                    <div class="col-md-2"><input type="number" class="form-control"></div>   
+                                 <label class="col-md-2 control-label alineacion_i"  >Monto del Contrato:</label>
+                                    <div class="col-md-2"><input type="number" class="form-control" ng-model="project.totalamount"></div>   
                                 
                                  <label class="col-md-2 control-label alineacion_i">Tamaño:</label>
-                                      <div class="col-md-2">  <select  ng-model="project.size">
+                                      <div class="col-md-2">  <select class="form-control m-b"  ng-model="project.size">
                                               <option></option>
                                         <option>Muy Grande</option>
                                         <option>Grande</option>
@@ -438,7 +438,7 @@ $('.datepicker').datepicker({
    		</div>
    	
    		<div class="row alineacion_c" >
-            <button  class="btn btn-primary dim"  ng-click="save_project()" data-toggle="modal" data-target="#myModal" href="javascript:void(0);" >Guardar</button>
+            <button  class="btn btn-primary dim"  ng-click="save_project()" data-toggle="modal"  href="javascript:void(0);" >Guardar</button>
 			</div>
 			
 			
