@@ -1,5 +1,5 @@
 package com.model;
-// Generated 28/05/2017 11:16:29 PM by Hibernate Tools 3.4.0.CR1
+// Generated 28/05/2017 11:54:01 PM by Hibernate Tools 3.4.0.CR1
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -44,7 +44,7 @@ public class Project implements java.io.Serializable {
 	private Date createdate;
 	private Double daysleft;
 	private Double totalamount;
-	private Integer districtid;
+	private String location;
 	private String size;
 	private String institutionalcost;
 	private String shortname;
@@ -68,7 +68,7 @@ public class Project implements java.io.Serializable {
 			Typepayment typepayment, Businessubject businessubjectByBusinesssubjectleaderid, Detailfile detailfile,
 			Marketline marketline, Entitytype entitytype, Portfolio portfolio, State state, String name,
 			String description, String comment, String state_1, Date startdate, Date enddate, Date createdate,
-			Double daysleft, Double totalamount, Integer districtid, String size, String institutionalcost,
+			Double daysleft, Double totalamount, String location, String size, String institutionalcost,
 			String shortname, String clientname, String clientcontact, String clientphone, String clientfax,
 			String clientmovil, String clientmail, String clientaddress, Set<Phase> phases) {
 		this.id = id;
@@ -90,7 +90,7 @@ public class Project implements java.io.Serializable {
 		this.createdate = createdate;
 		this.daysleft = daysleft;
 		this.totalamount = totalamount;
-		this.districtid = districtid;
+		this.location = location;
 		this.size = size;
 		this.institutionalcost = institutionalcost;
 		this.shortname = shortname;
@@ -289,13 +289,13 @@ public class Project implements java.io.Serializable {
 		this.totalamount = totalamount;
 	}
 
-	@Column(name = "districtid")
-	public Integer getDistrictid() {
-		return this.districtid;
+	@Column(name = "location", length = 250)
+	public String getLocation() {
+		return this.location;
 	}
 
-	public void setDistrictid(Integer districtid) {
-		this.districtid = districtid;
+	public void setLocation(String location) {
+		this.location = location;
 	}
 
 	@Column(name = "size", length = 250)

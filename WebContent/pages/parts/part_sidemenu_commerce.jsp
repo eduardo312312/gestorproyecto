@@ -64,9 +64,9 @@
                     <ul class="nav nav-third-level">
                     <li id="indexfile"><a href="indexfile" class="fa fa-file-text"> <span>Ficha de Inicio</span></a></li>
                         <li id="view-kitchen"><a href="kitchen" class="fa fa-file-text"> <span>Alcance</span></a></li>
-                        
+                        <li id="view-kitchen"><a href="kitchen" class="fa fa-file-text"> <span>Tiempos del Proyecto</span></a></li>
            
-                        <li id="view-order"><a class="fa fa-file-text" href="order"> <span>Parametros</span></a></li>
+                        <li id="view-order"><a class="fa fa-file-text" href="order"> <span>Interesados</span></a></li>
 
                     </ul>
                 </li>
