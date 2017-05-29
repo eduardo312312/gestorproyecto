@@ -1,5 +1,5 @@
 package com.model;
-// Generated 21/05/2017 02:53:53 AM by Hibernate Tools 3.4.0.CR1
+// Generated 28/05/2017 11:16:29 PM by Hibernate Tools 3.4.0.CR1
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -27,15 +27,15 @@ public class Activity implements java.io.Serializable {
 
 	private int id;
 	private Phase phase;
+	private Businessubject businessubjectByBusinesssubjectresponsableid;
+	private Businessubject businessubjectByBusinesssubjectcreatorid;
 	private State state;
+	private Businessubject businessubjectByBusinesssubjectmodifierid;
 	private String name;
 	private String description;
 	private String comment;
 	private Date startdate;
 	private Date enddate;
-	private Integer businesssubjectcreatorid;
-	private Integer businesssubjectresponsableid;
-	private Integer businesssubjectmodifierid;
 	private Date changedate;
 	private Date createdate;
 	private Date updateat;
@@ -49,21 +49,22 @@ public class Activity implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public Activity(int id, Phase phase, State state, String name, String description, String comment, Date startdate,
-			Date enddate, Integer businesssubjectcreatorid, Integer businesssubjectresponsableid,
-			Integer businesssubjectmodifierid, Date changedate, Date createdate, Date updateat, String shortname,
+	public Activity(int id, Phase phase, Businessubject businessubjectByBusinesssubjectresponsableid,
+			Businessubject businessubjectByBusinesssubjectcreatorid, State state,
+			Businessubject businessubjectByBusinesssubjectmodifierid, String name, String description, String comment,
+			Date startdate, Date enddate, Date changedate, Date createdate, Date updateat, String shortname,
 			Set<Task> tasks) {
 		this.id = id;
 		this.phase = phase;
+		this.businessubjectByBusinesssubjectresponsableid = businessubjectByBusinesssubjectresponsableid;
+		this.businessubjectByBusinesssubjectcreatorid = businessubjectByBusinesssubjectcreatorid;
 		this.state = state;
+		this.businessubjectByBusinesssubjectmodifierid = businessubjectByBusinesssubjectmodifierid;
 		this.name = name;
 		this.description = description;
 		this.comment = comment;
 		this.startdate = startdate;
 		this.enddate = enddate;
-		this.businesssubjectcreatorid = businesssubjectcreatorid;
-		this.businesssubjectresponsableid = businesssubjectresponsableid;
-		this.businesssubjectmodifierid = businesssubjectmodifierid;
 		this.changedate = changedate;
 		this.createdate = createdate;
 		this.updateat = updateat;
@@ -93,6 +94,27 @@ public class Activity implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "businesssubjectresponsableid")
+	public Businessubject getBusinessubjectByBusinesssubjectresponsableid() {
+		return this.businessubjectByBusinesssubjectresponsableid;
+	}
+
+	public void setBusinessubjectByBusinesssubjectresponsableid(
+			Businessubject businessubjectByBusinesssubjectresponsableid) {
+		this.businessubjectByBusinesssubjectresponsableid = businessubjectByBusinesssubjectresponsableid;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "businesssubjectcreatorid")
+	public Businessubject getBusinessubjectByBusinesssubjectcreatorid() {
+		return this.businessubjectByBusinesssubjectcreatorid;
+	}
+
+	public void setBusinessubjectByBusinesssubjectcreatorid(Businessubject businessubjectByBusinesssubjectcreatorid) {
+		this.businessubjectByBusinesssubjectcreatorid = businessubjectByBusinesssubjectcreatorid;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "stateid")
 	public State getState() {
 		return this.state;
@@ -100,6 +122,16 @@ public class Activity implements java.io.Serializable {
 
 	public void setState(State state) {
 		this.state = state;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "businesssubjectmodifierid")
+	public Businessubject getBusinessubjectByBusinesssubjectmodifierid() {
+		return this.businessubjectByBusinesssubjectmodifierid;
+	}
+
+	public void setBusinessubjectByBusinesssubjectmodifierid(Businessubject businessubjectByBusinesssubjectmodifierid) {
+		this.businessubjectByBusinesssubjectmodifierid = businessubjectByBusinesssubjectmodifierid;
 	}
 
 	@Column(name = "name", length = 250)
@@ -147,33 +179,6 @@ public class Activity implements java.io.Serializable {
 
 	public void setEnddate(Date enddate) {
 		this.enddate = enddate;
-	}
-
-	@Column(name = "businesssubjectcreatorid")
-	public Integer getBusinesssubjectcreatorid() {
-		return this.businesssubjectcreatorid;
-	}
-
-	public void setBusinesssubjectcreatorid(Integer businesssubjectcreatorid) {
-		this.businesssubjectcreatorid = businesssubjectcreatorid;
-	}
-
-	@Column(name = "businesssubjectresponsableid")
-	public Integer getBusinesssubjectresponsableid() {
-		return this.businesssubjectresponsableid;
-	}
-
-	public void setBusinesssubjectresponsableid(Integer businesssubjectresponsableid) {
-		this.businesssubjectresponsableid = businesssubjectresponsableid;
-	}
-
-	@Column(name = "businesssubjectmodifierid")
-	public Integer getBusinesssubjectmodifierid() {
-		return this.businesssubjectmodifierid;
-	}
-
-	public void setBusinesssubjectmodifierid(Integer businesssubjectmodifierid) {
-		this.businesssubjectmodifierid = businesssubjectmodifierid;
 	}
 
 	@Temporal(TemporalType.DATE)

@@ -1,5 +1,5 @@
 package com.model;
-// Generated 21/05/2017 02:53:53 AM by Hibernate Tools 3.4.0.CR1
+// Generated 28/05/2017 11:16:29 PM by Hibernate Tools 3.4.0.CR1
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -48,6 +48,13 @@ public class Project implements java.io.Serializable {
 	private String size;
 	private String institutionalcost;
 	private String shortname;
+	private String clientname;
+	private String clientcontact;
+	private String clientphone;
+	private String clientfax;
+	private String clientmovil;
+	private String clientmail;
+	private String clientaddress;
 	private Set<Phase> phases = new HashSet<Phase>(0);
 
 	public Project() {
@@ -62,7 +69,8 @@ public class Project implements java.io.Serializable {
 			Marketline marketline, Entitytype entitytype, Portfolio portfolio, State state, String name,
 			String description, String comment, String state_1, Date startdate, Date enddate, Date createdate,
 			Double daysleft, Double totalamount, Integer districtid, String size, String institutionalcost,
-			String shortname, Set<Phase> phases) {
+			String shortname, String clientname, String clientcontact, String clientphone, String clientfax,
+			String clientmovil, String clientmail, String clientaddress, Set<Phase> phases) {
 		this.id = id;
 		this.businessubjectByBusinesssubjectcontrolid = businessubjectByBusinesssubjectcontrolid;
 		this.businessline = businessline;
@@ -86,6 +94,13 @@ public class Project implements java.io.Serializable {
 		this.size = size;
 		this.institutionalcost = institutionalcost;
 		this.shortname = shortname;
+		this.clientname = clientname;
+		this.clientcontact = clientcontact;
+		this.clientphone = clientphone;
+		this.clientfax = clientfax;
+		this.clientmovil = clientmovil;
+		this.clientmail = clientmail;
+		this.clientaddress = clientaddress;
 		this.phases = phases;
 	}
 
@@ -308,6 +323,69 @@ public class Project implements java.io.Serializable {
 
 	public void setShortname(String shortname) {
 		this.shortname = shortname;
+	}
+
+	@Column(name = "clientname", length = 250)
+	public String getClientname() {
+		return this.clientname;
+	}
+
+	public void setClientname(String clientname) {
+		this.clientname = clientname;
+	}
+
+	@Column(name = "clientcontact", length = 250)
+	public String getClientcontact() {
+		return this.clientcontact;
+	}
+
+	public void setClientcontact(String clientcontact) {
+		this.clientcontact = clientcontact;
+	}
+
+	@Column(name = "clientphone", length = 50)
+	public String getClientphone() {
+		return this.clientphone;
+	}
+
+	public void setClientphone(String clientphone) {
+		this.clientphone = clientphone;
+	}
+
+	@Column(name = "clientfax", length = 50)
+	public String getClientfax() {
+		return this.clientfax;
+	}
+
+	public void setClientfax(String clientfax) {
+		this.clientfax = clientfax;
+	}
+
+	@Column(name = "clientmovil", length = 50)
+	public String getClientmovil() {
+		return this.clientmovil;
+	}
+
+	public void setClientmovil(String clientmovil) {
+		this.clientmovil = clientmovil;
+	}
+
+	@Column(name = "clientmail", length = 50)
+	public String getClientmail() {
+		return this.clientmail;
+	}
+
+	public void setClientmail(String clientmail) {
+		this.clientmail = clientmail;
+	}
+
+	@Column(name = "clientaddress", length = 250)
+	public String getClientaddress() {
+		return this.clientaddress;
+	}
+
+	public void setClientaddress(String clientaddress) {
+		this.clientaddress = clientaddress;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "project")

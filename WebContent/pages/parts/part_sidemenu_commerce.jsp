@@ -62,7 +62,7 @@
                 <li class='level1'>
                     <a title="VENTAS" id="BordeSideMenu" href="#" class="fa fa-file-text"> <span>INICIACION</span></a>
                     <ul class="nav nav-third-level">
-                    <li id="view-boxsales"><a href="sales" class="fa fa-file-text"> <span>Ficha de Inicio</span></a></li>
+                    <li id="indexfile"><a href="indexfile" class="fa fa-file-text"> <span>Ficha de Inicio</span></a></li>
                         <li id="view-kitchen"><a href="kitchen" class="fa fa-file-text"> <span>Alcance</span></a></li>
                         
            

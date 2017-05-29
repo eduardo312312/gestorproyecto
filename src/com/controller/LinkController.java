@@ -31,6 +31,10 @@ public class LinkController {
 	public String edt(){
 		return "project/edt/edt";
 	}
+	@RequestMapping(value="/indexfile", method = RequestMethod.GET)
+	public String fileindex(){
+		return "project/index/index";
+	}
 	
 	
 }
