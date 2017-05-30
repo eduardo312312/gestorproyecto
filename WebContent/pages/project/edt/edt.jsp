@@ -91,6 +91,19 @@ $('.datepicker').datepicker({
             </div>
             <div class="ibox-content">
             <div class="row">
+            <div class="form-group">
+            <label class="col-md-2 control-label alineacion_i">Proyecto:</label>
+                                      <div class="col-md-3">  <select class="form-control m-b" ng-change="load_sidebar()"  ng-model="select.project">
+                                             
+                                        <option >Proyecto 1</option>
+                                        <option >Proyecto 2</option>
+                                      
+                                        </select>  </div>  
+                                  
+                                </div> 
+            
+            </div>
+            
             <button  class="btn btn-primary dim"  ng-click="new_register()" data-toggle="modal" data-target="#myModal" href="javascript:void(0);" >Crear Tarea</button>
 			</div>
 			 <div class="row">
@@ -160,6 +173,8 @@ $('.datepicker').datepicker({
            <!-- Tabla del listado -->
        <div class="row"><div class="col-md-12">
        <p>{{message}}</p>
+       
+       
        
       <div class="table-responsive">
             <table class="table table-striped table-bordered table-hover " id="exportable" ng-cloak>

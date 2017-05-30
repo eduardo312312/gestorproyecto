@@ -3,6 +3,12 @@ app.controller('IndexController', function ($scope,ProjectService) {
 
 	$scope.project2={shortname:'',name:''};
 	
+	$scope.select=[];
+	$scope.select.project=[];
+	
+	$scope.select.project="Proyecto 1";
+	$scope.select.projectid=1;
+	
 	$scope.project=[];
 	var fe = new Date();
 	var dd = fe.getDate();
@@ -73,9 +79,17 @@ app.controller('IndexController', function ($scope,ProjectService) {
 	}
 	
 	
-	$scope.load=function(id)
+	$scope.load=function()
 	{
-		id=1;
+		if($scope.select.project=="Proyecto 1")
+		{
+		$scope.select.projectid=1;
+		}else
+			{
+			$scope.select.projectid=2;
+			}
+		
+		id=$scope.select.projectid;
 		ProjectService.search_project(id).success(
 				function(data) {
 					if(data.project)

@@ -32,6 +32,7 @@
                         IN+
                     </div>
                 </li>
+               
                 
                
 <!--                 <li class="active" ng-repeat="item in detailsedt"> -->
@@ -92,7 +93,7 @@
                     </ul>
            
  </li>
-
+</ul>
 
                
    

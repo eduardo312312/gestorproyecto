@@ -73,13 +73,15 @@ public class TaskRepository {
 	//devuelve a detalle de actividad
 	public List<Object[]> get_activities(String phaseid) 
 	{	
+		System.out.println("ACTIVIDADDDDDD222 "+phaseid);
 		
 			Query query = session.createQuery("select a,p,pr from Activity a inner join a.phase p inner join p.project pr where a.state.id!=2 and p.state.id!=2 and pr.id=1");
 			
 			if(phaseid!="" )//objmodel
 			{
-				query = session.createQuery("select a,p,pr from Activity a inner join a.phase p inner join p.project pr where p.id="+phaseid+" and a.state.id!=2 and p.state.id!=2 and pr.id=1");
-				   
+				System.out.println("ACTIVIDADDDDDD33 "+phaseid);
+				query = session.createQuery("select a,p,pr from Activity a inner join a.phase p inner join p.project pr where p.id="+phaseid+" ");
+				System.out.println("ACTIVIDADDDDDD444 "+query.list().size());   
 			}
 			
 			return query.list();

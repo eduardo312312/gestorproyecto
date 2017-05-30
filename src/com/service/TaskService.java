@@ -190,6 +190,8 @@ public List<Map>  get_edt_detail_activity(String activityid){
 	
 	public List<Map>  get_edt_detail_phase(String phaseid){
 		
+		
+		System.out.println("ACTIVIDADDDDDD "+phaseid);
 		List<Object[]> list=new ArrayList<Object[]>();
 		List<Map> list2=new ArrayList<Map>();
 		
@@ -245,6 +247,7 @@ public List<Map>  get_edt_detail_activity(String activityid){
 			map.put("id", phase.getId());
 			map.put("idforli","pha"+ phase.getId());
 			map.put("name", phase.getName());	
+			
 			map.put("detail", get_edt_detail_phase(Integer.toString(phase.getId())));//llena de actividades
 			
 		 		

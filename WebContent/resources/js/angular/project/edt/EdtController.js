@@ -1,6 +1,11 @@
 
 app.controller('EdtController', function ($scope,TaskService) {
 
+	$scope.select=[];
+	
+	$scope.select.project="Proyecto 1";
+	$scope.select.projectid=1;
+	
 	var fe = new Date();
 	var dd = fe.getDate();
 	var mm = (fe.getMonth() + 1);
@@ -70,7 +75,16 @@ app.controller('EdtController', function ($scope,TaskService) {
 	
 	$scope.load_sidebar=function()
 	{
-		TaskService.list_project_to_edt({projectid:1}).success(function(data){
+		
+		if($scope.select.project=="Proyecto 1")
+			{
+			$scope.select.projectid=1;
+			}else
+				{
+				$scope.select.projectid=2;
+				}
+		
+		TaskService.list_project_to_edt({projectid:$scope.select.projectid}).success(function(data){
 			
 			$scope.detailsedt=data;
 			console.log($scope.detailsedt[0]);
