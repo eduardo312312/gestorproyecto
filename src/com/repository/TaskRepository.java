@@ -58,12 +58,12 @@ public class TaskRepository {
 	public List<Object[]> get_phases(String projectid) 
 	{	
 		
-			Query query = session.createQuery("select p,ph from Phase ph inner join ph.project p where p.state.id!=2 and ph.state.id!=2");
+			Query query = session.createQuery("select p,ph from Phase ph inner join ph.project p where p.state.id!=2 and ph.state.id!=2 order by ph.id asc");
 			
 			if(projectid!="" )//objmodel
 			{
 				
-				query = session.createQuery("select p,ph from Phase ph inner join ph.project p where ph.project.id="+projectid+" and ph.state.id!=2 and p.state.id!=2");
+				query = session.createQuery("select p,ph from Phase ph inner join ph.project p where ph.project.id="+projectid+" and ph.state.id!=2 and p.state.id!=2 order by ph.id asc");
 				   
 			}
 			
