@@ -25,10 +25,10 @@ app.controller('IndexController', function ($scope,ProjectService) {
 	
 	$scope.save_project=function()	
 	{
-		var projectid=1;//por ahora, luego sera para crear varios proyectos
+		var projectid=$scope.select.projectid;//por ahora, luego sera para crear varios proyectos
 		
 		var project_send = {
-				id : projectid,
+				id : $scope.select.projectid,
 				name : $scope.project.name,
 				description: $scope.project.description,
 				comment:$scope.project.comment ,
