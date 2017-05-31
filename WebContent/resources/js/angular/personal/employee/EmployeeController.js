@@ -91,7 +91,7 @@ app.controller('EmployeeController', function ($scope,ProjectService) {
 		var employeeid = 0;
 		var stateid = 1;
 		var businesssubjectbossid = 0;
-		var businesssubjecttypeid=0
+		var businesssubjecttypeid=3
 		
 		//var activityid = $scope.employee.activityid;
 		
@@ -108,31 +108,32 @@ app.controller('EmployeeController', function ($scope,ProjectService) {
 				var employee_send = {
 						id : employeeid,
 						name : $scope.employee.name,
-						lastname: $scope.employee.description,
-						secondlastname:$scope.employee.comment ,
-						address : {id:stateid},
-						location : systemdate ,
-						mail: systemdate,
-						phone: systemdate ,
-						phone2:$scope.employee.estimatehour,
-						startdate : $scope.employee.realhour,
-						enddate : $scope.employee.realhour,
+						lastname: $scope.employee.lastname,
+						secondlastname:$scope.employee.secondlastname ,
+						address : $scope.employee.address,
+						location : $scope.employee.location,
+						mail: $scope.employee.mail,
+						phone: $scope.employee.phone,
+						phone2:$scope.employee.phone2,
+						startdate : systemdate,
+						enddate : systemdate,
 						updateat:systemdate,
 						businesssubjecttype:
 						{
-							id:businesssubjecttypeid
+							id:3
 						},
 						createdate:systemdate,
 						state : {
-							id : stateid
+							id : 1
 						},
 						
 						businessubject:{
-							id:businesssubjectbossid
+							id:1
 						},
 						birthday:systemdate,
 						officialdocument:$scope.employee.officialdocument,
 						officialdocumenttype:$scope.employee.officialdocumenttype
+					
 						
 					
 
@@ -155,7 +156,7 @@ app.controller('EmployeeController', function ($scope,ProjectService) {
 
 
 	$scope.new_register=function(){		
-		//$scope.employee=[];
+		$scope.employee=[];
 		$scope.newreg=true;
 
 	}

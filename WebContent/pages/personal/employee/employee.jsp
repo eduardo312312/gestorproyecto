@@ -136,7 +136,7 @@ $('.datepicker').datepicker({
                 <th>TELEFONO</th>
                 <th>TIPO</th>    
                 <th>JEFE INMEDIATO</th>        
-                <th>ACCION</th>            
+<!--                 <th>ACCION</th>             -->
             </tr>
             </thead>
             <tbody>
@@ -154,8 +154,8 @@ $('.datepicker').datepicker({
 
                 <td class="center">
 <!--                	    <button title="Propiedades" type="button" ng-click="new_asign_properties(product.id)"  data-toggle="modal" data-target="#modal-product-properties" class="btn btn-success btn-sm"><i class="fa fa-sort-amount-asc"></i></button> -->
-                    <button title="Editar" type="button" ng-click="edit(item)"  data-toggle="modal" data-target="#myModal" class="btn btn-warning btn-sm" onclick="clearuploadfile()"><i class="fa fa-edit"></i></button>
-                    <button title="Eliminar"  type="button"  ng-click="edit(item)" onclick='question_remove()' class="btn btn-danger btn-sm" href><i class="fa fa-trash-o"></i></button>
+<!--                     <button title="Editar" type="button" ng-click="edit(item)"  data-toggle="modal" data-target="#myModal" class="btn btn-warning btn-sm" onclick="clearuploadfile()"><i class="fa fa-edit"></i></button> -->
+<!--                     <button title="Eliminar"  type="button"  ng-click="edit(item)" onclick='question_remove()' class="btn btn-danger btn-sm" href><i class="fa fa-trash-o"></i></button> -->
               
                 </td>
                 

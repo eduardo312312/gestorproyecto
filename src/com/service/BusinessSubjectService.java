@@ -38,7 +38,7 @@ public class BusinessSubjectService {
 		if(e.getSecondlastname()!=null) e1.put("secondlastname",e.getSecondlastname());	
 		if(e.getAddress()!=null) e1.put("address",e.getAddress());	
 		if(e.getLocation()!=null) e1.put("location",e.getLocation());	
-		if(e.getMail()!=null) e1.put("mail",e.getTeams());	
+		if(e.getMail()!=null) e1.put("mail",e.getMail());	
 		if(e.getPhone()!=null) e1.put("phone",e.getPhone());	
 		if(e.getPhone2()!=null) e1.put("phone2",e.getPhone2());	
 		if(e.getStartdate()!=null) e1.put("startdate",e.getStartdate());	
