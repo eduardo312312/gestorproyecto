@@ -36,5 +36,7 @@
         <mapping class="com.model.Userprofile" />
         <mapping class="com.model.Businessline" />
         <mapping class="com.model.Entitytype" />
+           <mapping class="com.model.Team" />
+              <mapping class="com.model.Requirement" />
     </session-factory>
 </hibernate-configuration>

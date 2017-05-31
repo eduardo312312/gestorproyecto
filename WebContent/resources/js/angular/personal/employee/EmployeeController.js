@@ -1,5 +1,5 @@
 
-app.controller('EmployeeController', function ($scope,TaskService) {
+app.controller('EmployeeController', function ($scope,ProjectService) {
 
 	var fe = new Date();
 	var dd = fe.getDate();
@@ -16,24 +16,24 @@ app.controller('EmployeeController', function ($scope,TaskService) {
 	$scope.page=1;
 	$scope.pagesPaginator=1;//paginador de paginador
 	$scope.pager=0;//paginador del paginador
-	$scope.tasks={list:[],params:{page:$scope.page, maxResults:20,activityid:'',phasename:''}};
-	$scope.task=[];
-	$scope.task.activityid=0;
+	$scope.employees={list:[],params:{page:$scope.page, maxResults:20}};
+	$scope.employee=[];
+//	$scope.employee.activityid=0;
 
 	$scope.indedit={estado:false};
 	$scope.paginador=null;
 
 	$scope.list=function()
 	{
-		$scope.tasks.list=[];
+		$scope.employees.list=[];
 		$scope.message="Cargando...";
 
-		TaskService.task_list_view_main($scope.tasks.params).success(function(data){
+		ProjectService.businesssubject_list_view_main($scope.employees.params).success(function(data){
 			if(data.list){			 
-				$scope.tasks.list=data.list;
-				//console.log($scope.tasks.list)
+				$scope.employees.list=data.list;
+				//console.log($scope.employees.list)
 				$scope.message="Se encontraron "+data.totalItems+" registros";	      
-				$scope.pages= Math.ceil(data.totalItems/$scope.tasks.params.maxResults); 
+				$scope.pages= Math.ceil(data.totalItems/$scope.employees.params.maxResults); 
 				$scope.preparePagination($scope.pages); 
 				$scope.pagesPaginator=$scope.pagers[0];         
 				$scope.page=data.page;	      
@@ -46,13 +46,13 @@ app.controller('EmployeeController', function ($scope,TaskService) {
 	
 	$scope.select_activity=function()
 	{
-		$scope.task.activityid=0;
+		$scope.employee.activityid=0;
 		        var x = $('#activityy').val();
 	            var z = $('#activities_list');
 	            var val = $(z).find('option[value="' + x + '"]');
 	            var endval = val.attr('id');
 	            if(endval)
-	            $scope.task.activityid=endval;  
+	            $scope.employee.activityid=endval;  
 	            
 	           console.log(endval);
       
@@ -60,7 +60,7 @@ app.controller('EmployeeController', function ($scope,TaskService) {
 	
 	$scope.valor=function()
 	{	var valor=false;
-		if($scope.task.activityid!=0)
+		if($scope.employee.activityid!=0)
 			{
 			valor=true;
 			}
@@ -69,7 +69,7 @@ app.controller('EmployeeController', function ($scope,TaskService) {
 	
 	$scope.load=function()
 	{
-		TaskService.list_activities({abc:123}).success(function(data){
+		ProjectService.list_activities({abc:123}).success(function(data){
 			console.log(data.list);
 			$scope.activities.list=data.list;
 			for(var i=0;i<$scope.activities.list.length;i++)
@@ -85,65 +85,64 @@ app.controller('EmployeeController', function ($scope,TaskService) {
 		$scope.list();
 	}
 
-	$scope.anadir=function(){
-		var taskid = 0;
+	$scope.save=function(){
+		
+		
+		var employeeid = 0;
 		var stateid = 1;
-		var businesssubjectcreatorid = 1;
-		var businesssubjectmodifierid = 1;
-		var businesssubjectresponsableid=1;
-		//var activityid = $scope.task.activityid;
+		var businesssubjectbossid = 0;
+		var businesssubjecttypeid=0
+		
+		//var activityid = $scope.employee.activityid;
 		
 		if($scope.newreg==false)
 		{
-		 taskid = $scope.task.id;	
-		stateid = $scope.task.stateid ;
-		businesssubjectcreatorid = 1;
-			//$scope.task.businesssubjectcreatorid;
-	    businesssubjectmodifierid =1;
-	    	//$scope.task.businesssubjectmodifierid;
-		businesssubjectresponsableid=1;
-		//	$scope.task.businesssubjectresponsableid;
-		//activityid =$scope.task.activityid;		
+		employeeid = $scope.employee.businesssubject.id;	
+		stateid = $scope.employee.businesssubject.stateid ;
+		businesssubjectbossid=$scope.employee.businesssubject.id
+		businesssubjecttypeid=$scope.employee.businesssubjecttype.id
+	
 		}
 		
 			
-				var task_send = {
-						id : taskid,
-						name : $scope.task.name,
-						description: $scope.task.description,
-						comment:$scope.task.comment ,
-						state : {id:stateid},
-						startdate : systemdate ,
-						enddate: systemdate,
-						createdate: systemdate ,
-						estimatehour:$scope.task.estimatehour,
-						realhour : $scope.task.realhour,
-						businessubjectByBusinesssubjectcreatorid:{
-							id:businesssubjectcreatorid
-						},
-						businessubjectByBusinesssubjectresponsableid : {
-							id : businesssubjectresponsableid
-						},
-						businessubjectByBusinesssubjectmodifierid:
+				var employee_send = {
+						id : employeeid,
+						name : $scope.employee.name,
+						lastname: $scope.employee.description,
+						secondlastname:$scope.employee.comment ,
+						address : {id:stateid},
+						location : systemdate ,
+						mail: systemdate,
+						phone: systemdate ,
+						phone2:$scope.employee.estimatehour,
+						startdate : $scope.employee.realhour,
+						enddate : $scope.employee.realhour,
+						updateat:systemdate,
+						businesssubjecttype:
 						{
-							id:businesssubjectmodifierid
+							id:businesssubjecttypeid
 						},
-						changedate : systemdate,
-						shortname : $scope.task.shortname,
-						updateat : systemdate,
-						activity : {
-							id : $scope.task.activityid
+						createdate:systemdate,
+						state : {
+							id : stateid
 						},
-						realamount : $scope.task.realamount,
-						estimateamount : $scope.task.estimateamount
+						
+						businessubject:{
+							id:businesssubjectbossid
+						},
+						birthday:systemdate,
+						officialdocument:$scope.employee.officialdocument,
+						officialdocumenttype:$scope.employee.officialdocumenttype
+						
+					
 
 					}
 
-					var params_task = {
-						task : task_send
+					var params_employee = {
+						employee : employee_send
 					};
-				TaskService.save_task(
-						params_task).success(
+				ProjectService.save_businesssubject(
+						params_employee).success(
 							function(data) {
 								if(data)
 								$scope.list();
@@ -156,7 +155,7 @@ app.controller('EmployeeController', function ($scope,TaskService) {
 
 
 	$scope.new_register=function(){		
-		//$scope.task=[];
+		//$scope.employee=[];
 		$scope.newreg=true;
 
 	}
@@ -165,11 +164,11 @@ app.controller('EmployeeController', function ($scope,TaskService) {
 	$scope.edit=function(item){
 
 			
-		$scope.task=[];
+		$scope.employee=[];
 		
-		$scope.task=item;			
+		$scope.employee=item;			
 		$scope.newreg=false;
-		console.debug($scope.task);
+		console.debug($scope.employee);
 
 	}
 
@@ -178,7 +177,7 @@ app.controller('EmployeeController', function ($scope,TaskService) {
 
 	$scope.confirmRemove=function(){
 		
-		$scope.task.stateid=2;
+		$scope.employee.stateid=2;
 		$scope.anadir()
 	}
 
@@ -206,7 +205,7 @@ app.controller('EmployeeController', function ($scope,TaskService) {
 
 	$scope.changePage=function(number){
 
-		$scope.tasks.params.page=$scope.page=number;
+		$scope.employees.params.page=$scope.page=number;
 		$scope.list();
 	}
 	$scope.movePager=function(movemment){
@@ -222,7 +221,7 @@ app.controller('EmployeeController', function ($scope,TaskService) {
 
 	$scope.list();
 
-	$scope.load();
+//	$scope.load();
 
 
 	$scope.exportToExcel=function(tableId){ // ex: '#my-table'

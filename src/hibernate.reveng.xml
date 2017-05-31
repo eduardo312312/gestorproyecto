@@ -26,5 +26,6 @@
   <table-filter match-name="taskhistory"/>
   <table-filter match-name="typepayment"/>
   <table-filter match-name="userprofile"/>
+  <table-filter match-name="requirement"/>
   <table-filter match-name="team"/>
 </hibernate-reverse-engineering>

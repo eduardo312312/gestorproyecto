@@ -32,11 +32,11 @@ public class BusinessSubjectRepository {
 	public List<Object[]> list_view_main(Map params,String businesssubjectid, String teamid, String portfolioid) 
 	{	
 		System.out.println("rr11");
-			Query query = session.createQuery("select b,bt from Businessubject b inner join b.businesssubjecttype a where b.state.id!=2 ordere by b.asc");
+			Query query = session.createQuery("select b,bt from Businessubject b inner join b.businesssubjecttype bt where b.state.id!=2 order by b.id asc");
 			
 			if(teamid!="" )//objmodel
 			{
-				query = session.createQuery("select a,b from Task b inner join b.activity a where a.id="+teamid+" and b.state.id!=2");
+				query = session.createQuery("select b,bt from Businessubject b inner join b.businesssubjecttype bt where a.id="+teamid+" and b.state.id!=2");
 				   
 			}
 			

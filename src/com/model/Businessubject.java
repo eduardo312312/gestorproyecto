@@ -1,5 +1,5 @@
 package com.model;
-// Generated 31/05/2017 05:15:35 AM by Hibernate Tools 3.4.0.CR1
+// Generated 31/05/2017 06:07:36 AM by Hibernate Tools 3.4.0.CR1
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -42,6 +42,8 @@ public class Businessubject implements java.io.Serializable {
 	private Date updateat;
 	private Date createdate;
 	private Date birthday;
+	private String officialdocument;
+	private String officialdocumenttype;
 	private Set<Task> tasksForBusinesssubjectresponsableid = new HashSet<Task>(0);
 	private Set<Task> tasksForBusinesssubjectmodifierid = new HashSet<Task>(0);
 	private Set<Project> projectsForBusinesssubjectleaderid = new HashSet<Project>(0);
@@ -64,9 +66,10 @@ public class Businessubject implements java.io.Serializable {
 	public Businessubject(int id, Businesssubjecttype businesssubjecttype, Businessubject businessubject, State state,
 			String name, String lastname, String secondlastname, String address, String location, String mail,
 			String phone, String phone2, Date startdate, Date enddate, Date updateat, Date createdate, Date birthday,
-			Set<Task> tasksForBusinesssubjectresponsableid, Set<Task> tasksForBusinesssubjectmodifierid,
-			Set<Project> projectsForBusinesssubjectleaderid, Set<Activity> activitiesForBusinesssubjectresponsableid,
-			Set<Team> teams, Set<Activity> activitiesForBusinesssubjectmodifierid, Set<Businessubject> businessubjects,
+			String officialdocument, String officialdocumenttype, Set<Task> tasksForBusinesssubjectresponsableid,
+			Set<Task> tasksForBusinesssubjectmodifierid, Set<Project> projectsForBusinesssubjectleaderid,
+			Set<Activity> activitiesForBusinesssubjectresponsableid, Set<Team> teams,
+			Set<Activity> activitiesForBusinesssubjectmodifierid, Set<Businessubject> businessubjects,
 			Set<Systemuser> systemusers, Set<Project> projectsForBusinesssubjectcontrolid,
 			Set<Activity> activitiesForBusinesssubjectcreatorid, Set<Task> tasksForBusinesssubjectcreatorid) {
 		this.id = id;
@@ -86,6 +89,8 @@ public class Businessubject implements java.io.Serializable {
 		this.updateat = updateat;
 		this.createdate = createdate;
 		this.birthday = birthday;
+		this.officialdocument = officialdocument;
+		this.officialdocumenttype = officialdocumenttype;
 		this.tasksForBusinesssubjectresponsableid = tasksForBusinesssubjectresponsableid;
 		this.tasksForBusinesssubjectmodifierid = tasksForBusinesssubjectmodifierid;
 		this.projectsForBusinesssubjectleaderid = projectsForBusinesssubjectleaderid;
@@ -260,6 +265,24 @@ public class Businessubject implements java.io.Serializable {
 
 	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
+	}
+
+	@Column(name = "officialdocument", length = 50)
+	public String getOfficialdocument() {
+		return this.officialdocument;
+	}
+
+	public void setOfficialdocument(String officialdocument) {
+		this.officialdocument = officialdocument;
+	}
+
+	@Column(name = "officialdocumenttype", length = 50)
+	public String getOfficialdocumenttype() {
+		return this.officialdocumenttype;
+	}
+
+	public void setOfficialdocumenttype(String officialdocumenttype) {
+		this.officialdocumenttype = officialdocumenttype;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "businessubjectByBusinesssubjectresponsableid")

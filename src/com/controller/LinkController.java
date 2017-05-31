@@ -38,7 +38,7 @@ public class LinkController {
 	
 	@RequestMapping(value="/busssubject", method = RequestMethod.GET)
 	public String businessubject(){
-		return "project/emploee/employee";
+		return "personal/employee/employee";
 	}
 	
 	

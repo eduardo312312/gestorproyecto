@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ADMINISTRACION DE TAREAS</title>
+    <title>ADMINISTRACION DE PERSONAL</title>
     <jsp:include page="../../parts/head.jsp"></jsp:include>
     <script src="resources/js/angular/personal/employee/EmployeeController.js"></script>
          <script src="resources/js/uploadfile/jquery.uploadfile.min.js"></script>
@@ -64,7 +64,7 @@ $('.datepicker').datepicker({
 
     <nav class="navbar-default navbar-static-side" role="navigation">
         <div class="sidebar-collapse">
-		<jsp:include page="../../parts/part_sidemenu_configuration.jsp"></jsp:include>
+		<jsp:include page="../../parts/part_sidemenu_personal.jsp"></jsp:include>
         </div>
      </nav>
 
@@ -84,20 +84,20 @@ $('.datepicker').datepicker({
                 <br>
                 <br>
             <div class="centrar_titulo">
-                <h5>Registro de Tareas</h5>
+                <h5>Registro de Personal</h5>
                 
             </div>
             <div class="ibox-content">
             <div class="row">
-            <button  class="btn btn-primary dim"  ng-click="new_register()" data-toggle="modal" data-target="#myModal" href="javascript:void(0);" >Crear Tarea</button>
+            <button  class="btn btn-primary dim"  ng-click="new_register()" data-toggle="modal" data-target="#myModal" href="javascript:void(0);" >CrearPersonal</button>
 			</div>
 			 <div class="row">
          
-            <div class="col-sm-3"> 
+            <div class="col-sm-4"> 
             <div class="ibox float-e-margins">  
                                  
                <div class="form-group" id="data_1">
-                  <span>Fase</span> <br />    
+                  <span>Equipo</span> <br />    
                      <datalist id="product">
 										<option id="{{prod.id}}" value="{{prod.name | uppercase}}" 	ng-repeat="prod in products2.list">
 									</datalist>
@@ -110,41 +110,7 @@ $('.datepicker').datepicker({
                     </div>
             </div>
             
-              <div class="col-sm-3"> 
-            <div class="ibox float-e-margins">  
-                                 
-               <div class="form-group" id="data_1">
-                  <span>Actividad</span> <br />    
-                     <datalist id="brandss">
-										<option id="{{brand.id}}" value="{{brand.brand_code}} ({{brand.provider | uppercase}})" 	ng-repeat="brand in brands.list">
-									</datalist>
-										<input id="filterbrand" type="text"
-											ng-change="select_filter()"
-											ng-model="brand_filter" class="form-control"
-											list="brandss" />
-                     
-                    </div>
-                   
-                    </div>
-            </div>
-            
-              <div class="col-sm-3"> 
-            <div class="ibox float-e-margins">  
-                                 
-               <div class="form-group" id="data_1">
-                  <span>Tarea</span> <br />    
-                     <datalist id="qualitiess">
-										<option value="{{qualityy.objectmodel | uppercase}}" 	ng-repeat="qualityy in qualities.list">
-									</datalist>
-										<input id="filterclient" type="text"
-										   									
-											ng-model="quality_objectmodel" class="form-control"
-											list="qualitiess" />
-                     
-                    </div>
-                   
-                    </div>
-            </div>
+             
              
                <div class="col-sm-3"> <br /> 
                     <button class="btn btn-primary" ng-disabled="filterbuttoninactive" title="Filtrar" ng-click="filter()">Filtrar</button>
@@ -163,39 +129,29 @@ $('.datepicker').datepicker({
             <table class="table table-striped table-bordered table-hover " id="exportable" ng-cloak>
             <thead>
             <tr>
-                <th>CODIGO</th>
                 <th>NOMBRE</th>
-                <th>DESCRIPCION</th>
-                <th>H. ESTIMADAS</th>
-                <th>H. REAL</th>
-                <th>P. ESTIMADO</th> 
-                <th>P. REAL</th>                 
-                <th>F. INICIO</th>
-                <th>F. FIN</th>
-                <th>ASIGNADO</th>
-<!--                 <th>TAREA DEPENDIENTE</th> -->
-                <th>ACCION</th>
-         
-            
+                <th>APELLIDOS</th>
+                <th>DIRECCION</th>
+                <th>EMAIL</th>
+                <th>TELEFONO</th>
+                <th>TIPO</th>    
+                <th>JEFE INMEDIATO</th>        
+                <th>ACCION</th>            
             </tr>
             </thead>
             <tbody>
 
-            <tr ng-repeat="item in tasks.list ">
+            <tr ng-repeat="item in employees.list ">
                 <!--<td> <img  src={{product.path_image}} alt="Logo Viento Sur" height="30" width="30"/> </td>-->
-               <td>{{ item.shortname }}</td>
-                <td>{{ item.name }}</td>
-                <td>{{ item.description }}</td>
-                <td>{{ item.estimatehour }} </td>
-                <td>{{ item.realhour }} </td>
-                <td>{{ item.estimateamount }} </td>
-                <td>{{ item.realamount }} </td>
-                <td>{{ item.startdate | date:'dd/MM/yyyy'}} </td>
-                <td>{{ item.enddate | date:'dd/MM/yyyy'}} </td>                
-                <td>T. Pendiente</td>
-<!--                 <td>{{ item.enddate | date:'dd/MM/yyyy'}} </td> -->
+               <td>{{ item.businesssubject.name }}</td>
+                <td>{{ item.businesssubject.lastname }} {{ item.businesssubject.secondlastname }}</td>
+                <td>{{ item.businesssubject.address }}</td>
+                <td>{{ item.businesssubject.mail }} </td>
+                <td>{{ item.businesssubject.phone }} </td>
+                <td>{{  item.businesssubjecttype.name}} </td>
+                 <td>{{  item.businesssubject.businessubjectname }}  {{  item.businesssubject.businessubjectlastname }} {{  item.businesssubject.businessubjectsecondlastname }} </td>
                 
-     
+
                 <td class="center">
 <!--                	    <button title="Propiedades" type="button" ng-click="new_asign_properties(product.id)"  data-toggle="modal" data-target="#modal-product-properties" class="btn btn-success btn-sm"><i class="fa fa-sort-amount-asc"></i></button> -->
                     <button title="Editar" type="button" ng-click="edit(item)"  data-toggle="modal" data-target="#myModal" class="btn btn-warning btn-sm" onclick="clearuploadfile()"><i class="fa fa-edit"></i></button>
@@ -273,7 +229,7 @@ $('.datepicker').datepicker({
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                   
-                                            <h4 class="modal-title">TAREA</h4>
+                                            <h4 class="modal-title">PERSONAL</h4>
                                             
                                         </div>
                                         <div class="modal-body modal_scrolable">
@@ -287,50 +243,75 @@ $('.datepicker').datepicker({
 <!--  					<div ng-show="!newreg" id="fileuploader">Upload</div> -->
 <!--   			      <input id='product_id' type='hidden' ng-model='product.id' value='{{product.id}}' /> -->
   			      
-							<div class="form-group"><label class="col-sm-3 control-label" >Codigo</label>
-
-                                    <div class="col-sm-9"><input type="text" class="form-control" ng-model="task.shortname" /></div>
-                                </div>
+						
                                    <div class="form-group"><label class="col-sm-3 control-label" >Nombre</label>
 
-                                    <div class="col-sm-9"><input type="text" class="form-control" ng-model="task.name" /></div>
+                                    <div class="col-sm-9"><input type="text" class="form-control" ng-model="employee.name" /></div>
                                 </div>
-                                <div class="form-group"><label class="col-sm-3 control-label" >Descripcion</label>
+                                <div class="form-group"><label class="col-sm-3 control-label" >Apellido Materno</label>
 
-                                    <div class="col-sm-9"><input type="text" class="form-control" ng-model="task.description" /></div>
+                                    <div class="col-sm-9"><input type="text" class="form-control" ng-model="employee.lastname" /></div>
                                 </div>
+                                 <div class="form-group"><label class="col-sm-3 control-label" >Apellido Paterno</label>
 
-                       
-                                  <div class="form-group"><label class="col-sm-3 control-label" >Otras Especificaciones</label>
-
-                                    <div class="col-sm-9"><input type="text" class="form-control" ng-model="task.comment" /></div>
+                                    <div class="col-sm-9"><input type="text" class="form-control" ng-model="employee.secondlastname" /></div>
                                 </div>
-
-                                 <div class="form-group"><label class="col-sm-3 control-label" >Horas Estimadas</label>
-
-                                    <div class="col-sm-9"><input type="number" class="form-control" ng-model="task.estimatehour" /></div>
-                                </div>
-                                 <div class="form-group"><label class="col-sm-3 control-label" >Horas Real</label>
-
-                                    <div class="col-sm-9"><input type="number" class="form-control" ng-model="task.realhour" /></div>
-                                </div>
-                                 <div class="form-group"><label class="col-sm-3 control-label" >Presupuesto Estimado</label>
-
-                                    <div class="col-sm-9"><input type="number" class="form-control" ng-model="task.estimateamount" /></div>
-                                </div>
-                                 <div class="form-group"><label class="col-sm-3 control-label" >Gasto Real</label>
-
-                                    <div class="col-sm-9"><input type="number" class="form-control" ng-model="task.realamount" /></div>
-                                </div>
+                                
+                                  <div class="form-group">
                                   
-                                  <div  class="form-group"><label class="col-sm-3 control-label" >Actividad</label>
-									<datalist id="activities_list">
-									<option ng-repeat="item in activities.list" id="{{item.activity.id}}" value={{item.show}} > 
-									</datalist>
-                                    <div class="col-sm-9"><input id="activityy" type="text" class="form-control" ng-change="select_activity()" ng-model="task.actividad" list="activities_list"  ></div>
+                                  <label class="col-md-3 control-label" >Documento Identidad</label>
+
+                                    <div class="col-md-3">
+										<select class="form-control m-b col-md-12"  ng-model="employee.officialdocumenttype">
+                                             
+                                        <option>DNI</option>
+                                        <option>RUC</option>
+                                        <option>PASAPORTE</option>
+                                        
+                                        </select> 
+
+                                    
+                                    </div>
+                                    
+                                               <label class="col-md-3 control-label" >N°</label>
+
+                                    <div class="col-md-3"><input type="text" class="form-control" ng-model="employee.officialdocument" /></div>
                                     
                                 </div>
+                                
                                  
+                                
+                                
+                                <div class="form-group"><label class="col-sm-3 control-label" >Ciudad</label>
+
+                                    <div class="col-sm-9"><input type="text" class="form-control" ng-model="employee.location" /></div>
+                                </div>
+                                 <div class="form-group"><label class="col-sm-3 control-label" >Fecha de Nacimiento</label>
+
+                                    <div class="col-sm-9"><input type="text" class="form-control" ng-model="employee.birthday" /></div>
+                                </div>
+                                <div class="form-group"><label class="col-sm-3 control-label" >Direccion</label>
+
+                                    <div class="col-sm-9"><input type="text" class="form-control" ng-model="employee.address" /></div>
+                                </div>
+                                  <div class="form-group"><label class="col-sm-3 control-label" >Telefono Fijo</label>
+
+                                    <div class="col-sm-9"><input type="text" class="form-control" ng-model="employee.phone" /></div>
+                                </div>
+                                <div class="form-group"><label class="col-sm-3 control-label" >Telefono Personal</label>
+
+                                    <div class="col-sm-9"><input type="text" class="form-control" ng-model="employee.phone2" /></div>
+                                </div>
+                                  <div class="form-group"><label class="col-sm-3 control-label" >Email</label>
+
+                                    <div class="col-sm-9"><input type="text" class="form-control" ng-model="employee.mail" /></div>
+                                </div>
+                                
+                                
+                                
+                                
+
+                       
                               
                                 
                                 
@@ -345,7 +326,7 @@ $('.datepicker').datepicker({
     <!-- aca termina el formuilario -->
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-white dim btnclose" data-dismiss="modal">Cerrar</button>
-                                            <button  ng-disabled="!valor()" id="btnadd" type="button"  class="btn btn-primary dim" ng-click="anadir()" >Guardar</button>
+                                            <button  ng-disabled="!valor()" id="btnadd" type="button"  class="btn btn-primary dim" ng-click="save()" >Guardar</button>
                                         </div>
                                    
                                 </div>

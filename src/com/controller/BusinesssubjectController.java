@@ -54,7 +54,7 @@ public Session session;
 
 			
 			
-			 Businessubject  businessubject=(Businessubject) jsonTransformer.fromJSON(jsonTransformer.toJSON(map.get("project")), Project.class);
+			 Businessubject  businessubject=(Businessubject) jsonTransformer.fromJSON(jsonTransformer.toJSON(map.get("employee")), Businessubject.class);
 	
 			 Businesssubjecttype bstype=  (Businesssubjecttype) session.get(Businesssubjecttype.class, businessubject.getBusinessubject().getId() );			
 			 State state=(State) session.get(State.class, businessubject.getState().getId());
@@ -65,9 +65,9 @@ public Session session;
 			 businessubject.setBusinesssubjecttype(bstype);
 			 businessubject.setState(state);
 			 businessubject.setBusinessubject(bs);
-			 
+			 System.out.println("CONTROLER1");
 			 service.save(businessubject);
-			
+			 System.out.println("CONTROLER2");
 			 
 		           Map response=service.BussinessSubjectToMap(businessubject);		 			 
 						 httpServletResponse.setContentType("application/json");

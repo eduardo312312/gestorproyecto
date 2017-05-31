@@ -39,6 +39,8 @@
   <mapping class="Taskhistory"/>
   <mapping class="Typepayment"/>
   <mapping class="Userprofile"/>
+  <mapping class="Requirement"/>
+  <mapping class="Team"/>
   
   
     </session-factory>
