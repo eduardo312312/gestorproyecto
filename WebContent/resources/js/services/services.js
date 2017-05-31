@@ -104,8 +104,11 @@ app.factory('ProjectService', function($http) {
 		 save_project:function(params){return $http.post('project',params ,{headers:csrf_header});},
 		 search_project: function (params) {
 	        	return $http.post('project/'+params ,{},{headers:csrf_header});
-	    		 }
-		 
+	    		 },
+	    save_businesssubject:function(params){return $http.post('businesssubject',params ,{headers:csrf_header});},
+	    businesssubject_list_view_main : function(params) {
+			return $http.post('businesssubject/list_view', params ,{headers:csrf_header});
+		}, 
 		 //
 		
 	}

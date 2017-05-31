@@ -23,7 +23,7 @@
             <ul class="nav navbar-nav">
 <!--               <li class="active"><a href="#">Home</a></li> -->
               <li><a href="index">PROYECTO</a></li>
-              <li><a href="personal_register">PERSONAL</a></li>
+              <li><a href="busssubject">PERSONAL</a></li>
               <li><a href=tasks>CONFIGURACION</a></li>
               <li><a href="reportperformance">REPORTES</a></li>   
 

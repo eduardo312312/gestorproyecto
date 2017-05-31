@@ -36,5 +36,12 @@ public class LinkController {
 		return "project/index/index";
 	}
 	
+	@RequestMapping(value="/busssubject", method = RequestMethod.GET)
+	public String businessubject(){
+		return "project/emploee/employee";
+	}
+	
+	
+	
 	
 }

@@ -23,10 +23,10 @@
                 <li class='level1'>
                     <a id="BordeSideMenu" class="fa fa-group" href="#"> <span >PERSONAL</span></a>
                     <ul class="nav nav-second-level">                        
-                        <li id="colaboradores" ><a class="fa fa-users" href="personal_register"><span> Empleados</span></a></li>
-						<li id="adelantos-descuentos" ><a class="fa fa-database" href="discount"><span> Adelantos</span></a></li>
-                        <li id="pagos"><a class="fa fa-dollar" href="personalpayment"><span> Pagos</span></a></li>
-                           <li id="historial"><a class="fa fa-dollar" href="history"><span> Historial</span></a></li>
+                        <li id="employee" ><a class="fa fa-users" href="busssubject"><span> Empleados</span></a></li>
+<!-- 						<li id="adelantos-descuentos" ><a class="fa fa-database" href="discount"><span> Adelantos</span></a></li> -->
+<!--                         <li id="pagos"><a class="fa fa-dollar" href="personalpayment"><span> Pagos</span></a></li> -->
+<!--                            <li id="historial"><a class="fa fa-dollar" href="history"><span> Historial</span></a></li> -->
                     
                     </ul>
                 </li>

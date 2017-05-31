@@ -1,5 +1,5 @@
 package com.model;
-// Generated 21/05/2017 04:09:30 AM by Hibernate Tools 3.4.0.CR1
+// Generated 31/05/2017 05:15:35 AM by Hibernate Tools 3.4.0.CR1
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -33,7 +33,7 @@ public class Businessubject implements java.io.Serializable {
 	private String lastname;
 	private String secondlastname;
 	private String address;
-	private Integer districtid;
+	private String location;
 	private String mail;
 	private String phone;
 	private String phone2;
@@ -45,9 +45,13 @@ public class Businessubject implements java.io.Serializable {
 	private Set<Task> tasksForBusinesssubjectresponsableid = new HashSet<Task>(0);
 	private Set<Task> tasksForBusinesssubjectmodifierid = new HashSet<Task>(0);
 	private Set<Project> projectsForBusinesssubjectleaderid = new HashSet<Project>(0);
+	private Set<Activity> activitiesForBusinesssubjectresponsableid = new HashSet<Activity>(0);
+	private Set<Team> teams = new HashSet<Team>(0);
+	private Set<Activity> activitiesForBusinesssubjectmodifierid = new HashSet<Activity>(0);
 	private Set<Businessubject> businessubjects = new HashSet<Businessubject>(0);
 	private Set<Systemuser> systemusers = new HashSet<Systemuser>(0);
 	private Set<Project> projectsForBusinesssubjectcontrolid = new HashSet<Project>(0);
+	private Set<Activity> activitiesForBusinesssubjectcreatorid = new HashSet<Activity>(0);
 	private Set<Task> tasksForBusinesssubjectcreatorid = new HashSet<Task>(0);
 
 	public Businessubject() {
@@ -58,12 +62,13 @@ public class Businessubject implements java.io.Serializable {
 	}
 
 	public Businessubject(int id, Businesssubjecttype businesssubjecttype, Businessubject businessubject, State state,
-			String name, String lastname, String secondlastname, String address, Integer districtid, String mail,
+			String name, String lastname, String secondlastname, String address, String location, String mail,
 			String phone, String phone2, Date startdate, Date enddate, Date updateat, Date createdate, Date birthday,
 			Set<Task> tasksForBusinesssubjectresponsableid, Set<Task> tasksForBusinesssubjectmodifierid,
-			Set<Project> projectsForBusinesssubjectleaderid, Set<Businessubject> businessubjects,
+			Set<Project> projectsForBusinesssubjectleaderid, Set<Activity> activitiesForBusinesssubjectresponsableid,
+			Set<Team> teams, Set<Activity> activitiesForBusinesssubjectmodifierid, Set<Businessubject> businessubjects,
 			Set<Systemuser> systemusers, Set<Project> projectsForBusinesssubjectcontrolid,
-			Set<Task> tasksForBusinesssubjectcreatorid) {
+			Set<Activity> activitiesForBusinesssubjectcreatorid, Set<Task> tasksForBusinesssubjectcreatorid) {
 		this.id = id;
 		this.businesssubjecttype = businesssubjecttype;
 		this.businessubject = businessubject;
@@ -72,7 +77,7 @@ public class Businessubject implements java.io.Serializable {
 		this.lastname = lastname;
 		this.secondlastname = secondlastname;
 		this.address = address;
-		this.districtid = districtid;
+		this.location = location;
 		this.mail = mail;
 		this.phone = phone;
 		this.phone2 = phone2;
@@ -84,9 +89,13 @@ public class Businessubject implements java.io.Serializable {
 		this.tasksForBusinesssubjectresponsableid = tasksForBusinesssubjectresponsableid;
 		this.tasksForBusinesssubjectmodifierid = tasksForBusinesssubjectmodifierid;
 		this.projectsForBusinesssubjectleaderid = projectsForBusinesssubjectleaderid;
+		this.activitiesForBusinesssubjectresponsableid = activitiesForBusinesssubjectresponsableid;
+		this.teams = teams;
+		this.activitiesForBusinesssubjectmodifierid = activitiesForBusinesssubjectmodifierid;
 		this.businessubjects = businessubjects;
 		this.systemusers = systemusers;
 		this.projectsForBusinesssubjectcontrolid = projectsForBusinesssubjectcontrolid;
+		this.activitiesForBusinesssubjectcreatorid = activitiesForBusinesssubjectcreatorid;
 		this.tasksForBusinesssubjectcreatorid = tasksForBusinesssubjectcreatorid;
 	}
 
@@ -167,13 +176,13 @@ public class Businessubject implements java.io.Serializable {
 		this.address = address;
 	}
 
-	@Column(name = "districtid")
-	public Integer getDistrictid() {
-		return this.districtid;
+	@Column(name = "location", length = 250)
+	public String getLocation() {
+		return this.location;
 	}
 
-	public void setDistrictid(Integer districtid) {
-		this.districtid = districtid;
+	public void setLocation(String location) {
+		this.location = location;
 	}
 
 	@Column(name = "mail", length = 250)
@@ -280,6 +289,33 @@ public class Businessubject implements java.io.Serializable {
 		this.projectsForBusinesssubjectleaderid = projectsForBusinesssubjectleaderid;
 	}
 
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "businessubjectByBusinesssubjectresponsableid")
+	public Set<Activity> getActivitiesForBusinesssubjectresponsableid() {
+		return this.activitiesForBusinesssubjectresponsableid;
+	}
+
+	public void setActivitiesForBusinesssubjectresponsableid(Set<Activity> activitiesForBusinesssubjectresponsableid) {
+		this.activitiesForBusinesssubjectresponsableid = activitiesForBusinesssubjectresponsableid;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "businessubject")
+	public Set<Team> getTeams() {
+		return this.teams;
+	}
+
+	public void setTeams(Set<Team> teams) {
+		this.teams = teams;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "businessubjectByBusinesssubjectmodifierid")
+	public Set<Activity> getActivitiesForBusinesssubjectmodifierid() {
+		return this.activitiesForBusinesssubjectmodifierid;
+	}
+
+	public void setActivitiesForBusinesssubjectmodifierid(Set<Activity> activitiesForBusinesssubjectmodifierid) {
+		this.activitiesForBusinesssubjectmodifierid = activitiesForBusinesssubjectmodifierid;
+	}
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "businessubject")
 	public Set<Businessubject> getBusinessubjects() {
 		return this.businessubjects;
@@ -305,6 +341,15 @@ public class Businessubject implements java.io.Serializable {
 
 	public void setProjectsForBusinesssubjectcontrolid(Set<Project> projectsForBusinesssubjectcontrolid) {
 		this.projectsForBusinesssubjectcontrolid = projectsForBusinesssubjectcontrolid;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "businessubjectByBusinesssubjectcreatorid")
+	public Set<Activity> getActivitiesForBusinesssubjectcreatorid() {
+		return this.activitiesForBusinesssubjectcreatorid;
+	}
+
+	public void setActivitiesForBusinesssubjectcreatorid(Set<Activity> activitiesForBusinesssubjectcreatorid) {
+		this.activitiesForBusinesssubjectcreatorid = activitiesForBusinesssubjectcreatorid;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "businessubjectByBusinesssubjectcreatorid")
