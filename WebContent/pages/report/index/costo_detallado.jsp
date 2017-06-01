@@ -130,17 +130,17 @@ $('.datepicker').datepicker({
                 <th>Fecha de Inicio</th>
                 <th>Actividad</th>
                 <th>AC</th>
-<!--                 <th>BAC</th> -->
-<!--                 <th>Porcentaje Planeado</th>  -->
-<!--                 <th>Porcentaje Eficiencia</th>                  -->
-<!--                 <th>Horas Real</th> -->
-<!--                 <th>Horas Estimado</th> -->
+                <th>BAC</th>
+                <th>Porcentaje Planeado</th> 
+                <th>Porcentaje Eficiencia</th>                 
+                <th>Horas Real</th>
+                <th>Horas Estimado</th>
                 <th>EV</th>
-<!--                 <th>PV</th> -->
-<!--                 <th>SV</th> -->
-<!--                 <th>CV</th> -->
+                <th>PV</th>
+                <th>SV</th>
+                <th>CV</th>
                 <th>CPI</th>
-<!--                   <th>SPI</th> -->
+                  <th>SPI</th>
 
          
          
@@ -155,17 +155,17 @@ $('.datepicker').datepicker({
                 <td>{{ item.startdate }}</td>
                 <td>{{ item.name }}</td>
                 <td>{{ item.ac }} </td>
-<!--                 <td>{{ item.bc }} </td> -->
-<!--                 <td> 100.00% </td> -->
-<!--                 <td>{{ item.pe *100 | number:2}}% </td> -->
-<!--                 <td>{{ item.realhour}} </td> -->
-<!--                 <td>{{ item.estimatehour}} </td> -->
+                <td>{{ item.bc }} </td>
+                <td> 100.00% </td>
+                <td>{{ item.pe *100 | number:2}}% </td>
+                <td>{{ item.realhour}} </td>
+                <td>{{ item.estimatehour}} </td>
                 <td>{{item.ev | number:2}}</td>
-<!--                 <td>{{item.pv | number:2}}</td> -->
-<!--                 <td>{{item.sv | number:2}}</td> -->
-<!--                 <td>{{item.cv | number:3}}</td> -->
-                <td>{{item.cpi | number:2}}</td>
-<!--                  <td>{{item.spi | number:3}}</td> -->
+                <td>{{item.pv | number:2}}</td>
+                <td>{{item.sv | number:2}}</td>
+                <td>{{item.cv | number:3}}</td>
+                <td>{{item.cpi | number:3}}</td>
+                 <td>{{item.spi | number:3}}</td>
                  
 <!--                 <td>{{ item.enddate | date:'dd/MM/yyyy'}} </td> -->
                 
@@ -179,18 +179,18 @@ $('.datepicker').datepicker({
                 <td></td>
                 <td></td>
             
-<!--                 <td>{{ detailreport.totalac | number:2 }} </td> -->
-<!--                 <td>{{detailreport.totalbac | number:2}} </td> -->
+                <td>{{ detailreport.totalac | number:2 }} </td>
+                <td>{{detailreport.totalbac | number:2}} </td>
                 <td> </td>
                 <td></td>
-<!--                 <td>{{ detailreport.totalrealhour}} </td> -->
-<!--                 <td>{{detailreport.totalestimatehour}}</td> -->
-<!--                 <td></td> -->
-<!--                 <td></td> -->
-<!--                 <td>{{detailreport.totalsv | number:2}}</td> -->
-<!--                 <td>{{detailreport.totalcv | number:2}}</td> -->
+                <td>{{ detailreport.totalrealhour}} </td>
+                <td>{{detailreport.totalestimatehour}}</td>
+                <td></td>
+                <td></td>
+                <td>{{detailreport.totalsv | number:2}}</td>
+                <td>{{detailreport.totalcv | number:2}}</td>
                 <td>{{detailreport.totalcpi | number:2}}</td>
-<!--                  <td>{{detailreport.totalspi | number:2}}</td> -->
+                 <td>{{detailreport.totalspi | number:2}}</td>
 <!--                 <td>{{ item.enddate | date:'dd/MM/yyyy'}} </td> -->
                 
     

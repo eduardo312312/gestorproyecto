@@ -212,6 +212,7 @@ public List<Map>  get_edt_detail_activity(String activityid){
 			map.put("id",activity.getId());
 			map.put("idforli","act"+activity.getId());
 			map.put("name",activity.getName());
+			map.put("startdate",activity.getStartdate());
 			map.put("detail", get_edt_detail_activity(Integer.toString(activity.getId())));
 			
 		//	map1.put("activity", map);		
@@ -233,6 +234,8 @@ public List<Map>  get_edt_detail_activity(String activityid){
 		List<Map> list3=new ArrayList<Map>();
 		Map project=new HashMap();
 		
+		String clientname="";
+		
 		int contador=0;
 		list=this.repository.get_phases(projectid);
 			
@@ -243,7 +246,9 @@ public List<Map>  get_edt_detail_activity(String activityid){
 			Project projectobj=(Project) item[0];	
 			Phase phase=(Phase) item[1];			
 			this.setprojectid( Integer.toString(projectobj.getId()));
-			this.setprojectname(projectobj.getName().toString());			
+			this.setprojectname(projectobj.getName().toString());	
+			clientname=projectobj.getClientname();
+			
 			map.put("id", phase.getId());
 			map.put("idforli","pha"+ phase.getId());
 			map.put("name", phase.getName());	
@@ -254,7 +259,8 @@ public List<Map>  get_edt_detail_activity(String activityid){
 	     	list2.add(map);
 		}
 		project.put("id",this.getprojectid());
-		project.put("name",this.getprojectname());
+		project.put("name",this.getprojectname());	
+		project.put("clientname",clientname);
 		project.put("detail",list2);//la list2 tiene todo el detalle de phase.
 		
 		list3.add(project);

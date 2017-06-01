@@ -23,10 +23,10 @@ public class LinkController {
 	public String taskmanagement(){
 		return "configuration/task/task";
 	}
-	@RequestMapping(value="/reportperformance", method = RequestMethod.GET)
-	public String report_performance(){
-		return "report/index/costo";
-	}
+//	@RequestMapping(value="/reportperformance", method = RequestMethod.GET)
+//	public String report_performance(){
+//		return "report/index/costo";
+//	}
 	@RequestMapping(value="/edt", method = RequestMethod.GET)
 	public String edt(){
 		return "project/edt/edt";
@@ -40,6 +40,20 @@ public class LinkController {
 	public String businessubject(){
 		return "personal/employee/employee";
 	}
+	
+	@RequestMapping(value="/reportperformancecostcpi", method = RequestMethod.GET)
+	public String reportcostcpi(){
+		return "report/index/costo";
+	}
+	
+	@RequestMapping(value="/reportperformancecronospi", method = RequestMethod.GET)
+	public String reportcronospi(){
+		return "report/index/cronograma";
+	}
+	
+	
+	
+	
 	
 	
 	

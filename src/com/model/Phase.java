@@ -1,5 +1,5 @@
 package com.model;
-// Generated 21/05/2017 02:53:53 AM by Hibernate Tools 3.4.0.CR1
+// Generated 31/05/2017 06:07:36 AM by Hibernate Tools 3.4.0.CR1
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -33,6 +33,7 @@ public class Phase implements java.io.Serializable {
 	private String comment;
 	private Date startdate;
 	private Date enddate;
+	private Integer priority;
 	private Set<Activity> activities = new HashSet<Activity>(0);
 
 	public Phase() {
@@ -43,7 +44,7 @@ public class Phase implements java.io.Serializable {
 	}
 
 	public Phase(int id, Project project, State state, String name, String description, String comment, Date startdate,
-			Date enddate, Set<Activity> activities) {
+			Date enddate, Integer priority, Set<Activity> activities) {
 		this.id = id;
 		this.project = project;
 		this.state = state;
@@ -52,6 +53,7 @@ public class Phase implements java.io.Serializable {
 		this.comment = comment;
 		this.startdate = startdate;
 		this.enddate = enddate;
+		this.priority = priority;
 		this.activities = activities;
 	}
 
@@ -131,6 +133,15 @@ public class Phase implements java.io.Serializable {
 
 	public void setEnddate(Date enddate) {
 		this.enddate = enddate;
+	}
+
+	@Column(name = "priority")
+	public Integer getPriority() {
+		return this.priority;
+	}
+
+	public void setPriority(Integer priority) {
+		this.priority = priority;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "phase")

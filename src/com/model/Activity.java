@@ -1,5 +1,5 @@
 package com.model;
-// Generated 28/05/2017 11:16:29 PM by Hibernate Tools 3.4.0.CR1
+// Generated 31/05/2017 06:07:36 AM by Hibernate Tools 3.4.0.CR1
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -40,6 +40,7 @@ public class Activity implements java.io.Serializable {
 	private Date createdate;
 	private Date updateat;
 	private String shortname;
+	private Integer priority;
 	private Set<Task> tasks = new HashSet<Task>(0);
 
 	public Activity() {
@@ -53,7 +54,7 @@ public class Activity implements java.io.Serializable {
 			Businessubject businessubjectByBusinesssubjectcreatorid, State state,
 			Businessubject businessubjectByBusinesssubjectmodifierid, String name, String description, String comment,
 			Date startdate, Date enddate, Date changedate, Date createdate, Date updateat, String shortname,
-			Set<Task> tasks) {
+			Integer priority, Set<Task> tasks) {
 		this.id = id;
 		this.phase = phase;
 		this.businessubjectByBusinesssubjectresponsableid = businessubjectByBusinesssubjectresponsableid;
@@ -69,6 +70,7 @@ public class Activity implements java.io.Serializable {
 		this.createdate = createdate;
 		this.updateat = updateat;
 		this.shortname = shortname;
+		this.priority = priority;
 		this.tasks = tasks;
 	}
 
@@ -218,6 +220,15 @@ public class Activity implements java.io.Serializable {
 
 	public void setShortname(String shortname) {
 		this.shortname = shortname;
+	}
+
+	@Column(name = "priority")
+	public Integer getPriority() {
+		return this.priority;
+	}
+
+	public void setPriority(Integer priority) {
+		this.priority = priority;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "activity")

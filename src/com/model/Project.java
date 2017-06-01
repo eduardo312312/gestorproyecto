@@ -1,5 +1,5 @@
 package com.model;
-// Generated 28/05/2017 11:54:01 PM by Hibernate Tools 3.4.0.CR1
+// Generated 31/05/2017 06:07:36 AM by Hibernate Tools 3.4.0.CR1
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -56,6 +56,7 @@ public class Project implements java.io.Serializable {
 	private String clientmail;
 	private String clientaddress;
 	private Set<Phase> phases = new HashSet<Phase>(0);
+	private Set<Requirement> requirements = new HashSet<Requirement>(0);
 
 	public Project() {
 	}
@@ -70,7 +71,8 @@ public class Project implements java.io.Serializable {
 			String description, String comment, String state_1, Date startdate, Date enddate, Date createdate,
 			Double daysleft, Double totalamount, String location, String size, String institutionalcost,
 			String shortname, String clientname, String clientcontact, String clientphone, String clientfax,
-			String clientmovil, String clientmail, String clientaddress, Set<Phase> phases) {
+			String clientmovil, String clientmail, String clientaddress, Set<Phase> phases,
+			Set<Requirement> requirements) {
 		this.id = id;
 		this.businessubjectByBusinesssubjectcontrolid = businessubjectByBusinesssubjectcontrolid;
 		this.businessline = businessline;
@@ -102,6 +104,7 @@ public class Project implements java.io.Serializable {
 		this.clientmail = clientmail;
 		this.clientaddress = clientaddress;
 		this.phases = phases;
+		this.requirements = requirements;
 	}
 
 	@Id
@@ -395,6 +398,15 @@ public class Project implements java.io.Serializable {
 
 	public void setPhases(Set<Phase> phases) {
 		this.phases = phases;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "project")
+	public Set<Requirement> getRequirements() {
+		return this.requirements;
+	}
+
+	public void setRequirements(Set<Requirement> requirements) {
+		this.requirements = requirements;
 	}
 
 }

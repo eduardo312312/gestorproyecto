@@ -1,5 +1,5 @@
 package com.model;
-// Generated 21/05/2017 02:53:53 AM by Hibernate Tools 3.4.0.CR1
+// Generated 31/05/2017 06:07:36 AM by Hibernate Tools 3.4.0.CR1
 
 import static javax.persistence.GenerationType.IDENTITY;
 

@@ -1,6 +1,13 @@
 
 app.controller('CostController', function ($scope,TaskService) {
 
+	$scope.select=[];
+	
+	$scope.select.project="";
+	$scope.select.project="Proyecto 1";
+	$scope.detailsedt=[];
+	$scope.detailreport=[];
+	$scope.projectid=1;
 	var fe = new Date();
 	var dd = fe.getDate();
 	var mm = (fe.getMonth() + 1);
@@ -10,7 +17,8 @@ app.controller('CostController', function ($scope,TaskService) {
 	if (mm < 10) {
 		mm = '0' + mm
 	}
-	var systemdate = fe.getFullYear() + '-' + mm + '-' +dd ;
+	var systemdate = dd+ '-' + mm +'-'+ fe.getFullYear() ;
+	$scope.systemdate=systemdate;
 	//alert(systemdate);
 	$scope.activities=[];
 	$scope.page=1;
@@ -28,69 +36,131 @@ app.controller('CostController', function ($scope,TaskService) {
 		$scope.details.list=[];
 		$scope.message="Cargando...";
 
-		TaskService.task_list_view_main_cost($scope.details.params).success(function(data){
-			if(data.list){			 
-				$scope.details.list=data.list;
-				$scope.totalhourestimate=0
-				$scope.totalhourreal=0
-				$scope.totalamountestimate=0
-				$scope.totalamountreal=0
+		
+		//esto voy a quitarlo cuando agregue el filtro Javascript por nombre -> id
+		if($scope.select.project=="Proyecto 1")
+			$scope.projectid=1;
+		if($scope.select.project=="Proyecto 2")
+			$scope.projectid=2;
+		
+		
+		
+			TaskService.list_project_to_edt({projectid:$scope.projectid}).success(function(data){
+				$scope.detailreport=[];
+	
 				
-				//calculo los totales
-				for(var i=0; i<$scope.details.list.length;i++)
-					{
-					$scope.totalhourestimate+=$scope.details.list[i].task.estimatehour;
-					$scope.totalhourreal+=$scope.details.list[i].task.realhour;
-					$scope.totalamountestimate+=$scope.details.list[i].task.estimateamount;
-					$scope.totalamountreal+=$scope.details.list[i].task.realamount;
-					
-					}
 				
-				for(var i=0; i<$scope.details.list.length;i++)
+			$scope.detailsedt=data;
+			var constante=16;
+			
+			
+			var contador=0;
+			for(var i=0;i<$scope.detailsedt[0].detail.length;i++)//recorro las fases
 				{
-					if(i==0)//no acumulad
-						{
-						$scope.details.list[i].percentage_p= $scope.details.list[i].task.estimatehour/$scope.totalhourestimate;//porcentaje planeado  horas estimadas/total horas estimadas
-						$scope.details.list[i].percentage_e= $scope.details.list[i].task.realhour/$scope.totalhourreal;//porcentaje ejecutado	  horas real/ total horas reales
-						$scope.details.list[i].ac= $scope.details.list[i].task.realamount;//prespuesto real
-						}else
-							{
-							$scope.details.list[i].percentage_p= $scope.details.list[i-1].percentage_p+ $scope.details.list[i].task.estimatehour/$scope.totalhourestimate;//anterior+porcentaje planeado  horas estimadas/total horas estimadas
-							$scope.details.list[i].percentage_e=$scope.details.list[i-1].percentage_e+ $scope.details.list[i].task.realhour/$scope.totalhourreal;//anterior+porcentaje ejecutado	  horas real/ total horas reales
-							$scope.details.list[i].ac=$scope.details.list[i-1].ac+ $scope.details.list[i].task.realamount;//anterior+ presupuesto real
-							}
-					
-					$scope.details.list[i].ev=$scope.details.list[i].percentage_e*$scope.totalamountestimate;//ev = porcentaje ejecutado / total presupuesto estimado
-					$scope.details.list[i].pv=$scope.details.list[i].percentage_p*$scope.totalamountreal   ;//pv=porcentaje planeado*Total presupuesto real
-
-					$scope.details.list[i].cpi=$scope.details.list[i].ev/$scope.details.list[i].ac; //					cpi= ev/ac
-					$scope.details.list[i].spi=$scope.details.list[i].ev/$scope.details.list[i].pv;//					spi= ev/pv	
-
-				}
 				
-				 $scope.totalcpi=0;
-				 $scope.totalspi=0;
-				for(var i=0; i<$scope.details.list.length;i++)
+				//console.log($scope.detailreport[i])
+				for(var j=0;j<$scope.detailsedt[0].detail[i].detail.length;j++)//aca jalo actividades a mi detailreport
+				  {
+				  $scope.detailreport[contador]=$scope.detailsedt[0].detail[i] .detail[j]//aca jalo toda la actividad
+				  $scope.detailreport[contador].realhour=0;
+				  $scope.detailreport[contador].estimatehour=0;
+				 
+				  $scope.detailreport[contador].contador=contador+1
+				  
+				      for(var k=0; k<$scope.detailsedt[0].detail[i].detail[j].detail.length;k++)//a este nivel recorro tareas. para sumar las horas y ponerlas en totalact
+				    	  {
+				    	  $scope.detailreport[contador].realhour+=$scope.detailsedt[0].detail[i].detail[j].detail[k].realhour;
+				    	  $scope.detailreport[contador].estimatehour+=$scope.detailsedt[0].detail[i].detail[j].detail[k].estimatehour;
+				    	  }
+				 
+				  
+				
+				    	   
+				  
+				  
+				  contador++;
+				  }
+				  //console.log("Actividad"+$scope.detailreport[contador].name);
+				 // console.log("Total Horas Reales"+$scope.detailreport[contador].realhour);
+				 // console.log("Total Horas estimadas"+$scope.detailreport[contador].estimatehour);
+				}
+			$scope.contador=contador;
+			
+			console.log("tamaño"+$scope.detailreport.length);
+			$scope.detailreport[i].totalac=0;
+		           $scope.detailreport.totalbac=0;
+		           $scope.detailreport.totalrealhour=0;
+		           $scope.detailreport.totalestimatehour=0;
+		           $scope.detailreport.totalsv=0;
+		           $scope.detailreport.totalcv=0;
+		           $scope.detailreport.totalcpi=0;
+		           $scope.detailreport.totalspi=0;
+		        	   
+			for(var i=0; i<$scope.detailreport.length;i++)
 				{
-				   $scope.totalcpi+=$scope.details.list[i].cpi;
-				   $scope.totalspi+=$scope.details.list[i].spi;
-
+				
+				
+				
+					  $scope.detailreport[i].ac = constante * $scope.detailreport[i].realhour;	
+					  $scope.detailreport[i].bc = constante * $scope.detailreport[i].estimatehour;	
+					  $scope.detailreport[i].pe = $scope.detailreport[i].realhour / $scope.detailreport[i].estimatehour ;
+					  if($scope.detailreport[i].estimatehour==0)
+						   $scope.detailreport[i].pe=0;
+					
+					  $scope.detailreport[i].sv = $scope.detailreport[i].estimatehour - $scope.detailreport[i].realhour ;
+					  
+					 
+					  
+					       if(i>0)//las columnas acumulativas :S
+					    	  { 
+					    	   $scope.detailreport[i].ac=$scope.detailreport[i].ac+$scope.detailreport[i-1].ac;	   
+					    	   $scope.detailreport[i].bc=$scope.detailreport[i].bc+$scope.detailreport[i-1].bc;	
+					    	   $scope.detailreport[i].sv= $scope.detailreport[i].sv+ $scope.detailreport[i-1].sv;
+					    	   }
+					       
+			       $scope.detailreport[i].ev = $scope.detailreport[i].bc * $scope.detailreport[i].pe ;       
+		           $scope.detailreport[i].pv = $scope.detailreport[i].bc ;
+		           $scope.detailreport[i].cv = $scope.detailreport[i].ev - $scope.detailreport[i].ac ;
+		           $scope.detailreport[i].cpi = $scope.detailreport[i].ev / $scope.detailreport[i].ac ;
+		           $scope.detailreport[i].spi=$scope.detailreport[i].ev / $scope.detailreport[i].pv ;
+		           
+		           
+		        
+				
+		           
+		           $scope.detailreport.totalrealhour+=$scope.detailreport[i].realhour;
+		           $scope.detailreport.totalestimatehour+=$scope.detailreport[i].estimatehour;
+		         
+		           $scope.detailreport.totalcv+=$scope.detailreport[i].cv;
+		           $scope.detailreport.totalcpi+=$scope.detailreport[i].cpi;
+		           $scope.detailreport.totalspi+=$scope.detailreport[i].spi;
+		           
 				}
-				
-				$scope.totalcpi=$scope.totalcpi/$scope.details.list.length;//average of total cpis
-				 $scope.totalspi=$scope.totalspi/$scope.details.list.length//average of totals spis
-				
-				//console.log($scope.tasks.list)
-				//$scope.message="Se encontraron "+data.totalItems+" registros";	      
-				//$scope.pages= Math.ceil(data.totalItems/$scope.details.params.maxResults); 
-				//$scope.preparePagination($scope.pages); 
-				//$scope.pagesPaginator=$scope.pagers[0];         
-				//$scope.page=data.page;	      
-
-			}else{
-				$scope.message="datos no encontrados";
-			}
+			
+			//totales
+			  $scope.detailreport.totalsv=$scope.detailreport[contador-1].sv;		
+			  $scope.detailreport.totalac=$scope.detailreport[contador-1].ac;	
+	          $scope.detailreport.totalbac=$scope.detailreport[contador-1].bc;	
+			  
+			  
+			  
+			  $scope.detailreport.totalcv=$scope.detailreport.totalcv/($scope.contador);
+	          $scope.detailreport.totalcpi=$scope.detailreport.totalcpi/($scope.contador);
+	          $scope.detailreport.totalspi=$scope.detailreport.totalspi/($scope.contador);
+	           
+			
+			  console.log($scope.detailreport.totalcpi) 
+			  console.log($scope.detailreport.totalspi) 
+			  
+			
+			
+			
+		
+			
+			
 		});	
+
+
 	}
 	
 	$scope.exportToExcel=function(tableId){ // ex: '#my-table'

@@ -25,7 +25,7 @@
               <li><a href="index">PROYECTO</a></li>
               <li><a href="busssubject">PERSONAL</a></li>
               <li><a href=tasks>CONFIGURACION</a></li>
-              <li><a href="reportperformance">REPORTES</a></li>   
+              <li><a href="reportperformancecostcpi">REPORTES</a></li>   
 
             </ul>
             </ul>

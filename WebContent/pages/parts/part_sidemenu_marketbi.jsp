@@ -28,13 +28,15 @@
                     <a id="BordeSideMenu" class='fa fa-university' href="#"> <span > INDICADORES</span></a>
                     <ul class="nav nav-third-level">
                         
-                        <li id="reporte_costo"><a  class="fa fa-line-chart" href="reportperformance"><span> DESEMPEÑO CRONOGRAMA Y COSTO</span></a></li>
+                        <li id="reporte_costo"><a  class="fa fa-line-chart" href="reportperformancecostcpi"><span> DESEMPEÑO COSTO</span></a></li>
+                        <li id="reporte_crono"><a  class="fa fa-line-chart" href="reportperformancecronospi"><span> DESEMPEÑO CRONOGRAMA </span></a></li>
                         
 <!--                         <li><a id="BordeSideMenuSub" class="fa fa-suitcase modal-icon" href="#"><font  > Reporte gráfico y de tabla de proyección mensual y anual</font></a></li> -->
 
 
                     </ul>
                 </li>
+                
 
                
             </ul>

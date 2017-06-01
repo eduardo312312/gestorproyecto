@@ -5,57 +5,21 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ADMINISTRACION DE TAREAS</title>
+    <title>INDICE DE DESEMPEÑO CRONOGRAMA SPI - RESUMEN </title>
     <jsp:include page="../../parts/head.jsp"></jsp:include>
     <script src="resources/js/angular/report/index/costo.js"></script>
          <script src="resources/js/uploadfile/jquery.uploadfile.min.js"></script>
     <link href="resources/js/uploadfile/uploadfile.css" rel="stylesheet" />
     
    <script>
-var page="tareas";
-</script>
-  <script>
-var uploadWidget;
-
-$(function(){
-	var product_id=$("#product_id").val();
-	
-	uploadWidget=$("#fileuploader").uploadFile({
-		allowedTypes:"png" ,
-		url:"product/upload_product?${_csrf.parameterName}=${_csrf.token}",
-		multiple:false,
-		dragDrop:true,
-		uploadStr:'Cargar Archivo',
-		/*maxFileCount:1,*/
-		dynamicFormData:function(){
-			product_id=$("#product_id").val();
-			var data={product_id:product_id}
-			return data;
-		},
-		fileName:"file",
-		dragDropStr: "<span><b>Arrastre y suelte un archivo PNG</b></span>",
-		extErrorStr:" Extension no valida, solo admite: ",
-		onSuccess:function(files,data,xhr,pd){
-			//console.debug(files);
-		    $("#file").val(data);
-		    
-		},
-		onError:function(files,status,errMsg,pd){
-			alert("ERROR al cargar!");
-		}
-		});
-});
-function clearuploadfile()
-{
-	uploadWidget.reset();
-}
-
+var page="reporte_crono";
 $('.datepicker').datepicker({
 	format : 'dd/mm/yyyy',
 	language : "es",
 	autoclose : true,
 });
 </script>
+
 </head>
 <body ng-controller="CostController">
 
@@ -64,7 +28,7 @@ $('.datepicker').datepicker({
 
     <nav class="navbar-default navbar-static-side" role="navigation">
         <div class="sidebar-collapse">
-		<jsp:include page="../../parts/part_sidemenu_configuration.jsp"></jsp:include>
+		<jsp:include page="../../parts/part_sidemenu_marketbi.jsp"></jsp:include>
         </div>
      </nav>
 
@@ -84,148 +48,162 @@ $('.datepicker').datepicker({
                 <br>
                 <br>
             <div class="centrar_titulo">
-                <h5>Registro de Tareas</h5>
+         <h5>REPORTE: INDICADORES DE DESEMPEÑO CRONOGRAMA </h5>
                 
             </div>
             <div class="ibox-content">
-            <div class="row">
-            <button  class="btn btn-primary dim"  ng-click="new_register()" data-toggle="modal" data-target="#myModal" href="javascript:void(0);" >Crear Tarea</button>
-			</div>
-			 <div class="row">
-         
-            <div class="col-sm-3"> 
-            <div class="ibox float-e-margins">  
-                                 
-               <div class="form-group" id="data_1">
-                  <span>Fase</span> <br />    
-                     <datalist id="product">
-										<option id="{{prod.id}}" value="{{prod.name | uppercase}}" 	ng-repeat="prod in products2.list">
-									</datalist>
-										<input id="filterclient" type="text"											
-											ng-model="product_filter" class="form-control"
-											list="product" />
-                     
-                    </div>
-                   
-                    </div>
-            </div>
-            
-              <div class="col-sm-3"> 
-            <div class="ibox float-e-margins">  
-                                 
-               <div class="form-group" id="data_1">
-                  <span>Actividad</span> <br />    
-                     <datalist id="brandss">
-										<option id="{{brand.id}}" value="{{brand.brand_code}} ({{brand.provider | uppercase}})" 	ng-repeat="brand in brands.list">
-									</datalist>
-										<input id="filterbrand" type="text"
-											ng-change="select_filter()"
-											ng-model="brand_filter" class="form-control"
-											list="brandss" />
-                     
-                    </div>
-                   
-                    </div>
-            </div>
-            
-              <div class="col-sm-3"> 
-            <div class="ibox float-e-margins">  
-                                 
-               <div class="form-group" id="data_1">
-                  <span>Tarea</span> <br />    
-                     <datalist id="qualitiess">
-										<option value="{{qualityy.objectmodel | uppercase}}" 	ng-repeat="qualityy in qualities.list">
-									</datalist>
-										<input id="filterclient" type="text"
-										   									
-											ng-model="quality_objectmodel" class="form-control"
-											list="qualitiess" />
-                     
-                    </div>
-                   
-                    </div>
-            </div>
-             
-               <div class="col-sm-3"> <br /> 
-                    <button class="btn btn-primary" ng-disabled="filterbuttoninactive" title="Filtrar" ng-click="filter()">Filtrar</button>
-     				<button class="btn btn-info"ng-disabled="filterbuttoninactive" ng-click="exportToExcel('#exportable')"><span class="glyphicon glyphicon-share"></span>Excel</button>
-               </div>
-            
-            </div>
-            <!-- tabla de datos -->
-
-
-           <!-- Tabla del listado -->
+<div class="row">
+			<div class="form-group">
+            <label class="col-md-2 control-label alineacion_i">Proyecto:</label>
+                                      <div class="col-md-3">  <select class="form-control m-b" ng-change="list()"  ng-model="select.project">
+                                             
+                                        <option >Proyecto 1</option>
+                                        <option >Proyecto 2</option>
+                                      
+                                        </select>  </div>  
+                                  
+                                </div> 
+                                
+              </div>
+              
        <div class="row"><div class="col-md-12">
-       <p>{{message}}</p>
-       
-       <div class="table-responsive">
+      
+       <button class="btn btn-info"ng-disabled="filterbuttoninactive" ng-click="exportToExcel('#exportable')"><span class="glyphicon glyphicon-share"></span>Excel</button>
+       <div  class="table-responsive">
+         <table  class="table table-striped table-bordered table-hover  " ng-cloak>
+	         <thead>
+	        
+	          <tr >  <h2 class="alineacion_c" ><span class="alineacion_c">INDICADOR DE DESEMPEÑO DEL CRONOGRAMA</span></h2>   </tr>	
+	         	
+	         	<tr class="alineacion_i">
+	         	<td >Investigador</td>
+	         	<td class="alineacion_i">Pozo Chávez Stephen Michael</td>
+	         	</tr>
+		         	<tr class="alineacion_i">
+		         	<td>Proyecto</td>
+		         	<td class="alineacion_i">{{ detailsedt[0].name}}</td>
+		         	</tr>
+	         	<tr class="alineacion_i">
+	         	<td>Empresa</td>
+	         	<td class="alineacion_i">{{ detailsedt[0].clientname}}</td>
+	         	</tr>
+	         	<tr class="alineacion_i">
+	         	<td>AREA</td>
+	         	<td class="alineacion_i">Certificación de Software</td>
+		        </tr>
+		         	<tr class="alineacion_i">
+		         	<td>Fecha de Registro</td>
+		         	<td class="alineacion_i">{{systemdate}}</td>
+		         	</tr>
+	         	
+	         	        	
+	         	<tr class="alineacion_i">
+	         	<td >CPI=EV/AC</td>	 
+	         	<td class="alineacion_i">
+	         	  Donde: <br>
+	         	  PV=Valor Planeado<br>
+	         	  EV=Valor Ganado
+	         	  
+	         	  
+	         	 
+	         	  </tr> 
+	         	  
+				
+	         	
+	         	
+	         
+	         	
+	         	
+	         </thead>
+	         <tbody>
+	         	 <tr>
+	         	 
+	         	</tr>	         
+	         </tbody>
+         
+         </table>
+          
             <table class="table table-striped table-bordered table-hover " id="exportable" ng-cloak>
             <thead>
             <tr>
-                <th>CODIGO</th>
-                <th>NOMBRE</th>
-                <th>DESCRIPCION</th>
-                <th>H. ESTIMADAS</th>
-                <th>H. REAL</th>
-                <th>P. ESTIMADO</th> 
-                <th>P. REAL</th>                 
-                <th>F. INICIO</th>
-                <th>F. FIN</th>
-                <th>ASIGNADO</th>
-<!--                 <th>TAREA DEPENDIENTE</th> -->
-                <th>ACCION</th>
+                <th>N°</th>
+                <th>Fecha de Inicio</th>
+                <th>Actividad</th>
+<!--                 <th>AC</th> -->
+<!--                 <th>BAC</th> -->
+<!--                 <th>Porcentaje Planeado</th>  -->
+<!--                 <th>Porcentaje Eficiencia</th>                  -->
+<!--                 <th>Horas Real</th> -->
+<!--                 <th>Horas Estimado</th> -->
+                <th>EV</th>
+                <th>PV</th>
+<!--                 <th>SV</th> -->
+<!--                 <th>CV</th> -->
+<!--                 <th>CPI</th> -->
+                  <th>SPI</th>
+
+         
          
             
             </tr>
             </thead>
             <tbody>
-
-            <tr ng-repeat="item in tasks.list ">
+	
+            <tr ng-repeat="item in detailreport ">
                 <!--<td> <img  src={{product.path_image}} alt="Logo Viento Sur" height="30" width="30"/> </td>-->
-               <td>{{ item.shortname }}</td>
+               <td>{{ item.contador }}</td>
+                <td>{{ item.startdate }}</td>
                 <td>{{ item.name }}</td>
-                <td>{{ item.description }}</td>
-                <td>{{ item.estimatehour }} </td>
-                <td>{{ item.realhour }} </td>
-                <td>{{ item.estimateamount }} </td>
-                <td>{{ item.startdate | date:'dd/MM/yyyy'}} </td>
-                <td>{{ item.enddate | date:'dd/MM/yyyy'}} </td>
-                <td>Jefe Tareas</td>
-                <td>T. Pendiente</td>
+<!--                 <td>{{ item.ac }} </td> -->
+<!--                 <td>{{ item.bc }} </td> -->
+<!--                 <td> 100.00% </td> -->
+<!--                 <td>{{ item.pe *100 | number:2}}% </td> -->
+<!--                 <td>{{ item.realhour}} </td> -->
+<!--                 <td>{{ item.estimatehour}} </td> -->
+                <td>{{item.ev | number:2}}</td>
+                <td>{{item.pv | number:2}}</td>
+<!--                 <td>{{item.sv | number:2}}</td> -->
+<!--                 <td>{{item.cv | number:3}}</td> -->
+<!--                 <td>{{item.cpi | number:3}}</td> -->
+                 <td>{{item.spi | number:2}}</td>
+                 
 <!--                 <td>{{ item.enddate | date:'dd/MM/yyyy'}} </td> -->
                 
      
-                <td class="center">
-<!--                	    <button title="Propiedades" type="button" ng-click="new_asign_properties(product.id)"  data-toggle="modal" data-target="#modal-product-properties" class="btn btn-success btn-sm"><i class="fa fa-sort-amount-asc"></i></button> -->
-                    <button title="Editar" type="button" ng-click="edit(item)"  data-toggle="modal" data-target="#myModal" class="btn btn-warning btn-sm" onclick="clearuploadfile()"><i class="fa fa-edit"></i></button>
-                    <button title="Eliminar"  type="button"  ng-click="edit(item)" onclick='question_remove()' class="btn btn-danger btn-sm" href><i class="fa fa-trash-o"></i></button>
-              
-                </td>
+             
                 
             </tr>
+             <tr >
+                <!--<td> <img  src={{product.path_image}} alt="Logo Viento Sur" height="30" width="30"/> </td>-->
+               <td style="color:Red !important|">TOTALES</td>
+                <td></td>
+                <td></td>
             
+<!--                 <td>{{ detailreport.totalac | number:2 }} </td> -->
+<!--                 <td>{{detailreport.totalbac | number:2}} </td> -->
+<!--                 <td> </td> -->
+<!--                 <td></td> -->
+<!--                 <td>{{ detailreport.totalrealhour}} </td> -->
+<!--                 <td>{{detailreport.totalestimatehour}}</td> -->
+                <td></td>
+                <td></td>
+<!--                 <td>{{detailreport.totalsv | number:2}}</td> -->
+<!--                 <td>{{detailreport.totalcv | number:2}}</td> -->
+<!--                 <td>{{detailreport.totalcpi | number:2}}</td> -->
+                 <td>{{detailreport.totalspi | number:2}}</td>
+<!--                 <td>{{ item.enddate | date:'dd/MM/yyyy'}} </td> -->
+                
+    
+                
+            </tr>
+           
             </tbody>
     
             </table>
             </div>
              
 </div></div>
-<div class="row">
-<div class="col-md-10">
-    <div  id='paginator-content' >
-    <div><a class='btn btn-default' ng-click='movePager(-1)' href > << </a></div>
-    <div>
-      <ul class="pagination">
-        <li ng-repeat="i in pagesPaginator" class='{{i==page?"active":""}}'><a class="red-btn" href="#" ng-click='changePage(i)'>{{i}}</a></li>
-        
-      </ul>
-   </div>
 
-      <div><a class='btn btn-default' ng-click='movePager(1)' href > >> </a></div>
-     </div>
-</div>
-</div>
 
             </div>
             </div>
