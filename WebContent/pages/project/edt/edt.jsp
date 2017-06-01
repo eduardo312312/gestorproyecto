@@ -208,7 +208,7 @@ $('.datepicker').datepicker({
                 <td>{{ item.realamount }} </td>
                 <td>{{ item.startdate | date:'dd/MM/yyyy'}} </td>
                 <td>{{ item.enddate | date:'dd/MM/yyyy'}} </td>                
-                <td>T. Pendiente</td>
+                <td>{{item.responsable}}</td>
 <!--                 <td>{{ item.enddate | date:'dd/MM/yyyy'}} </td> -->
      
                 <td class="center">
