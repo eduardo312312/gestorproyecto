@@ -11,6 +11,8 @@ import com.model.Activity;
 import com.model.Phase;
 import com.model.Project;
 import com.model.Task;
+import com.repository.ActivityRepository;
+import com.repository.BusinessSubjectRepository;
 import com.repository.TaskRepository;
 
 
@@ -52,6 +54,10 @@ public String projectid="";
 	
 	
 	public Map TaskToMap(Task e){
+		
+		BusinessSubjectRepository repository=new BusinessSubjectRepository();
+		ActivityRepository repositoryact=new ActivityRepository();
+		
 		Map e1=new HashMap();		
 		e1.put("id", e.getId());
 		if(e.getName()!=null) e1.put("name", e.getName());
@@ -65,11 +71,21 @@ public String projectid="";
 		if(e.getRealhour()!=null) e1.put("realhour",e.getRealhour());
 		if(e.getBusinessubjectByBusinesssubjectcreatorid()!=null) e1.put("businesssubjectcreatorid",e.getBusinessubjectByBusinesssubjectcreatorid().getId());
 		if(e.getBusinessubjectByBusinesssubjectmodifierid()!=null) e1.put("businesssubjectmodifierid",e.getBusinessubjectByBusinesssubjectmodifierid().getId());
-		if(e.getBusinessubjectByBusinesssubjectresponsableid()!=null) e1.put("businesssubjectresponsableid",e.getBusinessubjectByBusinesssubjectresponsableid().getId());
+		if(e.getBusinessubjectByBusinesssubjectresponsableid()!=null)
+		{
+			e1.put("businesssubjectresponsableid",e.getBusinessubjectByBusinesssubjectresponsableid().getId());
+			e1.put("responsable", repository.get(e.getBusinessubjectByBusinesssubjectresponsableid().getId()).getName()+" "+repository.get(e.getBusinessubjectByBusinesssubjectresponsableid().getId()).getLastname()+" "+repository.get(e.getBusinessubjectByBusinesssubjectresponsableid().getId()).getSecondlastname() );
+		}
 		if(e.getChangedate()!=null) e1.put("changedate",e.getChangedate());
 		if(e.getShortname()!=null) e1.put("shortname",e.getShortname());
 		if(e.getUpdateat()!=null) e1.put("updateat",e.getUpdateat());
-		if(e.getActivity()!=null) e1.put("activityid",e.getActivity().getId());
+		if(e.getActivity()!=null) 
+		{
+			
+			e1.put("activityid",e.getActivity().getId());
+			e1.put("activityname",repositoryact.get(e.getActivity().getId()).getName());
+			
+		}
 		if(e.getRealamount()!=null) e1.put("realamount",e.getRealamount());
 		if(e.getEstimateamount()!=null) e1.put("estimateamount",e.getEstimateamount());	
 		return e1;

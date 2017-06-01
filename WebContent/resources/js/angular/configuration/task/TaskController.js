@@ -1,6 +1,6 @@
 
 app.controller('TaskController', function ($scope,TaskService,ProjectService) {
-	$scope.employees={list:[],params:{page:1, maxResults:100}};
+	$scope.employees={list:[],params:{page:1, maxResults:20}};
 	$scope.employee=[];
 	
 	var fe = new Date();
@@ -22,7 +22,7 @@ app.controller('TaskController', function ($scope,TaskService,ProjectService) {
 	$scope.task=[];
 	$scope.task.activityid=0;
 
-	$scope.indedit={estado:false};
+	$scope.indedit=false;
 	$scope.paginador=null;
 
 	$scope.list=function()
@@ -68,14 +68,15 @@ app.controller('TaskController', function ($scope,TaskService,ProjectService) {
 	$scope.select_employee=function()
 	{
 		$scope.task.employeeid=0;
-		        var x = $('#employeee').val();
+		        var x = $('#employeeeee').val();
 	            var z = $('#employees_list');
 	            var val = $(z).find('option[value="' + x + '"]');
 	            var endval = val.attr('id');
 	            if(endval)
-	            	$scope.task.employeeid=endval;  
+	            	$scope.task.employeeid=endval.substring(1) ;  
 	            
 	           console.log(endval);
+	           console.log(endval.substring(1) );
       
 	}	
 	
@@ -112,7 +113,7 @@ app.controller('TaskController', function ($scope,TaskService,ProjectService) {
 				      
 				for(var i=0;i<$scope.employees.list.length;i++)
 				{
-				$scope.employees.list[i].show=$scope.employees.list[i].businesssubject.businessubjectname+" "+$scope.employees.list[i].businesssubject.businessubjectlastname+" "+$scope.employees.list[i].businesssubject.businessubjectsecondlastname;
+				$scope.employees.list[i].show=$scope.employees.list[i].businesssubject.name+" "+$scope.employees.list[i].businesssubject.lastname+" "+$scope.employees.list[i].businesssubject.secondlastname;
 				}
 
 			}else{
@@ -201,15 +202,17 @@ app.controller('TaskController', function ($scope,TaskService,ProjectService) {
 	$scope.new_register=function(){		
 		//$scope.task=[];
 		$scope.newreg=true;
+		$scope.indedit=false;
 
 	}
 
 
 	$scope.edit=function(item){
 
-			
+		$scope.indedit=true;
 		$scope.task=[];
-		
+		$scope.task.actividad=item.activityname;
+		$scope.task.employeeeeeee=item.responsable;
 		$scope.task=item;			
 		$scope.newreg=false;
 		console.debug($scope.task);
