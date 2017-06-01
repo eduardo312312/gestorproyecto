@@ -73,7 +73,7 @@ $('.datepicker').datepicker({
          <table  class="table table-striped table-bordered table-hover  " ng-cloak>
 	         <thead>
 	        
-	          <tr >  <h2 class="alineacion_c" ><span class="alineacion_c">INDICADOR DE DESEMPEÑO DEL CRONOGRAMA</span></h2>   </tr>	
+<!-- 	          <tr >  <h2 class="alineacion_c" ><span class="alineacion_c">INDICADOR DE DESEMPEÑO CRONOGRAMA</span></h2>   </tr>	 -->
 	         	
 	         	<tr class="alineacion_i">
 	         	<td >Investigador</td>
