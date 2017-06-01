@@ -75,7 +75,7 @@ public class TaskRepository {
 	{	
 //		System.out.println("ACTIVIDADDDDDD222 "+phaseid);
 		
-			Query query = session.createQuery("select a,p,pr from Activity a inner join a.phase p inner join p.project pr where a.state.id!=2 and p.state.id!=2 and pr.id=1");
+			Query query = session.createQuery("select a,p,pr from Activity a inner join a.phase p inner join p.project pr where a.state.id!=2 and p.state.id!=2");
 			
 			if(phaseid!="" )//objmodel
 			{

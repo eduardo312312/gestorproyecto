@@ -23,6 +23,18 @@ public class LinkController {
 	public String taskmanagement(){
 		return "configuration/task/task";
 	}
+	@RequestMapping(value="/phases", method = RequestMethod.GET)
+	public String phasemanagement(){
+		return "configuration/phase/phase";
+	}
+	@RequestMapping(value="/activities", method = RequestMethod.GET)
+	public String activitymanagement(){
+		return "configuration/activity/activity";
+	}
+	@RequestMapping(value="/projects", method = RequestMethod.GET)
+	public String projectmanagement(){
+		return "configuration/project/project";
+	}
 //	@RequestMapping(value="/reportperformance", method = RequestMethod.GET)
 //	public String report_performance(){
 //		return "report/index/costo";
