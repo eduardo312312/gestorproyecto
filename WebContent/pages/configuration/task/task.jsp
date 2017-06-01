@@ -330,6 +330,14 @@ $('.datepicker').datepicker({
                                     <div class="col-sm-9"><input id="activityy" type="text" class="form-control" ng-change="select_activity()" ng-model="task.actividad" list="activities_list"  ></div>
                                     
                                 </div>
+                                
+                                 <div  class="form-group"><label class="col-sm-3 control-label" >Responsable de ejecucion</label>
+									<datalist id="employees_list">
+									<option ng-repeat="item2 in employees.list" id={{'e'+item2.businesssubject.id}} value={{item2.show}} > 
+									</datalist>
+                                    <div class="col-sm-9"><input id="employeee" type="text" class="form-control" ng-change="select_employee()" ng-model="task.employe" list="employees_list"  ></div>
+                                    
+                                </div>
                                  
                               
                                 

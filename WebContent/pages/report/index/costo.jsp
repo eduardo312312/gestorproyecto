@@ -101,8 +101,8 @@ $('.datepicker').datepicker({
 	         	<td >CPI=EV/AC</td>	 
 	         	<td class="alineacion_i">
 	         	  Donde: <br>
-	         	  PV=Valor Planeado<br>
-	         	  EV=Valor Ganado
+	         	  EV= Valor Ganado<br>
+	         	  AC= Costo REAL
 	         	  
 	         	  
 	         	 

@@ -1,6 +1,6 @@
 
 app.controller('TaskController', function ($scope,TaskService,ProjectService) {
-	$scope.employees={list:[],params:{page:$scope.page, maxResults:20}};
+	$scope.employees={list:[],params:{page:1, maxResults:100}};
 	$scope.employee=[];
 	
 	var fe = new Date();
@@ -46,18 +46,8 @@ app.controller('TaskController', function ($scope,TaskService,ProjectService) {
 		});	
 		
 		
-		$scope.employees.list=[];
-	
-
-		ProjectService.businesssubject_list_view_main($scope.employees.params).success(function(data){
-			if(data.list){			 
-				$scope.employees.list=data.list;
-				      
-
-			}else{
-				$scope.message="datos no encontrados";
-			}
-		});	
+		
+		
 		
 	}
 	
@@ -70,6 +60,20 @@ app.controller('TaskController', function ($scope,TaskService,ProjectService) {
 	            var endval = val.attr('id');
 	            if(endval)
 	            $scope.task.activityid=endval;  
+	            
+	           console.log(endval);
+      
+	}	
+	
+	$scope.select_employee=function()
+	{
+		$scope.task.employeeid=0;
+		        var x = $('#employeee').val();
+	            var z = $('#employees_list');
+	            var val = $(z).find('option[value="' + x + '"]');
+	            var endval = val.attr('id');
+	            if(endval)
+	            	$scope.task.employeeid=endval;  
 	            
 	           console.log(endval);
       
@@ -95,6 +99,28 @@ app.controller('TaskController', function ($scope,TaskService,ProjectService) {
 				}
 		
 		});
+		
+		
+		
+		//ACA LLENO MI LISTA DE EMPLEADOS
+		$scope.employees.list=[];
+	
+
+		ProjectService.businesssubject_list_view_main($scope.employees.params).success(function(data){
+			if(data.list){			 
+				$scope.employees.list=data.list;
+				      
+				for(var i=0;i<$scope.employees.list.length;i++)
+				{
+				$scope.employees.list[i].show=$scope.employees.list[i].businesssubject.businessubjectname+" "+$scope.employees.list[i].businesssubject.businessubjectlastname+" "+$scope.employees.list[i].businesssubject.businessubjectsecondlastname;
+				}
+
+			}else{
+				$scope.message="datos no encontrados";
+			}
+		});
+		
+		
 	}
 	$scope.filter=function(productname)
 	{
@@ -136,14 +162,14 @@ app.controller('TaskController', function ($scope,TaskService,ProjectService) {
 						estimatehour:$scope.task.estimatehour,
 						realhour : $scope.task.realhour,
 						businessubjectByBusinesssubjectcreatorid:{
-							id:businesssubjectcreatorid
+							id:$scope.task.employeeid
 						},
 						businessubjectByBusinesssubjectresponsableid : {
-							id : businesssubjectresponsableid
+							id : $scope.task.employeeid
 						},
 						businessubjectByBusinesssubjectmodifierid:
 						{
-							id:businesssubjectmodifierid
+							id:$scope.task.employeeid
 						},
 						changedate : systemdate,
 						shortname : $scope.task.shortname,
