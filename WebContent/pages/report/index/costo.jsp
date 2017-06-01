@@ -77,7 +77,7 @@ $('.datepicker').datepicker({
 	         	
 	         	<tr class="alineacion_i">
 	         	<td >Investigador</td>
-	         	<td class="alineacion_i">Pozo Chávez Stephen Michael</td>
+	         	<td class="alineacion_i">{{  detailsedt[0].leader}}</td>
 	         	</tr>
 		         	<tr class="alineacion_i">
 		         	<td>Proyecto</td>

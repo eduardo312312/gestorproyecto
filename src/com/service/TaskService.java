@@ -236,6 +236,8 @@ public List<Map>  get_edt_detail_activity(String activityid){
 		
 		String clientname="";
 		
+		String leadername="";
+		
 		int contador=0;
 		list=this.repository.get_phases(projectid);
 			
@@ -249,6 +251,8 @@ public List<Map>  get_edt_detail_activity(String activityid){
 			this.setprojectname(projectobj.getName().toString());	
 			clientname=projectobj.getClientname();
 			
+			leadername=projectobj.getBusinessubjectByBusinesssubjectleaderid().getName() + " "+projectobj.getBusinessubjectByBusinesssubjectleaderid().getLastname() + " "+projectobj.getBusinessubjectByBusinesssubjectleaderid().getSecondlastname();
+			
 			map.put("id", phase.getId());
 			map.put("idforli","pha"+ phase.getId());
 			map.put("name", phase.getName());	
@@ -261,6 +265,7 @@ public List<Map>  get_edt_detail_activity(String activityid){
 		project.put("id",this.getprojectid());
 		project.put("name",this.getprojectname());	
 		project.put("clientname",clientname);
+		project.put("leader",leadername);
 		project.put("detail",list2);//la list2 tiene todo el detalle de phase.
 		
 		list3.add(project);
