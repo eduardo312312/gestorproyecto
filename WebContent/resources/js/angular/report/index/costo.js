@@ -87,7 +87,7 @@ app.controller('CostController', function ($scope,TaskService) {
 			$scope.contador=contador;
 			
 			console.log("tamaño"+$scope.detailreport.length);
-			$scope.detailreport[i].totalac=0;
+			$scope.detailreport.totalac=0;
 		           $scope.detailreport.totalbac=0;
 		           $scope.detailreport.totalrealhour=0;
 		           $scope.detailreport.totalestimatehour=0;

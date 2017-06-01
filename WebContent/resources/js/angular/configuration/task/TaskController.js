@@ -1,6 +1,8 @@
 
-app.controller('TaskController', function ($scope,TaskService) {
-
+app.controller('TaskController', function ($scope,TaskService,ProjectService) {
+	$scope.employees={list:[],params:{page:$scope.page, maxResults:20}};
+	$scope.employee=[];
+	
 	var fe = new Date();
 	var dd = fe.getDate();
 	var mm = (fe.getMonth() + 1);
@@ -42,6 +44,21 @@ app.controller('TaskController', function ($scope,TaskService) {
 				$scope.message="datos no encontrados";
 			}
 		});	
+		
+		
+		$scope.employees.list=[];
+	
+
+		ProjectService.businesssubject_list_view_main($scope.employees.params).success(function(data){
+			if(data.list){			 
+				$scope.employees.list=data.list;
+				      
+
+			}else{
+				$scope.message="datos no encontrados";
+			}
+		});	
+		
 	}
 	
 	$scope.select_activity=function()
