@@ -98,7 +98,7 @@ $('.datepicker').datepicker({
 	         	
 	         	        	
 	         	<tr class="alineacion_i">
-	         	<td >CPI=EV/AC</td>	 
+	         	<td >SPI=EV/AC</td>	 
 	         	<td class="alineacion_i">
 	         	  Donde: <br>
 	         	  PV=Valor Planeado<br>
