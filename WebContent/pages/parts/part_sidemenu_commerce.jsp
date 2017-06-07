@@ -74,10 +74,10 @@
                     <a  title="PEDIDO CLIENTE" id="BordeSideMenu" href="clientorder"  class="fa fa-male"> <span>PLANIFICACION</span></a>
                     <ul class="nav nav-third-level">
                     <li id="edt"><a href="edt" class="fa fa-file-text"> <span>EDT</span></a></li>
-                        <li id="view-kitchen"><a href="kitchen" class="fa fa-file-text"> <span>Entregable y Estimaciones</span></a></li>   
-                        <li id="view-order"><a class="fa fa-file-text" href="order"> <span>Cronograma</span></a></li>
-                        <li id="view-order"><a class="fa fa-file-text" href="order"> <span>LocalHead</span></a></li>
-                        <li id="view-order"><a class="fa fa-file-text" href="order"> <span>Planeamiento de Recursos</span></a></li>
+                        <li id="view-kitchen"><a href="kitchen" class="fa fa-file-text"> <span>Equipo del Proyecto</span></a></li>   
+                        <li id="view-order"><a class="fa fa-file-text" href="order"> <span>Planeamiento de Costos</span></a></li>
+                        <li id="view-order"><a class="fa fa-file-text" href="order"> <span>Matriz de Riesgos</span></a></li>
+                        <li id="view-order"><a class="fa fa-file-text" href="gantt"> <span>Cronograma(gantt))</span></a></li>
 
                     </ul>
                 </li>

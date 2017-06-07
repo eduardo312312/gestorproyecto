@@ -63,6 +63,11 @@ public class LinkController {
 		return "report/index/cronograma";
 	}
 	
+	@RequestMapping(value="/gantt", method = RequestMethod.GET)
+	public String ganttcrono(){
+		return "project/gantt/gantt";
+	}
+	
 	
 	
 	
