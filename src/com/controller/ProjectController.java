@@ -26,6 +26,7 @@ import com.model.Businessubject;
 import com.model.Detailfile;
 import com.model.Entitytype;
 import com.model.Marketline;
+import com.model.Phase;
 import com.model.Portfolio;
 import com.model.Project;
 import com.model.State;
@@ -34,6 +35,7 @@ import com.model.Systemuser;
 import com.model.Transactiontype;
 import com.model.Typepayment;
 import com.model.Voucher;
+import com.repository.PhaseRepository;
 import com.service.ProductService;
 import com.service.ProjectService;
 import com.service.TaskService;
@@ -103,6 +105,70 @@ public class ProjectController {
 			
 		}
 	 }
+	 
+	 @RequestMapping(value="/phasesactivities",method=RequestMethod.POST,consumes = "application/json",produces = "application/json")
+	 public void save_phase(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @RequestBody String jsonIn) {
+		 try {
+			 session=HiberanteUtil.getSessionFactory().openSession();
+			 
+			 Map map=(Map) jsonTransformer.fromJSON(jsonIn, Map.class ); System.out.println("aa");
+					
+		
+			
+			 String  projectid=map.get("projectid").toString();
+			 
+			 System.out.println("PROJECTIDDDDDDD"+projectid);
+			 
+			 PhaseRepository phaserepo= new PhaseRepository();
+			 
+			 String[] fases= new String[5];
+			 fases[0]="Analisis de Recursos";
+			 fases[1]="Revision Documentaria";
+			 fases[2]="Diseño";
+			 fases[3]="Ejecucions";
+			 fases[4]="Cierre";
+			 
+		    String[] actividades= new String[5];	 
+		    actividades[0]="Generacion de Matriz de Riesgo";
+		    actividades[1]="Revision de documentacion tecnico";
+		    actividades[2]="Elaboracion de plan de pruebas";
+		    actividades[3]="Ejecucion, documentacion y registro de observaciones pruebas funcionales";
+		    actividades[4]="Elaboracion Acta de Aceptacion";
+		    
+				 		
+					 
+			 for(int i=0;i<fases.length;i++)
+			 {
+			 Phase objphase= new Phase();
+			 
+			 State state=new State();
+			 Project projecto= new Project();
+			 
+			 projecto.setId(Integer.parseInt(projectid));		 
+			 state.setId(1);
+			 
+			 objphase.setName(fases[i]);
+			 objphase.setState(state);			 
+			 phaserepo.save(objphase);
+			 System.out.println("OBJETO PHASEEEE:"+objphase.getId());
+			 }
+			
+			 
+			 
+	
+		          		 
+						 httpServletResponse.setContentType("application/json");
+						 httpServletResponse.setStatus(httpServletResponse.SC_OK);
+						 System.out.println("GUARDADO");			
+						 httpServletResponse.getWriter().println(jsonTransformer.toJSON("Exito") );
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			httpServletResponse.setStatus(httpServletResponse.SC_INTERNAL_SERVER_ERROR);
+			
+		}
+	 }
+	 
+	 
 	 
 	 
 	 @RequestMapping(value="/project/{id}",method=RequestMethod.POST,produces = "application/json")

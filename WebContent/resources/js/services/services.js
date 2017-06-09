@@ -112,6 +112,7 @@ app.factory('ProjectService', function($http) {
 		list_all_projects : function(params) {
 			return $http.post('project/list_all_projects', params ,{headers:csrf_header});
 		},
+		save_phase_activities:function(params){return $http.post('phasesactivities',params ,{headers:csrf_header});},
 		 //
 		
 	}

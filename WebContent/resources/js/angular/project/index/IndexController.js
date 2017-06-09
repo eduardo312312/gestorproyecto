@@ -113,6 +113,19 @@ app.controller('IndexController', function ($scope,ProjectService) {
 						$scope.project2.name=data.name;
 						$scope.indicador_nuevo=false;
 						$scope.stylenew="border: rgb(229, 230, 231) 1px solid !important ";
+						
+						///CREO 4 FASES CADA UNO CON SU ACTIVIDAD
+							if($scope.select.projectid==0)
+								{ //projectid
+								 ProjectService.save_phase_activities({projectid:data.id}).success(
+										function(data) {				
+											
+											
+											
+										});						
+								
+								}						
+						///
 					});
 		
 		
