@@ -18,22 +18,22 @@ var page="indexfile";
 var uploadWidget;
 
 $(function(){
-	var product_id=$("#product_id").val();
+	var document_id=$("#document_id").val();
 	
 	uploadWidget=$("#fileuploader").uploadFile({
-		allowedTypes:"png" ,
-		url:"product/upload_product?${_csrf.parameterName}=${_csrf.token}",
+		allowedTypes:"pdf" ,
+		url:"document/upload_index?${_csrf.parameterName}=${_csrf.token}",
 		multiple:false,
 		dragDrop:true,
 		uploadStr:'Cargar Archivo',
 		/*maxFileCount:1,*/
 		dynamicFormData:function(){
-			product_id=$("#product_id").val();
-			var data={product_id:product_id}
+			document_id=$("#document_id").val();
+			var data={document_id: document_id }
 			return data;
 		},
 		fileName:"file",
-		dragDropStr: "<span><b>Arrastre y suelte un archivo PNG</b></span>",
+		dragDropStr: "<span><b>Arrastre y suelte un archivo PDF</b></span>",
 		extErrorStr:" Extension no valida, solo admite: ",
 		onSuccess:function(files,data,xhr,pd){
 			//console.debug(files);
@@ -96,10 +96,10 @@ $('.datepicker').datepicker({
 			<div class="row">
 			<div class="form-group">
             <label class="col-md-2 control-label alineacion_i">Proyecto:</label>
-                                      <div class="col-md-3">  <select class="form-control m-b" ng-change="load()"  ng-model="select.project">
+                                      <div class="col-md-6">  <select class="form-control m-b" ng-change="select_project(select.project)"   ng-model="select.project">
                                              
-                                        <option >Proyecto 1</option>
-                                        <option >Proyecto 2</option>
+                                        <option ng-repeat="item in listprojects.list" >{{item.name}}</option>
+<!--                                        <option >***Agregar Proyecto***</option> -->
                                       
                                         </select>  </div>  
                                   
@@ -126,16 +126,16 @@ $('.datepicker').datepicker({
                                 
                                 <div class="row">
 	                               
-	                                <label class="col-md-2 control-label alineacion_i">Codigo</label>
+	                                <label class="col-md-2 control-label alineacion_i">Codigo </label>
 	                                    
-	                                    <div class="col-md-2"><input type="text" class="form-control"  ng-model="project.shortname" ></div>
+	                                    <div class="col-md-2"><input style={{stylenew}}  type="text" class="form-control"  ng-model="project.shortname" ></div>
 	                                
 	                                
 	                                 
 	                               
 	                               
 	                                 <label   class="col-md-2 control-label alineacion_i">Propuesta</label>
-	                                    <div class="col-md-6"  ><input type="text" class="form-control" ng-model="project.comment"></div>   
+	                                    <div class="col-md-6"  ><input style={{stylenew}} type="text" class="form-control" ng-model="project.comment"></div>   
 	                                
                                 	
                                 
@@ -144,29 +144,29 @@ $('.datepicker').datepicker({
                                 
                                 <div class="row" style="margin-top: 10px !important;">
                                 <label class="col-md-2 alineacion_i">Título</label>
-                                    <div class="col-md-10"><input type="text"  class="form-control"  ng-model="project.name"  ></div>
+                                    <div class="col-md-10"><input style={{stylenew}} type="text"  class="form-control"  ng-model="project.name"  ></div>
                                 </div> 
                                  
                                <div class="row" style="margin-top: 10px !important;">
                                  <label class="col-md-2 control-label alineacion_i">Descripción</label>
-                                    <div class="col-md-10"><input type="text" class="form-control" ng-model="project.description"></div>   
+                                    <div class="col-md-10"><input style={{stylenew}} type="text" class="form-control" ng-model="project.description"></div>   
                                </div> 
                                 
                                 <div class="row" style="margin-top: 10px !important;">
                                  <label class="col-md-2 control-label alineacion_i">Jefe de Proyecto</label>
-                                    <div class="col-md-10"><input type="text" class="form-control"  ng-model="project.businesssubjectleader"  ></div>   
+                                    <div class="col-md-10"><input style={{stylenew}} type="text" class="form-control"  ng-model="project.businesssubjectleader"  ></div>   
                                 </div>
                                 
                                 <div class="row" style="margin-top: 10px !important;">
                                  <label class="col-md-2 control-label alineacion_i">Control de Proyecto</label>
-                                    <div class="col-md-10"><input type="text" class="form-control" ng-model="project.businesssubjectcontrol"></div>   
+                                    <div class="col-md-10"><input style={{stylenew}} type="text" class="form-control" ng-model="project.businesssubjectcontrol"></div>   
                                 </div>                                
                                 
                                <div class="row" style="margin-top: 10px !important;">
                                  <label class="col-md-2 control-label alineacion_i">Estado</label>
                                
                                <div class="col-md-4">
-                                 <select  class="form-control m-b" ng-model="project.state">
+                                 <select style={{stylenew}}   class="form-control m-b" ng-model="project.state">
                                               <option></option>
                                         <option>Activo</option>
 <!--                                         <option>Inactivo</option> -->
@@ -176,7 +176,17 @@ $('.datepicker').datepicker({
                                         </select> 
                                  </div>
                                  
-                               </div>    
+                               </div> 
+                               
+                               <div class="row" style="margin-top: 10px !important;">
+                                 <label class="col-md-2 control-label alineacion_i">Subir Documento</label>
+                                     <div ng-show="!indicador_nuevo" id="fileuploader">Upload</div>
+  			     				 <input id='document_id'  ng-model='document.id' value={{document.id}} />
+                                </div>  
+                               
+                              
+  			      
+  			         
                                                  
                             </div>
                                 
@@ -200,38 +210,38 @@ $('.datepicker').datepicker({
                              <div class="form-group row">
                             <div class="row" style="margin-top: 10px !important;">
                                  <label class="col-md-2 control-label alineacion_i">Cliente:</label>
-                                    <div class="col-md-10"><input type="text" class="form-control" ng-model="project.clientname"></div>   
+                                    <div class="col-md-10"><input style={{stylenew}}  type="text" class="form-control" ng-model="project.clientname"></div>   
                                 </div>
                                 
                                 <div class="row" style="margin-top: 10px !important;">
                                  <label class="col-md-2 control-label alineacion_i">Contacto:</label>
-                                    <div class="col-md-10"><input type="text" class="form-control" ng-model="project.clientcontact"></div>   
+                                    <div class="col-md-10"><input style={{stylenew}} type="text" class="form-control" ng-model="project.clientcontact"></div>   
                                 </div>  
                                 
                                 
                                   <div class="row" style="margin-top: 10px !important;">
                                  <label class="col-md-2 control-label alineacion_i">Telefono:</label>
-                                    <div class="col-md-4"><input type="text" class="form-control" ng-model="project.clientphone"></div>   
+                                    <div class="col-md-4"><input style={{stylenew}} type="text" class="form-control" ng-model="project.clientphone"></div>   
                                 
                                 
                                 
                                   
                                  <label class="col-md-2 control-label alineacion_i">Direccion:</label>
-                                    <div class="col-md-4"><input type="text" class="form-control" ng-model="project.clientaddress"></div>   
+                                    <div class="col-md-4"><input style={{stylenew}} type="text" class="form-control" ng-model="project.clientaddress"></div>   
                                 </div>  
                                 
                                 
                                   <div class="row" style="margin-top: 10px !important;">
                                  <label class="col-md-2 control-label alineacion_i">Fax:</label>
-                                    <div class="col-md-4"><input type="text" class="form-control" ng-model="project.clientfax"></div>   
+                                    <div class="col-md-4"><input style={{stylenew}} type="text" class="form-control" ng-model="project.clientfax"></div>   
                                 
                                  <label class="col-md-2 control-label alineacion_i">Celular:</label>
-                                    <div class="col-md-4"><input type="text" class="form-control" ng-model="project.clientmovil" ></div>   
+                                    <div class="col-md-4"><input style={{stylenew}} type="text" class="form-control" ng-model="project.clientmovil" ></div>   
                                 </div>  
                                 
                                   <div class="row" style="margin-top: 10px !important;">
                                  <label class="col-md-2 control-label alineacion_i">Email:</label>
-                                    <div class="col-md-10"><input type="text" class="form-control" ng-model="project.clientmail" ></div>   
+                                    <div class="col-md-10"><input style={{stylenew}} type="text" class="form-control" ng-model="project.clientmail" ></div>   
                                 </div>  
                                  
                                 
@@ -247,7 +257,7 @@ $('.datepicker').datepicker({
 		   	</div>
    	
    			 <div class="col-md-12">
-                    <div class="ibox float-e-margins">
+                    <div class="ibox float-e-margins" >
                         <div class="ibox-title">
                             <h5>Caracteristicas del proyecto </h5>
                             
@@ -259,7 +269,7 @@ $('.datepicker').datepicker({
                             <div class="row" style="margin-top: 10px !important;">
                                  <label class="col-md-2 control-label alineacion_i">Fecha de Inicio:</label>
                                     <div class="col-md-2">
-                                    <div class="input-group date">
+                                    <div class="input-group date" style={{stylenew}} >
 														<span class="input-group-addon"><i
 															class="fa fa-calendar"></i></span><input type="text"
 															class="form-control" 
@@ -271,7 +281,7 @@ $('.datepicker').datepicker({
                                
                                  <label class="col-md-2 control-label alineacion_i">Fecha de cierre:</label>
                                     <div class="col-md-2">
-                                    <div class="input-group date">
+                                    <div class="input-group date" style={{stylenew}} >
 														<span class="input-group-addon"><i
 															class="fa fa-calendar"></i></span><input type="text"
 															class="form-control" 
@@ -282,7 +292,7 @@ $('.datepicker').datepicker({
                                     </div>   
                                 
                                  <label class="col-md-2 control-label alineacion_i">Plazo(Dias):</label>
-                                    <div class="col-md-2"><input type="number" class="form-control" value="00" ng-model="project.daysleft"></div>  
+                                    <div class="col-md-2"><input style={{stylenew}}  type="number" class="form-control" value="00" ng-model="project.daysleft"></div>  
                                   
                                 </div>  
                                 
@@ -290,7 +300,7 @@ $('.datepicker').datepicker({
                                  <label class="col-md-2 control-label alineacion_i" ng-model="project.location" >Ubicacion:</label>
                                     <div class="col-md-2">
                                     
-                                    <select  class="form-control m-b" ng-model="project.location">
+                                    <select style={{stylenew}}   class="form-control m-b" ng-model="project.location">
                                               
                                         <option>	Amazonas	</option>
 										<option>	Ancash	</option>
@@ -327,10 +337,10 @@ $('.datepicker').datepicker({
                                     
                                
                                  <label class="col-md-2 control-label alineacion_i"  >Monto del Contrato:</label>
-                                    <div class="col-md-2"><input type="number" class="form-control" ng-model="project.totalamount"></div>   
+                                    <div class="col-md-2"><input  style={{stylenew}}  type="number" class="form-control" ng-model="project.totalamount"></div>   
                                 
                                  <label class="col-md-2 control-label alineacion_i">Tamaño:</label>
-                                      <div class="col-md-2">  <select class="form-control m-b"  ng-model="project.size">
+                                      <div class="col-md-2">  <select  style={{stylenew}}  class="form-control m-b"  ng-model="project.size">
                                               <option></option>
                                         <option>Muy Grande</option>
                                         <option>Grande</option>
@@ -343,16 +353,16 @@ $('.datepicker').datepicker({
                                 
                                   <div class="row" style="margin-top: 10px !important;">
                                  <label class="col-md-2 control-label alineacion_i">Forma de Pago:</label>
-                                    <div class="col-md-2">  <select  class="form-control m-b" ng-model="project.typepayment">
+                                    <div class="col-md-2">  <select style={{stylenew}}  class="form-control m-b" ng-model="project.typepayment">
                                       
                                         <option>Suma Alzada</option>
                                         <option>Forma 2</option>
                                         <option>Forma 3</option>
                                         </select>  </div>   
                                
-                                 <label class="col-md-2 control-label alineacion_i">Tipo de Entidad:</label>
-                                    <div class="col-md-2"> <input type="radio" name="tipoentidad" value="publica" > <label class="control-label">Pública</label> </div>
-                                    <div class="col-md-2">  <input type="radio" name="tipoentidad" value="privada" ><label class="control-label"> Privada</label> </div>
+                                 <label class="col-md-2 control-label alineacion_i" style={{stylenew}} >Tipo de Entidad:</label>
+                                    <div class="col-md-2"> <input style={{stylenew}}  type="radio" name="tipoentidad" value="publica" > <label class="control-label">Pública</label> </div>
+                                    <div class="col-md-2">  <input  style={{stylenew}}  type="radio" name="tipoentidad" value="privada" ><label class="control-label"> Privada</label> </div>
                                     </div>   
                                 
                               
@@ -360,10 +370,10 @@ $('.datepicker').datepicker({
                                 
                                 
                                   <div class="row" style="margin-top: 10px !important;">
-                                 <label class="col-md-2 control-label alineacion_i">Costo Institucional:</label>
+                                 <label class="col-md-2 control-label alineacion_i" >Costo Institucional:</label>
                                     <div class="col-md-10">
 										
-									<div class="checkbox i-checks"><label> <input type="checkbox" value=""  > <i></i> </label></div>
+									<div class="checkbox i-checks"><label> <input style={{stylenew}}  type="checkbox" value=""  > <i></i> </label></div>
 									</div>   
                                 
                                    
@@ -392,7 +402,7 @@ $('.datepicker').datepicker({
 		   	 <div class="col-lg-6">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5>Linea de Negocio</h5>
+                            <h5 style={{stylenew}} >Linea de Negocio</h5>
                            
                         </div>
                         <div class="ibox-content">
@@ -422,7 +432,7 @@ $('.datepicker').datepicker({
    			<div class="col-lg-6" style="border-left:#e7eaec 3px solid !important;">
                     <div class="ibox float-e-margins">
                        <div class="ibox-title">
-                            <h5>Mercado</h5>
+                            <h5 style={{stylenew}} >Mercado</h5>
                            
                         </div>
                         <div class="ibox-content">
@@ -450,7 +460,7 @@ $('.datepicker').datepicker({
    		</div>
    	
    		<div class="row alineacion_c" >
-            <button  class="btn btn-primary dim"  ng-click="save_project()" data-toggle="modal"  href="javascript:void(0);" >Guardar</button>
+            <button  class="btn btn-primary dim"  ng-disabled="!validator_save()"  ng-click="save_project()" data-toggle="modal"  href="javascript:void(0);" >Guardar</button>
 			</div>
 			
 			

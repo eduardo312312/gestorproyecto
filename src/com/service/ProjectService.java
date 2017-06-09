@@ -36,7 +36,7 @@ public class ProjectService {
 			Map map2=new HashMap();
 
 			Project project=(Project) item[0];		
-			Portfolio porfolio=(Portfolio) item[0];	
+			Portfolio porfolio=(Portfolio) item[1];	
 			
 			map2=ProjectToMap(project);
 

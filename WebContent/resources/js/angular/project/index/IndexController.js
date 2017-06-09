@@ -2,11 +2,14 @@
 app.controller('IndexController', function ($scope,ProjectService) {
 
 	$scope.project2={shortname:'',name:''};
+	$scope.indicador_nuevo=false;
+	$scope.stylenew="border: rgb(229, 230, 231) 1px solid !important";
 	
 	$scope.select=[];
 	$scope.select.project=[];
+	$scope.listprojects=[];
+	$scope.document=[];
 	
-	$scope.select.project="Proyecto 1";
 	$scope.select.projectid=1;
 	
 	$scope.project=[];
@@ -72,47 +75,117 @@ app.controller('IndexController', function ($scope,ProjectService) {
 						$scope.load();
 						$scope.project2.shortname=data.shortname;
 						$scope.project2.name=data.name;
-
+						$scope.indicador_nuevo=false;
+						$scope.stylenew="border: rgb(229, 230, 231) 1px solid !important ";
 					});
 		
 		
 	}
 	
 	
-	$scope.load=function()
+	$scope.load=function(id)
 	{
-		if($scope.select.project=="Proyecto 1")
-		{
-		$scope.select.projectid=1;
-		}else
-			{
-			$scope.select.projectid=2;
-			}
+		var projectid=id;
 		
-		id=$scope.select.projectid;
+		$scope.listprojects=[];
+		
 		ProjectService.search_project(id).success(
 				function(data) {
 					if(data.project)
-					console.debug(data.project);
+				
 					
 					$scope.project=data.project;
 					$scope.project.state="Activo";
 					$scope.project.typepayment="Suma Alzada";
 				});
-		
+		console.log("dsps de buscar proyecto"+$scope.select.projectid);
 		
 		ProjectService.list_all_projects({portfolioid:1}).success(
 				function(data) {
-					if(data)
-					console.debug(data.list);
-					
-					
-				
-
+			
+					$scope.listprojects=data;
+				    $scope.listprojects.list.push({id:'agregar',name:'***Agregar Proyecto***'})
+        
 				});
+		console.log("dsps de listar proyectos"+$scope.select.projectid);
+		$scope.document.id=$scope.select.projectid;
+		$scope.select.projectid=projectid
+		$scope.document.id=$scope.select.projectid;
+		
+		console.log("dsps de devolverle su valors"+$scope.select.projectid);
+		
+		alert($("#documentid").val());
+	
+		
 	}
 	
-	$scope.load();
+	$scope.validator_save=function()
+	{
+		var retorno=false;
+		if($scope.project.name!="" && $scope.project.description!="" && $scope.project.comment!="" && $scope.project.daysleft!="" && $scope.project.totalamount!="" &&
+				$scope.project.location!="" && $scope.project.size!="" && $scope.project.shortname!="" && $scope.project.clientname!="" && $scope.project.clientcontact!=""
+					&& $scope.project.clientphone!="" && $scope.project.clientfax!="" && $scope.project.clientmovil!="" && $scope.project.clientmail!="" && $scope.project.clientaddress!=""
+		)
+			{
+			retorno=true;
+			}
+			
+		return retorno;
+		
+		
+	}
+	
+	////////FUNCION QUE BUSCA EL ID POR EL NOMBRE DEL PROYECTO SELECCIONADO.
+	$scope.select_project=function(name)
+	{
+		$scope.document=[];
+    
+		if(name=="***Agregar Proyecto***")
+			{
+			$scope.indicador_nuevo=true;
+			
+			$scope.project=[];
+			$scope.project.name="";
+			$scope.project.description="";
+		
+			$scope.select.projectid=0;
+			$scope.stylenew="border: #7FB3D5 3px dashed !important; ";
+			
+			}
+		else
+			{
+			
+			$scope.indicador_nuevo=false;
+			$scope.stylenew="border: rgb(229, 230, 231) 1px solid !important ";
+			
+			$scope.select.projectid=0;
+				for(var i=0; i<$scope.listprojects.list.length;i++)
+				{
+		
+					if($scope.listprojects.list[i].name.toUpperCase() ==name.toUpperCase())
+					{
+						idproject=$scope.listprojects.list[i].id;
+						$scope.select.projectid=$scope.listprojects.list[i].id;
+						$scope.document.id=$scope.select.projectid;
+					}
+						
+					
+					console.log("en buscar"+$scope.select.projectid);
+						
+				}
+				
+				$scope.load($scope.select.projectid);
+		   }
+
+		
+	
+	}
+	
+	
+	
+	
+	
+	$scope.load(1);
 	
   
 
