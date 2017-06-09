@@ -98,7 +98,7 @@ app.controller('IndexController', function ($scope,ProjectService) {
 					$scope.project.state="Activo";
 					$scope.project.typepayment="Suma Alzada";
 				});
-		console.log("dsps de buscar proyecto"+$scope.select.projectid);
+//		console.log("dsps de buscar proyecto"+$scope.select.projectid);
 		
 		ProjectService.list_all_projects({portfolioid:1}).success(
 				function(data) {
@@ -107,14 +107,14 @@ app.controller('IndexController', function ($scope,ProjectService) {
 				    $scope.listprojects.list.push({id:'agregar',name:'***Agregar Proyecto***'})
         
 				});
-		console.log("dsps de listar proyectos"+$scope.select.projectid);
+//		console.log("dsps de listar proyectos"+$scope.select.projectid);
 		$scope.document.id=$scope.select.projectid;
 		$scope.select.projectid=projectid
 		$scope.document.id=$scope.select.projectid;
 		
-		console.log("dsps de devolverle su valors"+$scope.select.projectid);
+//		console.log("dsps de devolverle su valors"+$scope.select.projectid);
 		
-		alert($("#documentid").val());
+//		alert($("#documentid").val());
 	
 		
 	}
@@ -170,7 +170,7 @@ app.controller('IndexController', function ($scope,ProjectService) {
 					}
 						
 					
-					console.log("en buscar"+$scope.select.projectid);
+//					console.log("en buscar"+$scope.select.projectid);
 						
 				}
 				
