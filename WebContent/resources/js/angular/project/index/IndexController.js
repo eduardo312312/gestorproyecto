@@ -1,6 +1,7 @@
 
 app.controller('IndexController', function ($scope,ProjectService) {
-
+	$scope.employees={list:[],params:{page:1, maxResults:20}};
+	$scope.employee=[];
 	$scope.project2={shortname:'',name:''};
 	$scope.indicador_nuevo=false;
 	$scope.stylenew="border: rgb(229, 230, 231) 1px solid !important";
@@ -10,9 +11,14 @@ app.controller('IndexController', function ($scope,ProjectService) {
 	$scope.listprojects=[];
 	$scope.document=[];
 	
+	
 	$scope.select.projectid=1;
 	
 	$scope.project=[];
+	
+	$scope.project.controlid=0;
+	$scope.project.leaderid=0;
+	
 	var fe = new Date();
 	var dd = fe.getDate();
 	var mm = (fe.getMonth() + 1);
@@ -24,6 +30,36 @@ app.controller('IndexController', function ($scope,ProjectService) {
 	}
 	var systemdate = fe.getFullYear() + '-' + mm + '-' +dd ;
 	
+	//metodo que selecciona el id del businesssubject por el nombre seleccionado en el datalist de la vista.
+	$scope.select_control=function()
+	{
+		$scope.project.controlid=0;
+		        var x = $('#employeeeee').val();
+	            var z = $('#employees_list');
+	            var val = $(z).find('option[value="' + x + '"]');
+	            var endval = val.attr('id');
+	            if(endval)
+	            	$scope.project.controlid=endval.substring(1) ;  
+	            
+	           console.log(endval);
+	           console.log(endval.substring(1) );
+      
+	}	
+	
+	$scope.select_leader=function()
+	{
+		$scope.project.leaderid=0;
+		        var x = $('#employeeeee2').val();
+	            var z = $('#employees_list2');
+	            var val = $(z).find('option[value="' + x + '"]');
+	            var endval = val.attr('id');
+	            if(endval)
+	            	$scope.project.leaderid=endval.substring(1) ;  
+	            
+	           console.log(endval);
+	           console.log(endval.substring(1) );
+      
+	}	
 	
 	
 	$scope.save_project=function()	
@@ -35,8 +71,8 @@ app.controller('IndexController', function ($scope,ProjectService) {
 				name : $scope.project.name,
 				description: $scope.project.description,
 				comment:$scope.project.comment ,
-				businessubjectByBusinesssubjectleaderid : {id:1},
-				businessubjectByBusinesssubjectcontrolid :{id:2},
+				businessubjectByBusinesssubjectleaderid : {id:$scope.project.leaderid},
+				businessubjectByBusinesssubjectcontrolid :{id:$scope.project.controlid},
 				state: "....",
 				startdate: systemdate ,
 				enddate:systemdate,
@@ -97,8 +133,9 @@ app.controller('IndexController', function ($scope,ProjectService) {
 					$scope.project=data.project;
 					$scope.project.state="Activo";
 					$scope.project.typepayment="Suma Alzada";
+						$scope.select.project=data.project.name;
 				});
-//		console.log("dsps de buscar proyecto"+$scope.select.projectid);
+
 		
 		ProjectService.list_all_projects({portfolioid:1}).success(
 				function(data) {
@@ -107,14 +144,10 @@ app.controller('IndexController', function ($scope,ProjectService) {
 				    $scope.listprojects.list.push({id:'agregar',name:'***Agregar Proyecto***'})
         
 				});
-//		console.log("dsps de listar proyectos"+$scope.select.projectid);
+
 		$scope.document.id=$scope.select.projectid;
-		$scope.select.projectid=projectid
-		$scope.document.id=$scope.select.projectid;
-		
-//		console.log("dsps de devolverle su valors"+$scope.select.projectid);
-		
-//		alert($("#documentid").val());
+	
+
 	
 		
 	}
@@ -180,9 +213,28 @@ app.controller('IndexController', function ($scope,ProjectService) {
 		
 	
 	}
+	$scope.load_businesssubject=function()
+	{
+		$scope.employees.list=[];
+		
+
+		ProjectService.businesssubject_list_view_main($scope.employees.params).success(function(data){
+			if(data.list){			 
+				$scope.employees.list=data.list;
+				      
+				for(var i=0;i<$scope.employees.list.length;i++)
+				{
+				$scope.employees.list[i].show=$scope.employees.list[i].businesssubject.name+" "+$scope.employees.list[i].businesssubject.lastname+" "+$scope.employees.list[i].businesssubject.secondlastname;
+				}
+
+			}else{
+				$scope.message="datos no encontrados";
+			}
+		});
+	}
 	
 	
-	
+	$scope.load_businesssubject();
 	
 	
 	$scope.load(1);

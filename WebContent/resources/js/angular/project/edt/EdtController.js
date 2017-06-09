@@ -1,5 +1,5 @@
 
-app.controller('EdtController', function ($scope,TaskService) {
+app.controller('EdtController', function ($scope,TaskService,ProjectService) {
 
 	$scope.select=[];
 	
@@ -73,17 +73,11 @@ app.controller('EdtController', function ($scope,TaskService) {
 		});	
 	}
 	
+	
+	//CARGA TODO EL SIDEBAR A PARTIR DE LA SELECCION DE UN PROYECTO
 	$scope.load_sidebar=function()
 	{
-		
-		if($scope.select.project=="Proyecto 1")
-			{
-			$scope.select.projectid=1;
-			}else
-				{
-				$scope.select.projectid=2;
-				}
-		
+				
 		TaskService.list_project_to_edt({projectid:$scope.select.projectid}).success(function(data){
 			
 			$scope.detailsedt=data;
@@ -124,20 +118,6 @@ app.controller('EdtController', function ($scope,TaskService) {
 		TaskService.list_activities({abc:123}).success(function(data){
 //			console.log(data.list);
 			$scope.activities.list=data.list;
-			
-			
-		 //   $scope.tasks.params.activityid=$scope.activity.id;
-		 
-			
-//			$scope.task.activityid=$scope.activity.id;
-		    
-			//console.debug("id de actividad: "+"#act"+$scope.activity.id)
-			//$("#act"+$scope.activity.id).parent().parent().find("li").trigger("click");
-//			var project=$scope.tasks[0].project.name;
-			
-//		 	$("#"+project).trigger("click");
-		 	
-			
 			
 			
 			for(var i=0;i<$scope.activities.list.length;i++)
@@ -364,6 +344,30 @@ app.controller('EdtController', function ($scope,TaskService) {
 		
 	}
 	
+	$scope.projectselect=function(name)
+	{
+		$scope.select.projectid=0;
+		for(var i=0; i<$scope.listprojects.list.length;i++)
+		{
+
+			if($scope.listprojects.list[i].name.toUpperCase() ==name.toUpperCase())
+			{
+				
+				$scope.select.projectid=$scope.listprojects.list[i].id;
+				
+			}				
+			$scope.load_sidebar();				
+		}
+	}
+
+	
+	ProjectService.list_all_projects({portfolioid:1}).success(
+			function(data) {
+		
+				$scope.listprojects=data;
+			  //  $scope.listprojects.list.push({id:'agregar',name:'***Agregar Proyecto***'})
+    
+			});
 	
 
 

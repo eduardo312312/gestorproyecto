@@ -156,12 +156,26 @@ $('.datepicker').datepicker({
                                 
                                 <div class="row" style="margin-top: 10px !important;">
                                  <label class="col-md-2 control-label alineacion_i">Jefe de Proyecto</label>
-                                    <div class="col-md-10"><input style={{stylenew}} type="text" class="form-control"  ng-model="project.businesssubjectleader"  ></div>   
-                                </div>
+                                    <div class="col-md-10">                
+                                    <datalist id="employees_list2">
+									<option ng-repeat="item2 in employees.list" id={{'l'+item2.businesssubject.id}} value={{item2.show}} > 
+									</datalist>
+                                    <div class="col-sm-9"><input style={{stylenew}} ng-disabled="indedit" id="employeeeee2" type="text" class="form-control" ng-change="select_leader()" ng-model="project.businesssubjectleader" list="employees_list2"  ></div>
+                                 </div>   
+                                </div> 
                                 
                                 <div class="row" style="margin-top: 10px !important;">
                                  <label class="col-md-2 control-label alineacion_i">Control de Proyecto</label>
-                                    <div class="col-md-10"><input style={{stylenew}} type="text" class="form-control" ng-model="project.businesssubjectcontrol"></div>   
+                                    <div class="col-md-10">
+<!--                                     <input  type="text" class="form-control" ng-model="project.businesssubjectcontrol"> -->
+                                    
+                                    <datalist id="employees_list">
+									<option ng-repeat="item2 in employees.list" id={{'c'+item2.businesssubject.id}} value={{item2.show}} > 
+									</datalist>
+                                    <div class="col-sm-9"><input style={{stylenew}} ng-disabled="indedit" id="employeeeee" type="text" class="form-control" ng-change="select_control()" ng-model="project.businesssubjectcontrol" list="employees_list"  ></div>
+                                    
+                                    
+                                    </div>   
                                 </div>                                
                                 
                                <div class="row" style="margin-top: 10px !important;">
