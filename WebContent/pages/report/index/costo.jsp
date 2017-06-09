@@ -52,13 +52,13 @@ $('.datepicker').datepicker({
                 
             </div>
             <div class="ibox-content">
-<div class="row">
+    <div class="row">
 			<div class="form-group">
             <label class="col-md-2 control-label alineacion_i">Proyecto:</label>
-                                      <div class="col-md-3">  <select class="form-control m-b" ng-change="list()"  ng-model="select.project">
+                                      <div class="col-md-6">  <select class="form-control m-b" ng-change="projectselect(select.project)"   ng-model="select.project">
                                              
-                                        <option >Proyecto 1</option>
-                                        <option >Proyecto 2</option>
+                                        <option ng-repeat="item in listprojects.list" >{{item.name}}</option>
+<!--                                        <option >***Agregar Proyecto***</option> -->
                                       
                                         </select>  </div>  
                                   

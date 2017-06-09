@@ -89,7 +89,7 @@ $('.datepicker').datepicker({
             </div>
             <div class="ibox-content">
             <div class="row">
-            <button  class="btn btn-primary dim"  ng-click="new_register()" data-toggle="modal" data-target="#myModal" href="javascript:void(0);" >CrearPersonal</button>
+            <button  class="btn btn-primary dim"  ng-click="new_register()" data-toggle="modal" data-target="#myModal" href="javascript:void(0);" >Crear Personal</button>
 			</div>
 			 <div class="row">
          

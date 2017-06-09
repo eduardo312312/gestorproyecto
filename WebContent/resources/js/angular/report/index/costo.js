@@ -1,7 +1,8 @@
 
-app.controller('CostController', function ($scope,TaskService) {
+app.controller('CostController', function ($scope,TaskService,ProjectService) {
 
 	$scope.select=[];
+	$scope.listprojects=[];
 	
 	$scope.select.project="";
 	$scope.select.project="Proyecto 1";
@@ -38,10 +39,7 @@ app.controller('CostController', function ($scope,TaskService) {
 
 		
 		//esto voy a quitarlo cuando agregue el filtro Javascript por nombre -> id
-		if($scope.select.project=="Proyecto 1")
-			$scope.projectid=1;
-		if($scope.select.project=="Proyecto 2")
-			$scope.projectid=2;
+		
 		
 		
 		
@@ -167,10 +165,35 @@ app.controller('CostController', function ($scope,TaskService) {
 		$scope.excel(tableId);
 	}
 	
-	$scope.list();
+	
+	
+	$scope.projectselect=function(name)
+	{
+		console.log(name);
+		$scope.projectid=0;
+		for(var i=0; i<$scope.listprojects.list.length;i++)
+		{
+
+			if($scope.listprojects.list[i].name.toUpperCase() ==name.toUpperCase())
+			{
+				
+				$scope.projectid=$scope.listprojects.list[i].id;
+				$scope.list();
+			}				
+					
+		}
+	}
 
 	
-
+	ProjectService.list_all_projects({portfolioid:1}).success(
+			function(data) {
+		
+				$scope.listprojects=data;
+			  //  $scope.listprojects.list.push({id:'agregar',name:'***Agregar Proyecto***'})
+    
+			});
+	
+	$scope.list();
 
 
 });
