@@ -109,6 +109,9 @@ app.factory('ProjectService', function($http) {
 	    businesssubject_list_view_main : function(params) {
 			return $http.post('businesssubject/list_view', params ,{headers:csrf_header});
 		}, 
+		list_all_projects : function(params) {
+			return $http.post('project/list_all_projects', params ,{headers:csrf_header});
+		},
 		 //
 		
 	}

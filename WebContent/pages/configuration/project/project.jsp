@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ADMINISTRACION DE PROYECTOS</title>
     <jsp:include page="../../parts/head.jsp"></jsp:include>
-    <script src="resources/js/angular/configuration/task/PhaseController.js"></script>
+    <script src="resources/js/angular/configuration/project/ProjectController.js"></script>
          <script src="resources/js/uploadfile/jquery.uploadfile.min.js"></script>
     <link href="resources/js/uploadfile/uploadfile.css" rel="stylesheet" />
     
@@ -57,7 +57,7 @@ $('.datepicker').datepicker({
 });
 </script>
 </head>
-<body ng-controller="PhaseController">
+<body ng-controller="ProjectController">
 
     <div id="wrapper" >
 

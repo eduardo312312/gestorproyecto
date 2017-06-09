@@ -1,10 +1,14 @@
 package com.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.model.Paymode;
+import com.model.Portfolio;
 import com.model.Project;
+import com.model.Task;
 import com.repository.ProjectRepository;
 
 public class ProjectService {
@@ -18,6 +22,29 @@ public class ProjectService {
 		 
 			this.repository.save(project);
 				
+	}
+	
+	public List<Map>  list_all_projects(String portfolioid){
+
+		List<Object[]> list=new ArrayList<Object[]>();
+		List<Map> list2=new ArrayList<Map>();
+		System.out.println("s1");
+		list=this.repository.list_project(portfolioid);
+		System.out.println("s2");
+		for(Object[] item:list){
+			Map map=new HashMap();	
+			Map map2=new HashMap();
+
+			Project project=(Project) item[0];		
+			Portfolio porfolio=(Portfolio) item[0];	
+			
+			map2=ProjectToMap(project);
+
+			
+	     	list2.add(map2);
+		}
+	
+		return list2;
 	}
 	
 	public Project  get(int id)

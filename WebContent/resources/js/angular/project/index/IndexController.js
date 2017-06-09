@@ -99,11 +99,22 @@ app.controller('IndexController', function ($scope,ProjectService) {
 					$scope.project.state="Activo";
 					$scope.project.typepayment="Suma Alzada";
 				});
+		
+		
+		ProjectService.list_all_projects({portfolioid:1}).success(
+				function(data) {
+					if(data)
+					console.debug(data.list);
+					
+					
+				
+
+				});
 	}
 	
 	$scope.load();
 	
-
+  
 
 });
 

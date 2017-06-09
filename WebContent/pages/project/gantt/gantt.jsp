@@ -11,15 +11,7 @@
 <!--     <script src="resources/js/angular/configuration/task/TaskController.js"></script> -->
 <!--     <script src="resources/js/uploadfile/jquery.uploadfile.min.js"></script> -->
 <!--     <link href="resources/js/uploadfile/uploadfile.css" rel="stylesheet" /> -->
-    
-    
-    
-    
-        
-        
-        
-       
-        <link href="resources/css/gantt/style.css" type="text/css" rel="stylesheet">
+ <link href="resources/css/gantt/style.css" type="text/css" rel="stylesheet">
         <link href="resources/css/gantt/prettify.min.css" rel="stylesheet" type="text/css">
         
          <script src="resources/js/gantt/js/jquery.min.js"></script>

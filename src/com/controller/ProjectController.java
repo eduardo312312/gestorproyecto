@@ -131,6 +131,48 @@ public class ProjectController {
 		}
 	 }
 	 
+	 @RequestMapping(value = "/project/list_all_projects", method = RequestMethod.POST,consumes = "application/json",produces = "application/json; charset=ISO-8859-1")
+		public void list(HttpServletRequest httpRequest, HttpServletResponse httpServletResponse, @RequestBody String jsonIn) throws IOException{
+		 try {			
+			ProjectService service=new ProjectService();
+			Map params=new HashMap();
+			params=(HashMap) jsonTransformer.fromJSON(jsonIn, HashMap.class);
+			
+			String portfolioid="";
+			if(params.get("portfolioid")==null)
+			{
+				portfolioid="";
+			}else
+			{
+				portfolioid=params.get("portfolioid").toString();
+			}
+			
+			
+			
+			
+			List<Map> list = new ArrayList<Map>();
+			System.out.println("c1");
+			list=service.list_all_projects(portfolioid);
+			System.out.println("c2");
+			Map response=new HashMap();
+			
+			
+			response.put("list",  list );
+
+			httpServletResponse.setContentType("application/json");
+			httpServletResponse.getWriter().println(jsonTransformer.toJSON(response));
+			
+			
+			
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			httpServletResponse.setStatus(httpServletResponse.SC_INTERNAL_SERVER_ERROR);
+			
+	   }
+			
+		}
+	 
+	 
 	 
 	 
 	

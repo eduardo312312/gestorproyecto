@@ -17,9 +17,11 @@ public class ProjectRepository {
 	}
 	public List<Object[]> list_project(String portfolioid) 
 		{	
+		System.out.println("r1");
 		Query query=session.createQuery("select p,port from Project p inner join p.portfolio port where p.state.id!=2 and port.state.id!=2");
+		System.out.println("r3");
 		   if(portfolioid!="")		
-			 query = session.createQuery("select p,port from Project p inner join p.portfolio port where p.portfolio.id="+portfolioid+" where p.state.id!=2 and port.state.id!=2");
+			 query = session.createQuery("select p,port from Project p inner join p.portfolio port where p.portfolio.id="+portfolioid+" and p.state.id!=2 and port.state.id!=2");
 
 	        return query.list();				
 		}
