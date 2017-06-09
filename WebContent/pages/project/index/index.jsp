@@ -87,9 +87,8 @@ $('.datepicker').datepicker({
              <br>
                 <br>
                 <h3>Ficha de Inicio</h3>
-<!--                 <a href="http://localhost:8080/gestorproyecto/resources/pdf/index/1.pdf" target="_blank">Download</a> -->
-                <a href="localhost:8080/gestorproyecto/resources/pdf/index/1.pdf" download="filename">Download link</a>
-<!--                 <a href="http://localhost:8080/gestorproyecto/resources/pdf/index/1.pdf" download="filename">Download link</a> -->
+               
+
                 <h3>{{project2.shortname}} - {{project2.name}}</h3>
             </div>
             <div class="ibox-content ">
@@ -185,6 +184,7 @@ $('.datepicker').datepicker({
                                  <label class="col-md-2 control-label alineacion_i">Subir Documento</label>
                                      <div ng-show="!indicador_nuevo" id="fileuploader">Upload</div>
   			     				 <input id='document_id' type='hidden'  ng-model='document.id' value={{document.id}} />
+  			     				  <a href="http://localhost:8080/gestorproyecto/resources/pdf/index/{{document.id}}.pdf" target="_blank">Abrir</a>
                                 </div>  
                                
                               

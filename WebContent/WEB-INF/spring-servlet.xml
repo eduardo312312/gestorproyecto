@@ -75,7 +75,7 @@
 
 
 <mvc:annotation-driven />
-
+ <mvc:resources mapping="/resources/pdf/**"  location="/resources/pdf/" /> 
   <mvc:resources mapping="/resources/css/**"  location="/resources/css/" /> 
  <mvc:resources mapping="/resources/js/**"  location="/resources/js/" />
 <mvc:resources mapping="/resources/img/**"  location="/resources/img/" /> 

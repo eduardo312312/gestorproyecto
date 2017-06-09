@@ -1,16 +1,21 @@
 package com.controller;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -31,7 +36,42 @@ public class UploadController {
 	LinkedList<FileMeta> files = new LinkedList<FileMeta>();
 	 FileMeta fileMeta = null;
 	
-	
+	 @RequestMapping(value="/download", method = RequestMethod.GET)
+	 public class DownloadServlet extends HttpServlet {
+		    protected void doGet( HttpServletRequestWrapper request, HttpServletResponse response) throws ServletRequestBindingException, IOException {
+         System.out.println("entroooooo");
+		         String id = request.getParameter("id");
+
+		         String fileName = "";
+		         String fileType = "";
+		         // Find this file id in database to get file name, and file type
+
+		         // You must tell the browser the file type you are going to send
+		         // for example application/pdf, text/plain, text/html, image/jpg
+		         response.setContentType(fileType);
+
+		         // Make sure to show the download dialog
+		         response.setHeader("Content-disposition","attachment; filename=1.pdf");
+
+		         // Assume file name is retrieved from database
+		         // For example D:\\file\\test.pdf
+		    	 File directory=new File(request.getServletContext().getRealPath("/resources/pdf/index/"+id+".pdf"));
+		      
+
+		         // This should send the file to browser
+		         OutputStream out = response.getOutputStream();
+		         FileInputStream in = new FileInputStream(directory);
+		         byte[] buffer = new byte[4096];
+		         int length;
+		         while ((length = in.read(buffer)) > 0){
+		            out.write(buffer, 0, length);
+		         }
+		         in.close();
+		         out.flush();
+		    }
+		}
+	 
+	 
 	@RequestMapping(value="document/upload_index", method = RequestMethod.POST)
     public @ResponseBody String upload_product(MultipartHttpServletRequest request, HttpServletResponse response) throws Exception {
 		 
