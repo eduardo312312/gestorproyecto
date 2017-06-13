@@ -64,13 +64,13 @@ public class ProjectService {
 			
 		{
 			e1.put("businesssubjectleaderid", e.getBusinessubjectByBusinesssubjectleaderid().getId() );	
-			e1.put("businesssubjectleader",bussubjservice.get(e.getBusinessubjectByBusinesssubjectleaderid().getId()).getName());
+			e1.put("businesssubjectleader",bussubjservice.get(e.getBusinessubjectByBusinesssubjectleaderid().getId()).getName()+" "+bussubjservice.get(e.getBusinessubjectByBusinesssubjectleaderid().getId()).getLastname()+" "+bussubjservice.get(e.getBusinessubjectByBusinesssubjectleaderid().getId()).getSecondlastname());
 		}
 		
 		if(e.getBusinessubjectByBusinesssubjectcontrolid()!=null) 
 		{
 			e1.put("businesssubjectcontrolid", e.getBusinessubjectByBusinesssubjectcontrolid().getId() );	
-			e1.put("businesssubjectcontrol",bussubjservice.get(e.getBusinessubjectByBusinesssubjectcontrolid().getId()).getName());
+			e1.put("businesssubjectcontrol",bussubjservice.get(e.getBusinessubjectByBusinesssubjectcontrolid().getId()).getName()+" "+bussubjservice.get(e.getBusinessubjectByBusinesssubjectcontrolid().getId()).getLastname()+" "+bussubjservice.get(e.getBusinessubjectByBusinesssubjectcontrolid().getId()).getSecondlastname());
 		}
 		if(e.getState()!=null) e1.put("stateid",e.getState().getId());	
 		if(e.getStartdate()!=null) e1.put("startdate",e.getStartdate());	

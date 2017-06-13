@@ -11,9 +11,276 @@
          <script src="resources/js/uploadfile/jquery.uploadfile.min.js"></script>
     <link href="resources/js/uploadfile/uploadfile.css" rel="stylesheet" />
     
+    
+    <style type="text/css">
+
+
+* {margin: 0; padding: 0; outline: none;}
+
+img {border: none;}
+
+a { 
+	text-decoration:none; 
+	color:#00c6ff;
+}
+
+h1 {
+	font: 4em normal Arial, Helvetica, sans-serif;
+	padding: 20px;	margin: 0;
+	text-align:center;
+	color:#bbb;
+}
+
+h1 small{
+	font: 0.2em normal  Arial, Helvetica, sans-serif;
+	text-transform:uppercase; letter-spacing: 0.2em; line-height: 5em;
+	display: block;
+}
+
+.container {width: 960px; margin: 0 auto; overflow: hidden;}
+.content {width:800px; margin:0 auto; padding-top:50px;}
+.contentBar {width:90px; margin:0 auto; padding-top:10px; padding-bottom:15px;}
+
+/* STOP ANIMATION */
+
+.stop {
+	-webkit-animation-play-state:paused;
+	-moz-animation-play-state:paused;
+}
+
+/* Loading Circle */
+.ball {
+	background-color: rgba(0,0,0,0);
+	border:5px solid rgba(0,183,229,0.9);
+	opacity:.9;
+	border-top:5px solid rgba(0,0,0,0);
+	border-left:5px solid rgba(0,0,0,0);
+	border-radius:50px;
+	box-shadow: 0 0 35px #2187e7;
+	width:50px;
+	height:50px;
+	margin:0 auto;
+	
+	position:relative;//esto agregue recien
+	
+	-moz-animation:spin .5s infinite linear;
+	-webkit-animation:spin .5s infinite linear;
+}
+
+.ball1 {
+	background-color: rgba(0,0,0,0);
+	border:5px solid rgba(0,183,229,0.9);
+	opacity:.9;
+	border-top:5px solid rgba(0,0,0,0);
+	border-left:5px solid rgba(0,0,0,0);
+	border-radius:50px;
+	box-shadow: 0 0 15px #2187e7; 
+	width:30px;
+	height:30px;
+	margin:10px auto;
+	position:relative;
+	top:-50px;
+	-moz-animation:spinoff .5s infinite linear;
+	-webkit-animation:spinoff .5s infinite linear;
+}
+
+@-moz-keyframes spin {
+	0% { -moz-transform:rotate(0deg); }
+	100% { -moz-transform:rotate(360deg); }
+}
+@-moz-keyframes spinoff {
+	0% { -moz-transform:rotate(0deg); }
+	100% { -moz-transform:rotate(-360deg); }
+}
+@-webkit-keyframes spin {
+	0% { -webkit-transform:rotate(0deg); }
+	100% { -webkit-transform:rotate(360deg); }
+}
+@-webkit-keyframes spinoff {
+	0% { -webkit-transform:rotate(0deg); }
+	100% { -webkit-transform:rotate(-360deg); }
+}
+
+/* Second Loadin Circle */
+
+.circle {
+	background-color: rgba(0,0,0,0);
+	border:5px solid rgba(0,183,229,0.9);
+	opacity:.9;
+	border-right:5px solid rgba(0,0,0,0);
+	border-left:5px solid rgba(0,0,0,0);
+	border-radius:50px;
+	box-shadow: 0 0 35px #2187e7;
+	width:50px;
+	height:50px;
+	margin:0 auto;
+	-moz-animation:spinPulse 1s infinite ease-in-out;
+	-webkit-animation:spinPulse 1s infinite linear;
+}
+.circle1 {
+	background-color: rgba(0,0,0,0);
+	border:5px solid rgba(0,183,229,0.9);
+	opacity:.9;
+	border-left:5px solid rgba(0,0,0,0);
+	border-right:5px solid rgba(0,0,0,0);
+	border-radius:50px;
+	box-shadow: 0 0 15px #2187e7; 
+	width:30px;
+	height:30px;
+	margin:0 auto;
+	position:relative;
+	top:-50px;
+	-moz-animation:spinoffPulse 1s infinite linear;
+	-webkit-animation:spinoffPulse 1s infinite linear;
+}
+
+@-moz-keyframes spinPulse {
+	0% { -moz-transform:rotate(160deg); opacity:0; box-shadow:0 0 1px #2187e7;}
+	50% { -moz-transform:rotate(145deg); opacity:1; }
+	100% { -moz-transform:rotate(-320deg); opacity:0; }
+}
+@-moz-keyframes spinoffPulse {
+	0% { -moz-transform:rotate(0deg); }
+	100% { -moz-transform:rotate(360deg);  }
+}
+@-webkit-keyframes spinPulse {
+	0% { -webkit-transform:rotate(160deg); opacity:0; box-shadow:0 0 1px #2187e7; }
+	50% { -webkit-transform:rotate(145deg); opacity:1;}
+	100% { -webkit-transform:rotate(-320deg); opacity:0; }
+}
+@-webkit-keyframes spinoffPulse {
+	0% { -webkit-transform:rotate(0deg); }
+	100% { -webkit-transform:rotate(360deg); }
+}
+
+/* LITTLE BAR */
+
+.barlittle {
+	background-color:#2187e7;  
+	background-image: -moz-linear-gradient(45deg, #2187e7 25%, #a0eaff); 
+	background-image: -webkit-linear-gradient(45deg, #2187e7 25%, #a0eaff);
+	border-left:1px solid #111; border-top:1px solid #111; border-right:1px solid #333; border-bottom:1px solid #333; 
+	width:10px;
+	height:10px;
+	float:left;
+	margin-left:5px;
+    opacity:0.1;
+	-moz-transform:scale(0.7);
+	-webkit-transform:scale(0.7);
+	-moz-animation:move 1s infinite linear;
+	-webkit-animation:move 1s infinite linear;
+}
+
+#block_1{
+ 	-moz-animation-delay: .4s;
+	-webkit-animation-delay: .4s;
+ }
+#block_2{
+ 	-moz-animation-delay: .3s;
+	-webkit-animation-delay: .3s;
+}
+#block_3{
+ 	-moz-animation-delay: .2s;
+	-webkit-animation-delay: .2s;
+}
+#block_4{
+ 	-moz-animation-delay: .3s;
+	-webkit-animation-delay: .3s;
+}
+#block_5{
+ 	-moz-animation-delay: .4s;
+	-webkit-animation-delay: .4s;
+}
+
+#block_12{
+ 	-moz-animation-delay: .4s;
+	-webkit-animation-delay: .4s;
+ }
+#block_22{
+ 	-moz-animation-delay: .3s;
+	-webkit-animation-delay: .3s;
+}
+#block_32{
+ 	-moz-animation-delay: .2s;
+	-webkit-animation-delay: .2s;
+}
+#block_42{
+ 	-moz-animation-delay: .3s;
+	-webkit-animation-delay: .3s;
+}
+#block_52{
+ 	-moz-animation-delay: .4s;
+	-webkit-animation-delay: .4s;
+}
+
+
+@-moz-keyframes move{
+	0%{-moz-transform: scale(1.2);opacity:1;}
+	100%{-moz-transform: scale(0.7);opacity:0.1;}
+}
+@-webkit-keyframes move{
+	0%{-webkit-transform: scale(1.2);opacity:1;}
+	100%{-webkit-transform: scale(0.7);opacity:0.1;}
+}
+
+/* Trigger button for javascript */
+
+.trigger, .triggerFull, .triggerBar {
+	background: #000000;
+	background: -moz-linear-gradient(top, #161616 0%, #000000 100%);
+	background: -webkit-linear-gradient(top, #161616 0%,#000000 100%);
+	border-left:1px solid #111; border-top:1px solid #111; border-right:1px solid #333; border-bottom:1px solid #333; 
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 0.8em;
+	text-decoration: none;
+	text-transform: lowercase;
+	text-align: center;
+	color: #fff;
+	padding: 10px;
+	border-radius: 3px;
+	display: block;
+	margin: 0 auto;
+	width: 140px;
+}
+		
+.trigger:hover, .triggerFull:hover, .triggerBar:hover {
+	background: -moz-linear-gradient(top, #202020 0%, #161616 100%);
+	background: -webkit-linear-gradient(top, #202020 0%, #161616 100%);
+}
+
+</style>
+    
+    
+    
+    
    <script>
 var page="indexfile";
 </script>
+
+<script>		
+$(document).ready(function() {
+	$('.ball, .ball1').removeClass('stop');	    
+		$('.trigger').click(function() {
+				$('.ball, .ball1').toggleClass('stop');
+		});
+});
+
+$(document).ready(function() {
+	$('.circle, .circle1').removeClass('stop');	    
+		$('.triggerFull').click(function() {
+				$('.circle, .circle1').toggleClass('stop');
+		});
+});
+
+$(document).ready(function() {
+	$('.barlittle').removeClass('stop');	    
+		$('.triggerBar').click(function() {
+				$('.barlittle').toggleClass('stop');
+		});
+});
+
+</script>
+
   <script>
 var uploadWidget;
 
@@ -98,16 +365,52 @@ $('.datepicker').datepicker({
 			<div class="row">
 			<div class="form-group">
             <label class="col-md-2 control-label alineacion_i">Proyecto:</label>
-                                      <div class="col-md-6">  <select class="form-control m-b" ng-change="select_project(select.project)"   ng-model="select.project">
+                                      <div class="col-md-8">  <select class="form-control m-b" ng-change="select_project(select.project)"   ng-model="select.project">
                                              
                                         <option ng-repeat="item in listprojects.list" >{{item.name}}</option>
 <!--                                        <option >***Agregar Proyecto***</option> -->
                                       
                                         </select>  </div>  
+                                        
+                                        
                                   
                                 </div> 
                                 
               </div>
+              
+              
+<!-- 			              <div class="container"> -->
+<!-- 							<div class="content"> -->
+<!-- 						    <div class="circle"></div> -->
+<!-- 						    <div class="circle1"></div> -->
+<!-- 						    </div> -->
+<!-- 							</div> -->
+							
+<!-- 							<div class="container"> -->
+<!-- 								<div class="content"> -->
+							    
+<!-- 							    </div> -->
+<!-- 							</div> -->
+							
+<!-- 							<div class="container"> -->
+<!-- 								<div class="content"> -->
+<!-- 							    <div class="circle"></div> -->
+<!-- 							    <div class="circle1"></div> -->
+<!-- 							    </div> -->
+<!-- 							</div> -->
+							
+							<div id='loadertransaction'  class="contentBar">
+<!-- 							<div  class="ball"></div> -->
+<!-- 							    <div class="ball1"></div> -->
+							    <h4 >Procesando</h4>
+							    <div id="block_1" class="barlittle"></div>
+						    	<div id="block_1" class="barlittle"></div>
+						        <div id="block_2" class="barlittle"></div>
+						        <div id="block_3" class="barlittle"></div>
+						        <div id="block_4" class="barlittle"></div>
+						        <div id="block_5" class="barlittle"></div>
+						    </div>
+            
 			
             <!-- tabla de datos -->
 
@@ -195,10 +498,10 @@ $('.datepicker').datepicker({
                                </div> 
                                
                                <div class="row" style="margin-top: 10px !important;">
-                                 <label class="col-md-2 control-label alineacion_i">Subir Documento</label>
+                                 <label ng-show="!indicador_nuevo"  class="col-md-2 control-label alineacion_i">Subir Documento</label>
                                      <div ng-show="!indicador_nuevo" id="fileuploader">Upload</div>
   			     				 <input id='document_id' type='hidden'  ng-model='document.id' value={{document.id}} />
-  			     				  <a href="http://localhost:8080/gestorproyecto/resources/pdf/index/{{document.id}}.pdf" target="_blank">Abrir</a>
+  			     				  <a ng-show="!indicador_nuevo"  href="http://localhost:8080/gestorproyecto/resources/pdf/index/{{document.id}}.pdf" target="_blank">Abrir</a>
                                 </div>  
                                
                               
@@ -477,7 +780,18 @@ $('.datepicker').datepicker({
    		</div>
    	
    		<div class="row alineacion_c" >
-            <button  class="btn btn-primary dim"  ng-disabled="!validator_save()"  ng-click="save_project()" data-toggle="modal"  href="javascript:void(0);" >Guardar</button>
+            <button  class="btn btn-primary dim"  ng-disabled="!validator_save()" id='btnsaveproject'  ng-click="save_project()"   >Guardar</button>
+				<div id='loadertransaction2'  class="contentBar">
+			<!-- 							<div  class="ball"></div> -->
+			<!-- 							    <div class="ball1"></div> -->
+										    <h4 >Procesando</h4>
+										    <div id="block_12" class="barlittle"></div>
+									    	<div id="block_12" class="barlittle"></div>
+									        <div id="block_22" class="barlittle"></div>
+									        <div id="block_32" class="barlittle"></div>
+									        <div id="block_42" class="barlittle"></div>
+									        <div id="block_52" class="barlittle"></div>
+									    </div>
 			</div>
 			
 			
@@ -599,12 +913,17 @@ $('.datepicker').datepicker({
                                
                             </form>
                         </div>
+                        
+                        
                         </div>
 
     <!-- aca termina el formuilario -->
                                         <div class="modal-footer">
+                                        	
                                             <button type="button" class="btn btn-white dim btnclose" data-dismiss="modal">Cerrar</button>
-                                            <button  ng-disabled="!valor()" id="btnadd" type="button"  class="btn btn-primary dim" ng-click="anadir()" >Guardar</button>
+                                            <button  ng-disabled="!valor()"  type="button"  class="btn btn-primary dim" ng-click="anadir()" >Guardar</button>
+                                       	
+                                       
                                         </div>
                                    
                                 </div>

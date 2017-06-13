@@ -1,15 +1,20 @@
 
 app.controller('IndexController', function ($scope,ProjectService) {
+
+	$("#loadertransaction").hide();
+	$("#loadertransaction2").hide();
+	
 	$scope.employees={list:[],params:{page:1, maxResults:20}};
 	$scope.employee=[];
 	$scope.project2={shortname:'',name:''};
 	$scope.indicador_nuevo=false;
 	$scope.stylenew="border: rgb(229, 230, 231) 1px solid !important";
-	
+	 $scope.transactionok=false;
 	$scope.select=[];
 	$scope.select.project=[];
 	$scope.listprojects=[];
 	$scope.document=[];
+	
 	
 	
 	$scope.select.projectid=1;
@@ -64,6 +69,14 @@ app.controller('IndexController', function ($scope,ProjectService) {
 	
 	$scope.save_project=function()	
 	{
+		
+				
+		$("#btnsaveproject").hide();
+			
+		
+		
+		$("#loadertransaction").show(2500);
+		$("#loadertransaction2").show(2500);
 		var projectid=$scope.select.projectid;//por ahora, luego sera para crear varios proyectos
 		
 		var project_send = {
@@ -106,25 +119,31 @@ app.controller('IndexController', function ($scope,ProjectService) {
 		ProjectService.save_project(params_project).success(
 					function(data) {
 						if(data)
-						console.debug(data.project);
+
 						
-						$scope.load();
-						$scope.project2.shortname=data.shortname;
-						$scope.project2.name=data.name;
-						$scope.indicador_nuevo=false;
-						$scope.stylenew="border: rgb(229, 230, 231) 1px solid !important ";
+											
+							$scope.load(data.id);
+							$scope.project2.shortname=data.shortname;
+							$scope.project2.name=data.name;
+							$scope.indicador_nuevo=false;
+							
+							$scope.stylenew="border: rgb(229, 230, 231) 1px solid !important ";
+							$("#btnsaveproject").show(1000);
+							
+						
+					
 						
 						///CREO 4 FASES CADA UNO CON SU ACTIVIDAD
-							if($scope.select.projectid==0)
-								{ //projectid
-								 ProjectService.save_phase_activities({projectid:data.id}).success(
-										function(data) {				
-											
-											
-											
-										});						
-								
-								}						
+//							if($scope.select.projectid==0)
+//								{ //projectid
+//								 ProjectService.save_phase_activities({projectid:data.id}).success(
+//										function(data) {				
+//											
+//										
+//											
+//										});						
+//								
+//								}						
 						///
 					});
 		
@@ -138,16 +157,32 @@ app.controller('IndexController', function ($scope,ProjectService) {
 		
 		$scope.listprojects=[];
 		
-		ProjectService.search_project(id).success(
-				function(data) {
-					if(data.project)
-				
+		setTimeout(function(){				
+			
+			ProjectService.search_project(id).success(
+					function(data) {
+						
+						if(data.project)
+						{
+													
+							$scope.project=data.project;
+							$scope.project.state="Activo";
+							$scope.project.typepayment="Suma Alzada";
+								$scope.select.project=data.project.name;
+								$scope.project.controlid=data.businesssubjectcontrolid
+								$scope.project.leaderid=data.businesssubjectleaderid
+//								$scope.project.businesssubjectleader=data.businesssubjectleader;		
+//								$scope.project.businesssubjectcontrol=data.businesssubjectcontrol;
+								
+							$("#loadertransaction").hide(2000);
+							$("#loadertransaction2").hide(2000);
+								
+						}
 					
-					$scope.project=data.project;
-					$scope.project.state="Activo";
-					$scope.project.typepayment="Suma Alzada";
-						$scope.select.project=data.project.name;
-				});
+					});
+			
+		 
+		}, 3000); 
 
 		
 		ProjectService.list_all_projects({portfolioid:1}).success(
@@ -171,6 +206,7 @@ app.controller('IndexController', function ($scope,ProjectService) {
 		if($scope.project.name!="" && $scope.project.description!="" && $scope.project.comment!="" && $scope.project.daysleft!="" && $scope.project.totalamount!="" &&
 				$scope.project.location!="" && $scope.project.size!="" && $scope.project.shortname!="" && $scope.project.clientname!="" && $scope.project.clientcontact!=""
 					&& $scope.project.clientphone!="" && $scope.project.clientfax!="" && $scope.project.clientmovil!="" && $scope.project.clientmail!="" && $scope.project.clientaddress!=""
+//						&& $scope.indicador_nuevo==true
 		)
 			{
 			retorno=true;
@@ -180,19 +216,33 @@ app.controller('IndexController', function ($scope,ProjectService) {
 		
 		
 	}
+	$scope.clear=function()
+	{
+		$scope.project=[];
+		$scope.project.name="";
+		$scope.project.description="";
+		$scope.project.comment="";
+		$scope.project.daysleft=""; 
+		$scope.project.totalamount=""; 
+						
+//		$scope.project.location!="" && $scope.project.size!="" && $scope.project.shortname!="" && $scope.project.clientname!="" && $scope.project.clientcontact!=""
+//			&& $scope.project.clientphone!="" && $scope.project.clientfax!="" && $scope.project.clientmovil!="" && $scope.project.clientmail!="" && $scope.project.clientaddress!=""
+
+		
+		
+	}
 	
 	////////FUNCION QUE BUSCA EL ID POR EL NOMBRE DEL PROYECTO SELECCIONADO.
 	$scope.select_project=function(name)
 	{
+		
 		$scope.document=[];
     
 		if(name=="***Agregar Proyecto***")
 			{
 			$scope.indicador_nuevo=true;
 			
-			$scope.project=[];
-			$scope.project.name="";
-			$scope.project.description="";
+		    $scope.clear();
 		
 			$scope.select.projectid=0;
 			$scope.stylenew="border: #7FB3D5 3px dashed !important; ";
@@ -200,7 +250,8 @@ app.controller('IndexController', function ($scope,ProjectService) {
 			}
 		else
 			{
-			
+			$("#loadertransaction").show(2500);
+			$("#loadertransaction2").show(2500);
 			$scope.indicador_nuevo=false;
 			$scope.stylenew="border: rgb(229, 230, 231) 1px solid !important ";
 			
@@ -252,9 +303,15 @@ app.controller('IndexController', function ($scope,ProjectService) {
 	
 	$scope.load(1);
 	
-  
 
+	
+	
+			
+	
+	
 });
+
+
 
 
 		
