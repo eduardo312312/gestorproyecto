@@ -169,10 +169,12 @@ app.controller('IndexController', function ($scope,ProjectService) {
 							$scope.project.state="Activo";
 							$scope.project.typepayment="Suma Alzada";
 								$scope.select.project=data.project.name;
-								$scope.project.controlid=data.businesssubjectcontrolid
-								$scope.project.leaderid=data.businesssubjectleaderid
-//								$scope.project.businesssubjectleader=data.businesssubjectleader;		
-//								$scope.project.businesssubjectcontrol=data.businesssubjectcontrol;
+								$scope.project.controlid=data.project.businesssubjectcontrolid
+								$scope.project.leaderid=data.project.businesssubjectleaderid
+								console.debug($scope.project.controlid)
+								console.debug($scope.project.leaderid)
+								$scope.project.businesssubjectleader=data.project.businesssubjectleader;		
+								$scope.project.businesssubjectcontrol=data.project.businesssubjectcontrol;
 								
 							$("#loadertransaction").hide(2000);
 							$("#loadertransaction2").hide(2000);

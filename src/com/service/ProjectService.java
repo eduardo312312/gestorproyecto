@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.model.Businessubject;
 import com.model.Paymode;
 import com.model.Portfolio;
 import com.model.Project;
@@ -63,14 +64,16 @@ public class ProjectService {
 		if(e.getBusinessubjectByBusinesssubjectleaderid()!=null) 
 			
 		{
+			Businessubject bus= bussubjservice.get(e.getBusinessubjectByBusinesssubjectleaderid().getId());
 			e1.put("businesssubjectleaderid", e.getBusinessubjectByBusinesssubjectleaderid().getId() );	
-			e1.put("businesssubjectleader",bussubjservice.get(e.getBusinessubjectByBusinesssubjectleaderid().getId()).getName()+" "+bussubjservice.get(e.getBusinessubjectByBusinesssubjectleaderid().getId()).getLastname()+" "+bussubjservice.get(e.getBusinessubjectByBusinesssubjectleaderid().getId()).getSecondlastname());
+			e1.put("businesssubjectleader",bus.getName().toString()+" "+bus.getLastname().toString()+" "+bus.getSecondlastname().toString());
 		}
 		
 		if(e.getBusinessubjectByBusinesssubjectcontrolid()!=null) 
 		{
+			Businessubject bus= bussubjservice.get(e.getBusinessubjectByBusinesssubjectcontrolid().getId());
 			e1.put("businesssubjectcontrolid", e.getBusinessubjectByBusinesssubjectcontrolid().getId() );	
-			e1.put("businesssubjectcontrol",bussubjservice.get(e.getBusinessubjectByBusinesssubjectcontrolid().getId()).getName()+" "+bussubjservice.get(e.getBusinessubjectByBusinesssubjectcontrolid().getId()).getLastname()+" "+bussubjservice.get(e.getBusinessubjectByBusinesssubjectcontrolid().getId()).getSecondlastname());
+			e1.put("businesssubjectcontrol",bus.getName().toString()+" "+bus.getLastname().toString()+" "+bus.getSecondlastname().toString());
 		}
 		if(e.getState()!=null) e1.put("stateid",e.getState().getId());	
 		if(e.getStartdate()!=null) e1.put("startdate",e.getStartdate());	
