@@ -553,15 +553,15 @@ $('.datepicker').datepicker({
                                 
                                   <div class="row" style="margin-top: 10px !important;">
                                  <label class="col-md-2 control-label alineacion_i">Fax:</label>
-                                    <div class="col-md-4"><input style={{stylenew}} type="text" class="form-control" ng-model="project.clientfax"></div>   
+                                    <div class="col-md-4"><input type="text" style={{stylenew}} onkeypress="return isNumberKey(event)" maxlength="20" class="form-control" ng-model="project.clientfax"></div>   
                                 
                                  <label class="col-md-2 control-label alineacion_i">Celular:</label>
-                                    <div class="col-md-4"><input style={{stylenew}} type="text" class="form-control" ng-model="project.clientmovil" ></div>   
+                                    <div class="col-md-4"><input style={{stylenew}} type="text" onkeypress="return isNumberKey(event)" maxlength="9" class="form-control" ng-model="project.clientmovil" ></div>   
                                 </div>  
                                 
                                   <div class="row" style="margin-top: 10px !important;">
                                  <label class="col-md-2 control-label alineacion_i">Email:</label>
-                                    <div class="col-md-10"><input style={{stylenew}} type="text" class="form-control" ng-model="project.clientmail" ></div>   
+                                    <div class="col-md-10"><input style={{stylenew}} type="mail" class="form-control" ng-model="project.clientmail" ></div>   
                                 </div>  
                                  
                                 

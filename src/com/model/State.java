@@ -1,5 +1,5 @@
 package com.model;
-// Generated 21/05/2017 02:53:53 AM by Hibernate Tools 3.4.0.CR1
+// Generated 21/06/2017 07:36:26 AM by Hibernate Tools 3.4.0.CR1
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -23,25 +23,31 @@ public class State implements java.io.Serializable {
 	private int id;
 	private String name;
 	private String description;
+	private Set<Businesssubjecttype> businesssubjecttypes = new HashSet<Businesssubjecttype>(0);
+	private Set<Controlchange> controlchanges = new HashSet<Controlchange>(0);
+	private Set<Systemuser> systemusers = new HashSet<Systemuser>(0);
+	private Set<Taskhistory> taskhistories = new HashSet<Taskhistory>(0);
+	private Set<Activity> activities = new HashSet<Activity>(0);
+	private Set<Taskdetail> taskdetails = new HashSet<Taskdetail>(0);
+	private Set<Permissionprofile> permissionprofiles = new HashSet<Permissionprofile>(0);
+	private Set<Portfolio> portfolios = new HashSet<Portfolio>(0);
+	private Set<Typepayment> typepayments = new HashSet<Typepayment>(0);
+	private Set<Marketline> marketlines = new HashSet<Marketline>(0);
+	private Set<Riskmatrix> riskmatrixes = new HashSet<Riskmatrix>(0);
+	private Set<Groupteam> groupteams = new HashSet<Groupteam>(0);
 	private Set<Documenttype> documenttypes = new HashSet<Documenttype>(0);
 	private Set<Document> documents = new HashSet<Document>(0);
 	private Set<Profile> profiles = new HashSet<Profile>(0);
 	private Set<Userprofile> userprofiles = new HashSet<Userprofile>(0);
-	private Set<Businesssubjecttype> businesssubjecttypes = new HashSet<Businesssubjecttype>(0);
 	private Set<Document> documents_1 = new HashSet<Document>(0);
-	private Set<Systemuser> systemusers = new HashSet<Systemuser>(0);
 	private Set<Task> tasks = new HashSet<Task>(0);
+	private Set<Meetingrecord> meetingrecords = new HashSet<Meetingrecord>(0);
 	private Set<Detailfile> detailfiles = new HashSet<Detailfile>(0);
-	private Set<Taskhistory> taskhistories = new HashSet<Taskhistory>(0);
-	private Set<Activity> activities = new HashSet<Activity>(0);
 	private Set<Businessubject> businessubjects = new HashSet<Businessubject>(0);
-	private Set<Taskdetail> taskdetails = new HashSet<Taskdetail>(0);
-	private Set<Permissionprofile> permissionprofiles = new HashSet<Permissionprofile>(0);
-	private Set<Portfolio> portfolios = new HashSet<Portfolio>(0);
+	private Set<Trace> traces = new HashSet<Trace>(0);
+	private Set<Stakeholder> stakeholders = new HashSet<Stakeholder>(0);
 	private Set<Project> projects = new HashSet<Project>(0);
-	private Set<Typepayment> typepayments = new HashSet<Typepayment>(0);
 	private Set<Permission> permissions = new HashSet<Permission>(0);
-	private Set<Marketline> marketlines = new HashSet<Marketline>(0);
 	private Set<Phase> phases = new HashSet<Phase>(0);
 
 	public State() {
@@ -53,35 +59,43 @@ public class State implements java.io.Serializable {
 		this.description = description;
 	}
 
-	public State(int id, String name, String description, Set<Documenttype> documenttypes, Set<Document> documents,
-			Set<Profile> profiles, Set<Userprofile> userprofiles, Set<Businesssubjecttype> businesssubjecttypes,
-			Set<Document> documents_1, Set<Systemuser> systemusers, Set<Task> tasks, Set<Detailfile> detailfiles,
-			Set<Taskhistory> taskhistories, Set<Activity> activities, Set<Businessubject> businessubjects,
-			Set<Taskdetail> taskdetails, Set<Permissionprofile> permissionprofiles, Set<Portfolio> portfolios,
-			Set<Project> projects, Set<Typepayment> typepayments, Set<Permission> permissions,
-			Set<Marketline> marketlines, Set<Phase> phases) {
+	public State(int id, String name, String description, Set<Businesssubjecttype> businesssubjecttypes,
+			Set<Controlchange> controlchanges, Set<Systemuser> systemusers, Set<Taskhistory> taskhistories,
+			Set<Activity> activities, Set<Taskdetail> taskdetails, Set<Permissionprofile> permissionprofiles,
+			Set<Portfolio> portfolios, Set<Typepayment> typepayments, Set<Marketline> marketlines,
+			Set<Riskmatrix> riskmatrixes, Set<Groupteam> groupteams, Set<Documenttype> documenttypes,
+			Set<Document> documents, Set<Profile> profiles, Set<Userprofile> userprofiles, Set<Document> documents_1,
+			Set<Task> tasks, Set<Meetingrecord> meetingrecords, Set<Detailfile> detailfiles,
+			Set<Businessubject> businessubjects, Set<Trace> traces, Set<Stakeholder> stakeholders,
+			Set<Project> projects, Set<Permission> permissions, Set<Phase> phases) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
+		this.businesssubjecttypes = businesssubjecttypes;
+		this.controlchanges = controlchanges;
+		this.systemusers = systemusers;
+		this.taskhistories = taskhistories;
+		this.activities = activities;
+		this.taskdetails = taskdetails;
+		this.permissionprofiles = permissionprofiles;
+		this.portfolios = portfolios;
+		this.typepayments = typepayments;
+		this.marketlines = marketlines;
+		this.riskmatrixes = riskmatrixes;
+		this.groupteams = groupteams;
 		this.documenttypes = documenttypes;
 		this.documents = documents;
 		this.profiles = profiles;
 		this.userprofiles = userprofiles;
-		this.businesssubjecttypes = businesssubjecttypes;
 		this.documents_1 = documents_1;
-		this.systemusers = systemusers;
 		this.tasks = tasks;
+		this.meetingrecords = meetingrecords;
 		this.detailfiles = detailfiles;
-		this.taskhistories = taskhistories;
-		this.activities = activities;
 		this.businessubjects = businessubjects;
-		this.taskdetails = taskdetails;
-		this.permissionprofiles = permissionprofiles;
-		this.portfolios = portfolios;
+		this.traces = traces;
+		this.stakeholders = stakeholders;
 		this.projects = projects;
-		this.typepayments = typepayments;
 		this.permissions = permissions;
-		this.marketlines = marketlines;
 		this.phases = phases;
 	}
 
@@ -112,6 +126,114 @@ public class State implements java.io.Serializable {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "state")
+	public Set<Businesssubjecttype> getBusinesssubjecttypes() {
+		return this.businesssubjecttypes;
+	}
+
+	public void setBusinesssubjecttypes(Set<Businesssubjecttype> businesssubjecttypes) {
+		this.businesssubjecttypes = businesssubjecttypes;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "state")
+	public Set<Controlchange> getControlchanges() {
+		return this.controlchanges;
+	}
+
+	public void setControlchanges(Set<Controlchange> controlchanges) {
+		this.controlchanges = controlchanges;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "state")
+	public Set<Systemuser> getSystemusers() {
+		return this.systemusers;
+	}
+
+	public void setSystemusers(Set<Systemuser> systemusers) {
+		this.systemusers = systemusers;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "state")
+	public Set<Taskhistory> getTaskhistories() {
+		return this.taskhistories;
+	}
+
+	public void setTaskhistories(Set<Taskhistory> taskhistories) {
+		this.taskhistories = taskhistories;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "state")
+	public Set<Activity> getActivities() {
+		return this.activities;
+	}
+
+	public void setActivities(Set<Activity> activities) {
+		this.activities = activities;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "state")
+	public Set<Taskdetail> getTaskdetails() {
+		return this.taskdetails;
+	}
+
+	public void setTaskdetails(Set<Taskdetail> taskdetails) {
+		this.taskdetails = taskdetails;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "state")
+	public Set<Permissionprofile> getPermissionprofiles() {
+		return this.permissionprofiles;
+	}
+
+	public void setPermissionprofiles(Set<Permissionprofile> permissionprofiles) {
+		this.permissionprofiles = permissionprofiles;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "state")
+	public Set<Portfolio> getPortfolios() {
+		return this.portfolios;
+	}
+
+	public void setPortfolios(Set<Portfolio> portfolios) {
+		this.portfolios = portfolios;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "state")
+	public Set<Typepayment> getTypepayments() {
+		return this.typepayments;
+	}
+
+	public void setTypepayments(Set<Typepayment> typepayments) {
+		this.typepayments = typepayments;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "state")
+	public Set<Marketline> getMarketlines() {
+		return this.marketlines;
+	}
+
+	public void setMarketlines(Set<Marketline> marketlines) {
+		this.marketlines = marketlines;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "state")
+	public Set<Riskmatrix> getRiskmatrixes() {
+		return this.riskmatrixes;
+	}
+
+	public void setRiskmatrixes(Set<Riskmatrix> riskmatrixes) {
+		this.riskmatrixes = riskmatrixes;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "state")
+	public Set<Groupteam> getGroupteams() {
+		return this.groupteams;
+	}
+
+	public void setGroupteams(Set<Groupteam> groupteams) {
+		this.groupteams = groupteams;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "state")
@@ -151,30 +273,12 @@ public class State implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "state")
-	public Set<Businesssubjecttype> getBusinesssubjecttypes() {
-		return this.businesssubjecttypes;
-	}
-
-	public void setBusinesssubjecttypes(Set<Businesssubjecttype> businesssubjecttypes) {
-		this.businesssubjecttypes = businesssubjecttypes;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "state")
 	public Set<Document> getDocuments_1() {
 		return this.documents_1;
 	}
 
 	public void setDocuments_1(Set<Document> documents_1) {
 		this.documents_1 = documents_1;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "state")
-	public Set<Systemuser> getSystemusers() {
-		return this.systemusers;
-	}
-
-	public void setSystemusers(Set<Systemuser> systemusers) {
-		this.systemusers = systemusers;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "state")
@@ -187,30 +291,21 @@ public class State implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "state")
+	public Set<Meetingrecord> getMeetingrecords() {
+		return this.meetingrecords;
+	}
+
+	public void setMeetingrecords(Set<Meetingrecord> meetingrecords) {
+		this.meetingrecords = meetingrecords;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "state")
 	public Set<Detailfile> getDetailfiles() {
 		return this.detailfiles;
 	}
 
 	public void setDetailfiles(Set<Detailfile> detailfiles) {
 		this.detailfiles = detailfiles;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "state")
-	public Set<Taskhistory> getTaskhistories() {
-		return this.taskhistories;
-	}
-
-	public void setTaskhistories(Set<Taskhistory> taskhistories) {
-		this.taskhistories = taskhistories;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "state")
-	public Set<Activity> getActivities() {
-		return this.activities;
-	}
-
-	public void setActivities(Set<Activity> activities) {
-		this.activities = activities;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "state")
@@ -223,30 +318,21 @@ public class State implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "state")
-	public Set<Taskdetail> getTaskdetails() {
-		return this.taskdetails;
+	public Set<Trace> getTraces() {
+		return this.traces;
 	}
 
-	public void setTaskdetails(Set<Taskdetail> taskdetails) {
-		this.taskdetails = taskdetails;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "state")
-	public Set<Permissionprofile> getPermissionprofiles() {
-		return this.permissionprofiles;
-	}
-
-	public void setPermissionprofiles(Set<Permissionprofile> permissionprofiles) {
-		this.permissionprofiles = permissionprofiles;
+	public void setTraces(Set<Trace> traces) {
+		this.traces = traces;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "state")
-	public Set<Portfolio> getPortfolios() {
-		return this.portfolios;
+	public Set<Stakeholder> getStakeholders() {
+		return this.stakeholders;
 	}
 
-	public void setPortfolios(Set<Portfolio> portfolios) {
-		this.portfolios = portfolios;
+	public void setStakeholders(Set<Stakeholder> stakeholders) {
+		this.stakeholders = stakeholders;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "state")
@@ -259,30 +345,12 @@ public class State implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "state")
-	public Set<Typepayment> getTypepayments() {
-		return this.typepayments;
-	}
-
-	public void setTypepayments(Set<Typepayment> typepayments) {
-		this.typepayments = typepayments;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "state")
 	public Set<Permission> getPermissions() {
 		return this.permissions;
 	}
 
 	public void setPermissions(Set<Permission> permissions) {
 		this.permissions = permissions;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "state")
-	public Set<Marketline> getMarketlines() {
-		return this.marketlines;
-	}
-
-	public void setMarketlines(Set<Marketline> marketlines) {
-		this.marketlines = marketlines;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "state")

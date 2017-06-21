@@ -46,9 +46,10 @@ app.controller('EdtController', function ($scope,TaskService,ProjectService) {
 		return name;
 	}
 	
-	$scope.list=function()
+	$scope.list=function(first)
 	{
 		
+		if(first)//si first tiene un solo valor entonces hace load...y eso solo lo hace al momento de hacer la primera llamada al js...
 		$scope.load();
 		
 		$scope.tasks.list=[];
@@ -74,10 +75,10 @@ app.controller('EdtController', function ($scope,TaskService,ProjectService) {
 	}
 	
 	
-	//CARGA TODO EL SIDEBAR A PARTIR DE LA SELECCION DE UN PROYECTO
+	//CARGA Todo EL SIDEBAR A PARTIR DE LA SELECCION DE UN PROYECTO
 	$scope.load_sidebar=function()
 	{
-				
+  	
 		TaskService.list_project_to_edt({projectid:$scope.select.projectid}).success(function(data){
 			
 			$scope.detailsedt=data;
@@ -285,15 +286,7 @@ app.controller('EdtController', function ($scope,TaskService,ProjectService) {
 		console.debug($scope.pagesPaginator);
 	}
 
-	$scope.list();
 
-	$scope.load();
-	
-	$scope.load_sidebar();
-	
-	
-
-	
 
 	
 
@@ -354,9 +347,9 @@ app.controller('EdtController', function ($scope,TaskService,ProjectService) {
 			{
 				
 				$scope.select.projectid=$scope.listprojects.list[i].id;
-				
+				$scope.load_sidebar();	
 			}				
-			$scope.load_sidebar();				
+						
 		}
 	}
 
@@ -368,6 +361,15 @@ app.controller('EdtController', function ($scope,TaskService,ProjectService) {
 			  //  $scope.listprojects.list.push({id:'agregar',name:'***Agregar Proyecto***'})
     
 			});
+	
+	$scope.list("usar_load");
+
+	$scope.load();
+	
+	$scope.load_sidebar();
+	
+	
+
 	
 
 

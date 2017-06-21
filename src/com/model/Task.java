@@ -1,5 +1,5 @@
 package com.model;
-// Generated 21/05/2017 04:09:30 AM by Hibernate Tools 3.4.0.CR1
+// Generated 21/06/2017 07:36:26 AM by Hibernate Tools 3.4.0.CR1
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -39,11 +39,12 @@ public class Task implements java.io.Serializable {
 	private Date createdate;
 	private Double estimatehour;
 	private Double realhour;
-	private Date changedate;
 	private String shortname;
 	private Date updateat;
 	private Double realamount;
 	private Double estimateamount;
+	private Date changedate;
+	private Integer priority;
 	private Set<Taskhistory> taskhistories = new HashSet<Taskhistory>(0);
 	private Set<Taskdetail> taskdetails = new HashSet<Taskdetail>(0);
 
@@ -57,9 +58,9 @@ public class Task implements java.io.Serializable {
 	public Task(int id, Businessubject businessubjectByBusinesssubjectresponsableid,
 			Businessubject businessubjectByBusinesssubjectcreatorid, Activity activity, State state,
 			Businessubject businessubjectByBusinesssubjectmodifierid, String name, String description, String comment,
-			Date startdate, Date enddate, Date createdate, Double estimatehour, Double realhour, Date changedate,
-			String shortname, Date updateat, Double realamount, Double estimateamount, Set<Taskhistory> taskhistories,
-			Set<Taskdetail> taskdetails) {
+			Date startdate, Date enddate, Date createdate, Double estimatehour, Double realhour, String shortname,
+			Date updateat, Double realamount, Double estimateamount, Date changedate, Integer priority,
+			Set<Taskhistory> taskhistories, Set<Taskdetail> taskdetails) {
 		this.id = id;
 		this.businessubjectByBusinesssubjectresponsableid = businessubjectByBusinesssubjectresponsableid;
 		this.businessubjectByBusinesssubjectcreatorid = businessubjectByBusinesssubjectcreatorid;
@@ -74,11 +75,12 @@ public class Task implements java.io.Serializable {
 		this.createdate = createdate;
 		this.estimatehour = estimatehour;
 		this.realhour = realhour;
-		this.changedate = changedate;
 		this.shortname = shortname;
 		this.updateat = updateat;
 		this.realamount = realamount;
 		this.estimateamount = estimateamount;
+		this.changedate = changedate;
+		this.priority = priority;
 		this.taskhistories = taskhistories;
 		this.taskdetails = taskdetails;
 	}
@@ -220,15 +222,6 @@ public class Task implements java.io.Serializable {
 		this.realhour = realhour;
 	}
 
-	@Column(name = "changedate")
-	public Date getChangedate() {
-		return this.changedate;
-	}
-
-	public void setChangedate(Date changedate) {
-		this.changedate = changedate;
-	}
-
 	@Column(name = "shortname", length = 250)
 	public String getShortname() {
 		return this.shortname;
@@ -264,6 +257,25 @@ public class Task implements java.io.Serializable {
 
 	public void setEstimateamount(Double estimateamount) {
 		this.estimateamount = estimateamount;
+	}
+
+	@Temporal(TemporalType.DATE)
+	@Column(name = "changedate", length = 13)
+	public Date getChangedate() {
+		return this.changedate;
+	}
+
+	public void setChangedate(Date changedate) {
+		this.changedate = changedate;
+	}
+
+	@Column(name = "priority")
+	public Integer getPriority() {
+		return this.priority;
+	}
+
+	public void setPriority(Integer priority) {
+		this.priority = priority;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "task")

@@ -1,16 +1,17 @@
 package com.model;
-// Generated 31/05/2017 05:57:12 AM by Hibernate Tools 3.4.0.CR1
+// Generated 21/06/2017 07:36:26 AM by Hibernate Tools 3.4.0.CR1
 
 import static javax.persistence.GenerationType.IDENTITY;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -23,12 +24,13 @@ import javax.persistence.TemporalType;
 public class Team implements java.io.Serializable {
 
 	private int id;
-	private Businessubject businessubject;
 	private String name;
 	private String description;
+	private Integer businesssubjectid;
 	private Date updateat;
 	private Integer stateid;
 	private Date createdate;
+	private Set<Groupteam> groupteams = new HashSet<Groupteam>(0);
 
 	public Team() {
 	}
@@ -37,15 +39,16 @@ public class Team implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public Team(int id, Businessubject businessubject, String name, String description, Date updateat, Integer stateid,
-			Date createdate) {
+	public Team(int id, String name, String description, Integer businesssubjectid, Date updateat, Integer stateid,
+			Date createdate, Set<Groupteam> groupteams) {
 		this.id = id;
-		this.businessubject = businessubject;
 		this.name = name;
 		this.description = description;
+		this.businesssubjectid = businesssubjectid;
 		this.updateat = updateat;
 		this.stateid = stateid;
 		this.createdate = createdate;
+		this.groupteams = groupteams;
 	}
 
 	@Id
@@ -57,16 +60,6 @@ public class Team implements java.io.Serializable {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "businesssubjectid")
-	public Businessubject getBusinessubject() {
-		return this.businessubject;
-	}
-
-	public void setBusinessubject(Businessubject businessubject) {
-		this.businessubject = businessubject;
 	}
 
 	@Column(name = "name", length = 250)
@@ -85,6 +78,15 @@ public class Team implements java.io.Serializable {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	@Column(name = "businesssubjectid")
+	public Integer getBusinesssubjectid() {
+		return this.businesssubjectid;
+	}
+
+	public void setBusinesssubjectid(Integer businesssubjectid) {
+		this.businesssubjectid = businesssubjectid;
 	}
 
 	@Temporal(TemporalType.DATE)
@@ -114,6 +116,15 @@ public class Team implements java.io.Serializable {
 
 	public void setCreatedate(Date createdate) {
 		this.createdate = createdate;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "team")
+	public Set<Groupteam> getGroupteams() {
+		return this.groupteams;
+	}
+
+	public void setGroupteams(Set<Groupteam> groupteams) {
+		this.groupteams = groupteams;
 	}
 
 }

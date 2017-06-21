@@ -1,5 +1,5 @@
 package com.model;
-// Generated 31/05/2017 06:07:36 AM by Hibernate Tools 3.4.0.CR1
+// Generated 21/06/2017 07:36:26 AM by Hibernate Tools 3.4.0.CR1
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -47,14 +47,19 @@ public class Businessubject implements java.io.Serializable {
 	private Set<Task> tasksForBusinesssubjectresponsableid = new HashSet<Task>(0);
 	private Set<Task> tasksForBusinesssubjectmodifierid = new HashSet<Task>(0);
 	private Set<Project> projectsForBusinesssubjectleaderid = new HashSet<Project>(0);
-	private Set<Activity> activitiesForBusinesssubjectresponsableid = new HashSet<Activity>(0);
-	private Set<Team> teams = new HashSet<Team>(0);
-	private Set<Activity> activitiesForBusinesssubjectmodifierid = new HashSet<Activity>(0);
 	private Set<Businessubject> businessubjects = new HashSet<Businessubject>(0);
-	private Set<Systemuser> systemusers = new HashSet<Systemuser>(0);
-	private Set<Project> projectsForBusinesssubjectcontrolid = new HashSet<Project>(0);
+	private Set<Stakeholder> stakeholders = new HashSet<Stakeholder>(0);
+	private Set<Riskmatrix> riskmatrixes = new HashSet<Riskmatrix>(0);
 	private Set<Activity> activitiesForBusinesssubjectcreatorid = new HashSet<Activity>(0);
+	private Set<Controlchange> controlchanges = new HashSet<Controlchange>(0);
+	private Set<Activity> activitiesForBusinesssubjectresponsableid = new HashSet<Activity>(0);
+	private Set<Activity> activitiesForBusinesssubjectmodifierid = new HashSet<Activity>(0);
+	private Set<Systemuser> systemusers = new HashSet<Systemuser>(0);
+	private Set<Trace> traces = new HashSet<Trace>(0);
+	private Set<Meetingrecord> meetingrecords = new HashSet<Meetingrecord>(0);
+	private Set<Project> projectsForBusinesssubjectcontrolid = new HashSet<Project>(0);
 	private Set<Task> tasksForBusinesssubjectcreatorid = new HashSet<Task>(0);
+	private Set<Groupteam> groupteams = new HashSet<Groupteam>(0);
 
 	public Businessubject() {
 	}
@@ -68,10 +73,12 @@ public class Businessubject implements java.io.Serializable {
 			String phone, String phone2, Date startdate, Date enddate, Date updateat, Date createdate, Date birthday,
 			String officialdocument, String officialdocumenttype, Set<Task> tasksForBusinesssubjectresponsableid,
 			Set<Task> tasksForBusinesssubjectmodifierid, Set<Project> projectsForBusinesssubjectleaderid,
-			Set<Activity> activitiesForBusinesssubjectresponsableid, Set<Team> teams,
-			Set<Activity> activitiesForBusinesssubjectmodifierid, Set<Businessubject> businessubjects,
-			Set<Systemuser> systemusers, Set<Project> projectsForBusinesssubjectcontrolid,
-			Set<Activity> activitiesForBusinesssubjectcreatorid, Set<Task> tasksForBusinesssubjectcreatorid) {
+			Set<Businessubject> businessubjects, Set<Stakeholder> stakeholders, Set<Riskmatrix> riskmatrixes,
+			Set<Activity> activitiesForBusinesssubjectcreatorid, Set<Controlchange> controlchanges,
+			Set<Activity> activitiesForBusinesssubjectresponsableid,
+			Set<Activity> activitiesForBusinesssubjectmodifierid, Set<Systemuser> systemusers, Set<Trace> traces,
+			Set<Meetingrecord> meetingrecords, Set<Project> projectsForBusinesssubjectcontrolid,
+			Set<Task> tasksForBusinesssubjectcreatorid, Set<Groupteam> groupteams) {
 		this.id = id;
 		this.businesssubjecttype = businesssubjecttype;
 		this.businessubject = businessubject;
@@ -94,14 +101,19 @@ public class Businessubject implements java.io.Serializable {
 		this.tasksForBusinesssubjectresponsableid = tasksForBusinesssubjectresponsableid;
 		this.tasksForBusinesssubjectmodifierid = tasksForBusinesssubjectmodifierid;
 		this.projectsForBusinesssubjectleaderid = projectsForBusinesssubjectleaderid;
-		this.activitiesForBusinesssubjectresponsableid = activitiesForBusinesssubjectresponsableid;
-		this.teams = teams;
-		this.activitiesForBusinesssubjectmodifierid = activitiesForBusinesssubjectmodifierid;
 		this.businessubjects = businessubjects;
-		this.systemusers = systemusers;
-		this.projectsForBusinesssubjectcontrolid = projectsForBusinesssubjectcontrolid;
+		this.stakeholders = stakeholders;
+		this.riskmatrixes = riskmatrixes;
 		this.activitiesForBusinesssubjectcreatorid = activitiesForBusinesssubjectcreatorid;
+		this.controlchanges = controlchanges;
+		this.activitiesForBusinesssubjectresponsableid = activitiesForBusinesssubjectresponsableid;
+		this.activitiesForBusinesssubjectmodifierid = activitiesForBusinesssubjectmodifierid;
+		this.systemusers = systemusers;
+		this.traces = traces;
+		this.meetingrecords = meetingrecords;
+		this.projectsForBusinesssubjectcontrolid = projectsForBusinesssubjectcontrolid;
 		this.tasksForBusinesssubjectcreatorid = tasksForBusinesssubjectcreatorid;
+		this.groupteams = groupteams;
 	}
 
 	@Id
@@ -312,6 +324,51 @@ public class Businessubject implements java.io.Serializable {
 		this.projectsForBusinesssubjectleaderid = projectsForBusinesssubjectleaderid;
 	}
 
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "businessubject")
+	public Set<Businessubject> getBusinessubjects() {
+		return this.businessubjects;
+	}
+
+	public void setBusinessubjects(Set<Businessubject> businessubjects) {
+		this.businessubjects = businessubjects;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "businessubject")
+	public Set<Stakeholder> getStakeholders() {
+		return this.stakeholders;
+	}
+
+	public void setStakeholders(Set<Stakeholder> stakeholders) {
+		this.stakeholders = stakeholders;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "businessubject")
+	public Set<Riskmatrix> getRiskmatrixes() {
+		return this.riskmatrixes;
+	}
+
+	public void setRiskmatrixes(Set<Riskmatrix> riskmatrixes) {
+		this.riskmatrixes = riskmatrixes;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "businessubjectByBusinesssubjectcreatorid")
+	public Set<Activity> getActivitiesForBusinesssubjectcreatorid() {
+		return this.activitiesForBusinesssubjectcreatorid;
+	}
+
+	public void setActivitiesForBusinesssubjectcreatorid(Set<Activity> activitiesForBusinesssubjectcreatorid) {
+		this.activitiesForBusinesssubjectcreatorid = activitiesForBusinesssubjectcreatorid;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "businessubject")
+	public Set<Controlchange> getControlchanges() {
+		return this.controlchanges;
+	}
+
+	public void setControlchanges(Set<Controlchange> controlchanges) {
+		this.controlchanges = controlchanges;
+	}
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "businessubjectByBusinesssubjectresponsableid")
 	public Set<Activity> getActivitiesForBusinesssubjectresponsableid() {
 		return this.activitiesForBusinesssubjectresponsableid;
@@ -319,15 +376,6 @@ public class Businessubject implements java.io.Serializable {
 
 	public void setActivitiesForBusinesssubjectresponsableid(Set<Activity> activitiesForBusinesssubjectresponsableid) {
 		this.activitiesForBusinesssubjectresponsableid = activitiesForBusinesssubjectresponsableid;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "businessubject")
-	public Set<Team> getTeams() {
-		return this.teams;
-	}
-
-	public void setTeams(Set<Team> teams) {
-		this.teams = teams;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "businessubjectByBusinesssubjectmodifierid")
@@ -340,21 +388,30 @@ public class Businessubject implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "businessubject")
-	public Set<Businessubject> getBusinessubjects() {
-		return this.businessubjects;
-	}
-
-	public void setBusinessubjects(Set<Businessubject> businessubjects) {
-		this.businessubjects = businessubjects;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "businessubject")
 	public Set<Systemuser> getSystemusers() {
 		return this.systemusers;
 	}
 
 	public void setSystemusers(Set<Systemuser> systemusers) {
 		this.systemusers = systemusers;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "businessubject")
+	public Set<Trace> getTraces() {
+		return this.traces;
+	}
+
+	public void setTraces(Set<Trace> traces) {
+		this.traces = traces;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "businessubject")
+	public Set<Meetingrecord> getMeetingrecords() {
+		return this.meetingrecords;
+	}
+
+	public void setMeetingrecords(Set<Meetingrecord> meetingrecords) {
+		this.meetingrecords = meetingrecords;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "businessubjectByBusinesssubjectcontrolid")
@@ -367,21 +424,21 @@ public class Businessubject implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "businessubjectByBusinesssubjectcreatorid")
-	public Set<Activity> getActivitiesForBusinesssubjectcreatorid() {
-		return this.activitiesForBusinesssubjectcreatorid;
-	}
-
-	public void setActivitiesForBusinesssubjectcreatorid(Set<Activity> activitiesForBusinesssubjectcreatorid) {
-		this.activitiesForBusinesssubjectcreatorid = activitiesForBusinesssubjectcreatorid;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "businessubjectByBusinesssubjectcreatorid")
 	public Set<Task> getTasksForBusinesssubjectcreatorid() {
 		return this.tasksForBusinesssubjectcreatorid;
 	}
 
 	public void setTasksForBusinesssubjectcreatorid(Set<Task> tasksForBusinesssubjectcreatorid) {
 		this.tasksForBusinesssubjectcreatorid = tasksForBusinesssubjectcreatorid;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "businessubject")
+	public Set<Groupteam> getGroupteams() {
+		return this.groupteams;
+	}
+
+	public void setGroupteams(Set<Groupteam> groupteams) {
+		this.groupteams = groupteams;
 	}
 
 }
