@@ -35,13 +35,14 @@ public class LinkController {
 	public String projectmanagement(){
 		return "configuration/project/project";
 	}
+	
 //	@RequestMapping(value="/reportperformance", method = RequestMethod.GET)
 //	public String report_performance(){
 //		return "report/index/costo";
 //	}
 	@RequestMapping(value="/edt", method = RequestMethod.GET)
 	public String edt(){
-		return "project/edt/edt";
+		return "project/edt/edtsss";
 	}
 	@RequestMapping(value="/indexfile", method = RequestMethod.GET)
 	public String fileindex(){
@@ -67,7 +68,11 @@ public class LinkController {
 	public String ganttcrono(){
 		return "project/gantt/gantt";
 	}
-	
+	@RequestMapping(value="/risk", method = RequestMethod.GET)
+	public String project_riskm(){
+//		System.out.println("entro a matrixxxxxxxxxxxxxxxxxxxxxxxxxxx");
+		return "project/riskmatrix/riskmatrix";
+	}
 	
 	
 	

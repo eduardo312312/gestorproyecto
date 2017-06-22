@@ -8,8 +8,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>GESTION DE PROYECTO</title>
-<jsp:include page="parts/head.jsp"></jsp:include>
+    <title>GESTION DE PROYECTssO</title>
+   <jsp:include page="parts/head.jsp"></jsp:include>
 <!--      <script src="resources/js/angular/business/sales/OrderController.js"></script> -->
    
 <script>
