@@ -56,7 +56,7 @@ public class RiskController {
 		//transformo el json en un objeto de tipo tarea.
 			 //Task  task=(Task) jsonTransformer.fromJSON(jsonTransformer.toJSON(map.get("task")), Task.class);
 			 
-			State state=  (State) session.get(State.class, task.getState().getId() );
+			State state=  (State) session.get(State.class, riskmatrix.getState().getId() );
 			Businessubject bc=  (Businessubject) session.get(Businessubject.class, riskmatrix.getBusinessubject().getId() );
 
 	

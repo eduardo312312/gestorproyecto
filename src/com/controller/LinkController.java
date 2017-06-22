@@ -36,10 +36,7 @@ public class LinkController {
 		return "configuration/project/project";
 	}
 	
-//	@RequestMapping(value="/reportperformance", method = RequestMethod.GET)
-//	public String report_performance(){
-//		return "report/index/costo";
-//	}
+
 	@RequestMapping(value="/edt", method = RequestMethod.GET)
 	public String edt(){
 		return "project/edt/edt";
