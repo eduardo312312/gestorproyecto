@@ -42,7 +42,7 @@ public class LinkController {
 //	}
 	@RequestMapping(value="/edt", method = RequestMethod.GET)
 	public String edt(){
-		return "project/edt/edtsss";
+		return "project/edt/edt";
 	}
 	@RequestMapping(value="/indexfile", method = RequestMethod.GET)
 	public String fileindex(){

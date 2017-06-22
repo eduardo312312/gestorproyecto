@@ -307,7 +307,15 @@ app.controller('IndexController', function ($scope,ProjectService) {
 	
 
 	
-	
+	ProjectService.save_risk({riskmatrix:"holi"}).success(function(data){
+		if(data.list){	
+			
+			alert("hay respuesta");
+			
+		}else{
+			$scope.message="datos no encontrados";
+		}
+	});
 			
 	
 	

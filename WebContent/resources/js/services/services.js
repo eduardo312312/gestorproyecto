@@ -114,6 +114,7 @@ app.factory('ProjectService', function($http) {
 		},
 		save_phase_activities:function(params){return $http.post('phasesactivities',params ,{headers:csrf_header});},
 		 //
+		save_risk:function(params){return $http.post('newrisk',params ,{headers:csrf_header});},
 		
 	}
 });
