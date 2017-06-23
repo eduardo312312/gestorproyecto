@@ -34,28 +34,28 @@ public class RiskService {
 			e1.put("id", e.getId());
 			if(e.getName()!=null) e1.put("name", e.getName());
 			if(e.getDescriptiontype()!=null) e1.put("descriptiontype", e.getDescriptiontype());
-			if(e.getIdentificationdate()!=null) e1.put("identificationdate", e.getIdentificationdate());
+			if(e.getIdentificationdate()!=null) e1.put("identificationdate", e.getIdentificationdate().getTime());
 			if(e.getOrigin()!=null) e1.put("origin", e.getOrigin());
 			if(e.getDescription()!=null) e1.put("description", e.getDescription());
 			if(e.getImpact()!=null) e1.put("impact", e.getImpact());
 			if(e.getImpactgrade()!=null) e1.put("impactgrade", e.getImpactgrade());
-			if(e.getProbability()!=null) e1.put("probability", e.getImpactgrade());
-			if(e.getSeverity()!=null) e1.put("severity", e.getImpactgrade());
-			if(e.getTrigger()!=null) e1.put("trigger", e.getImpactgrade());
-			if(e.getActionplan()!=null) e1.put("actionplan", e.getImpactgrade());
-			if(e.getEjecutiondate()!=null) e1.put("ejecutiondate", e.getImpactgrade());
-			if(e.getObservation()!=null) e1.put("observation", e.getImpactgrade());
+			if(e.getProbability()!=null) e1.put("probability", e.getProbability());
+			if(e.getSeverity()!=null) e1.put("severity", e.getSeverity());
+			if(e.getTrigger()!=null) e1.put("trigger", e.getTrigger());
+			if(e.getActionplan()!=null) e1.put("actionplan", e.getActionplan());
+			if(e.getEjecutiondate()!=null) e1.put("ejecutiondate", e.getEjecutiondate().getTime());
+			if(e.getObservation()!=null) e1.put("observation", e.getObservation());
 			if(e.getState_1()!=null) e1.put("state", e.getState_1());
 			if(e.getState()!=null) e1.put("stateid", e.getState().getId());
-			if(e.getCreatedate()!=null) e1.put("createdate", e.getImpactgrade());
-			if(e.getUpdateat()!=null) e1.put("updateat", e.getImpactgrade());
+			if(e.getCreatedate()!=null) e1.put("createdate", e.getCreatedate().getTime());
+			if(e.getUpdateat()!=null) e1.put("updateat", e.getUpdateat());
 			if(e.getBusinessubject()!=null)
 				{
-				e1.put("businesssubjectid", e.getImpactgrade());
+				e1.put("businesssubjectid", e.getBusinessubject().getId());
 				e1.put("businesssubjectname", e.getBusinessubject().getName()+" "+e.getBusinessubject().getLastname()+" "+e.getBusinessubject().getSecondlastname());
 				}
-			if(e.getCost1()!=null) e1.put("cost1", e.getImpactgrade());
-			if(e.getCost2()!=null) e1.put("cost2", e.getImpactgrade());
+			if(e.getCost1()!=null) e1.put("cost1", e.getCost1());
+			if(e.getCost2()!=null) e1.put("cost2", e.getCost2());
 			
 			
 			

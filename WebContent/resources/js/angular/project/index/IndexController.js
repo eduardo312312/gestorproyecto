@@ -4,7 +4,7 @@ app.controller('IndexController', function ($scope,ProjectService) {
 	$("#loadertransaction").hide();
 	$("#loadertransaction2").hide();
 	
-	$scope.employees={list:[],params:{page:1, maxResults:20}};
+	$scope.employees={list:[],params:{page:1, maxResults:9999}};
 	$scope.employee=[];
 	$scope.project2={shortname:'',name:''};
 	$scope.indicador_nuevo=false;
@@ -50,6 +50,17 @@ app.controller('IndexController', function ($scope,ProjectService) {
 	           console.log(endval.substring(1) );
       
 	}	
+	
+	$scope.enterclientmail=function(valor)
+	{
+//		alert(valor);
+			if(valor.indexOf('@')==-1)//si no encuentra el arroba.. 
+				{
+				if(valor.indexOf('.')==-1)
+				$scope.project.clientmail="";
+				}		
+	}
+	
 	
 	$scope.select_leader=function()
 	{
@@ -307,15 +318,15 @@ app.controller('IndexController', function ($scope,ProjectService) {
 	
 
 	
-	ProjectService.save_risk({riskmatrix:"holi"}).success(function(data){
-		if(data.list){	
-			
-			alert("hay respuesta");
-			
-		}else{
-			$scope.message="datos no encontrados";
-		}
-	});
+//	ProjectService.save_risk({riskmatrix:"asdasd"}).success(function(data){
+//		if(data.list){	
+//			
+//			alert("hay respuesta");
+//			
+//		}else{
+//			$scope.message="datos no encontrados";
+//		}
+//	});
 			
 	
 	

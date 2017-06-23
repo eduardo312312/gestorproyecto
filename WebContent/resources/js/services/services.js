@@ -115,7 +115,17 @@ app.factory('ProjectService', function($http) {
 		save_phase_activities:function(params){return $http.post('phasesactivities',params ,{headers:csrf_header});},
 		 //
 		save_risk:function(params){return $http.post('newrisk',params ,{headers:csrf_header});},
-		
+		risk_list_view_main : function(params) {
+			return $http.post('risk/list_view', params ,{headers:csrf_header});
+		},
+		controlchange_list_view_main : function(params) {
+			return $http.post('controlchange/list_view', params ,{headers:csrf_header});
+		},
+		save_controlchange:function(params){return $http.post('newcontrolchange',params ,{headers:csrf_header});},
+		meetingrecord_list_view_main : function(params) {
+			return $http.post('meetingrecord/list_view', params ,{headers:csrf_header});
+		},
+		save_meetingrecord:function(params){return $http.post('newmeeting',params ,{headers:csrf_header});}
 	}
 });
 

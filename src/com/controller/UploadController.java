@@ -36,6 +36,7 @@ public class UploadController {
 	LinkedList<FileMeta> files = new LinkedList<FileMeta>();
 	 FileMeta fileMeta = null;
 	
+	 //ESTE CONTROLADOR NO FUNCIONA......
 	 @RequestMapping(value="/download", method = RequestMethod.GET)
 	 public class DownloadServlet extends HttpServlet {
 		    protected void doGet( HttpServletRequestWrapper request, HttpServletResponse response) throws ServletRequestBindingException, IOException {
@@ -131,5 +132,128 @@ public class UploadController {
 
         return path;
     }
+	
+	
+	 
+		@RequestMapping(value="change/uploadchanges", method = RequestMethod.POST)
+	    public @ResponseBody String upload_changes(MultipartHttpServletRequest request, HttpServletResponse response) throws Exception {
+			 
+			String change_id=request.getParameter("change_id");
+			String path="";
+
+			 files=new LinkedList<FileMeta>();
+	         Iterator<String> itr =  request.getFileNames();
+	         MultipartFile mpf = null;
+
+	         while(itr.hasNext()){
+	    
+	        	 File directory=new File(request.getServletContext().getRealPath("/resources/pdf/change/"));
+	        	
+	        	 System.out.println("Directorio:" + directory.getAbsolutePath() );
+	        	 if(!directory.exists()){
+	        		 if(directory.mkdir()){
+	        			 System.out.println("Se ha creado el directorio");
+	        		 }else{
+	        			 throw (new Exception("Error al crear directorio!"));
+	        		 }
+	        	 }
+	        	
+	     
+	             mpf = request.getFile(itr.next()); 
+	             System.out.println(mpf.getOriginalFilename() +" uploaded! ");
+	        
+	             if(files.size() >= 10)
+	                 files.pop();
+	       
+	             fileMeta = new FileMeta();
+	             fileMeta.setFileName(mpf.getOriginalFilename());
+	             fileMeta.setFileSize(mpf.getSize()/1024+" Kb");
+	             fileMeta.setFileType(mpf.getContentType());
+	 
+	             try {
+	                fileMeta.setBytes(mpf.getBytes());
+	                System.out.println("se intentara subir:"+mpf.getOriginalFilename());
+	                System.out.println(mpf.getContentType());
+	                
+	                String[] t=fileMeta.getFileName().split("\\.");
+	                System.out.println(t.length);
+	                path=directory+"/"+change_id+"."+t[1];
+	                System.out.println(path);
+	                  
+	                 FileCopyUtils.copy(mpf.getBytes(), new FileOutputStream(path) );
+	 
+	            } catch (IOException e) {
+	            	
+	            	System.out.println(e.getMessage());
+	            	throw (new Exception("Fallo a subir el archivo!," + e.getMessage())); 
+	 
+	            }
+
+	             files.add(fileMeta);
+	         }
+
+	        return path;
+	    }
+		
+		
+		@RequestMapping(value="change/uploadmeet", method = RequestMethod.POST)
+	    public @ResponseBody String upload_meet(MultipartHttpServletRequest request, HttpServletResponse response) throws Exception {
+			 
+			String meet_id=request.getParameter("meet_id");
+			String path="";
+
+			 files=new LinkedList<FileMeta>();
+	         Iterator<String> itr =  request.getFileNames();
+	         MultipartFile mpf = null;
+
+	         while(itr.hasNext()){
+	    
+	        	 File directory=new File(request.getServletContext().getRealPath("/resources/pdf/meet/"));
+	        	
+	        	 System.out.println("Directorio:" + directory.getAbsolutePath() );
+	        	 if(!directory.exists()){
+	        		 if(directory.mkdir()){
+	        			 System.out.println("Se ha creado el directorio");
+	        		 }else{
+	        			 throw (new Exception("Error al crear directorio!"));
+	        		 }
+	        	 }
+	        	
+	     
+	             mpf = request.getFile(itr.next()); 
+	             System.out.println(mpf.getOriginalFilename() +" uploaded! ");
+	        
+	             if(files.size() >= 10)
+	                 files.pop();
+	       
+	             fileMeta = new FileMeta();
+	             fileMeta.setFileName(mpf.getOriginalFilename());
+	             fileMeta.setFileSize(mpf.getSize()/1024+" Kb");
+	             fileMeta.setFileType(mpf.getContentType());
+	 
+	             try {
+	                fileMeta.setBytes(mpf.getBytes());
+	                System.out.println("se intentara subir:"+mpf.getOriginalFilename());
+	                System.out.println(mpf.getContentType());
+	                
+	                String[] t=fileMeta.getFileName().split("\\.");
+	                System.out.println(t.length);
+	                path=directory+"/"+meet_id+"."+t[1];
+	                System.out.println(path);
+	                  
+	                 FileCopyUtils.copy(mpf.getBytes(), new FileOutputStream(path) );
+	 
+	            } catch (IOException e) {
+	            	
+	            	System.out.println(e.getMessage());
+	            	throw (new Exception("Fallo a subir el archivo!," + e.getMessage())); 
+	 
+	            }
+
+	             files.add(fileMeta);
+	         }
+
+	        return path;
+	    }
 	
 }

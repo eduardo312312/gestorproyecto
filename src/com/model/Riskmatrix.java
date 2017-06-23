@@ -36,7 +36,7 @@ public class Riskmatrix implements java.io.Serializable {
 	private String severity;
 	private String trigger;
 	private String actionplan;
-	private String ejecutiondate;
+	private Date ejecutiondate;
 	private String observation;
 	private String state_1;
 	private Date createdate;
@@ -53,7 +53,7 @@ public class Riskmatrix implements java.io.Serializable {
 
 	public Riskmatrix(int id, Businessubject businessubject, State state, String name, String descriptiontype,
 			Date identificationdate, String origin, String description, String impact, String impactgrade,
-			String probability, String severity, String trigger, String actionplan, String ejecutiondate,
+			String probability, String severity, String trigger, String actionplan, Date ejecutiondate,
 			String observation, String state_1, Date createdate, Date updateat, Double cost1, Double cost2) {
 		this.id = id;
 		this.businessubject = businessubject;
@@ -209,12 +209,13 @@ public class Riskmatrix implements java.io.Serializable {
 		this.actionplan = actionplan;
 	}
 
-	@Column(name = "ejecutiondate", length = 250)
-	public String getEjecutiondate() {
+	@Temporal(TemporalType.DATE)
+	@Column(name = "ejecutiondate", length = 13)
+	public Date getEjecutiondate() {
 		return this.ejecutiondate;
 	}
 
-	public void setEjecutiondate(String ejecutiondate) {
+	public void setEjecutiondate(Date ejecutiondate) {
 		this.ejecutiondate = ejecutiondate;
 	}
 

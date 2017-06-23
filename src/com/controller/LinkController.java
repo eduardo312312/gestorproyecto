@@ -35,8 +35,13 @@ public class LinkController {
 	public String projectmanagement(){
 		return "configuration/project/project";
 	}
-	
+	 
 
+	
+	
+     
+	
+	
 	@RequestMapping(value="/edt", method = RequestMethod.GET)
 	public String edt(){
 		return "project/edt/edt";
@@ -67,8 +72,18 @@ public class LinkController {
 	}
 	@RequestMapping(value="/risk", method = RequestMethod.GET)
 	public String project_riskm(){
-//		System.out.println("entro a matrixxxxxxxxxxxxxxxxxxxxxxxxxxx");
+
 		return "project/riskmatrix/riskmatrix";
+	}
+	@RequestMapping(value="/controlchange", method = RequestMethod.GET)
+	public String project_controlchange(){
+//		System.out.println("entro a matrixxxxxxxxxxxxxxxxxxxxxxxxxxx");
+		return "project/controlchange/controlchange";
+	}
+	@RequestMapping(value="/meeting", method = RequestMethod.GET)
+	public String project_meetingrecord(){
+//		System.out.println("entro a matrixxxxxxxxxxxxxxxxxxxxxxxxxxx");
+		return "project/meetingrecord/meetingrecord";
 	}
 	
 	

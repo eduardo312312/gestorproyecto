@@ -6,12 +6,15 @@
   <table-filter match-name="businessline"/>
   <table-filter match-name="businesssubjecttype"/>
   <table-filter match-name="businessubject"/>
+  <table-filter match-name="controlchange"/>
   <table-filter match-name="detailfile"/>
   <table-filter match-name="document"/>
   <table-filter match-name="documenttype"/>
   <table-filter match-name="entitytype"/>
+  <table-filter match-name="groupteam"/>
   <table-filter match-name="grouptype"/>
   <table-filter match-name="marketline"/>
+  <table-filter match-name="meetingrecord"/>
   <table-filter match-name="permission"/>
   <table-filter match-name="permissionprofile"/>
   <table-filter match-name="phase"/>
@@ -19,13 +22,16 @@
   <table-filter match-name="processgrouptype"/>
   <table-filter match-name="profile"/>
   <table-filter match-name="project"/>
+  <table-filter match-name="requirement"/>
+  <table-filter match-name="riskmatrix"/>
+  <table-filter match-name="stakeholder"/>
   <table-filter match-name="state"/>
   <table-filter match-name="systemuser"/>
   <table-filter match-name="task"/>
   <table-filter match-name="taskdetail"/>
   <table-filter match-name="taskhistory"/>
+  <table-filter match-name="team"/>
+  <table-filter match-name="trace"/>
   <table-filter match-name="typepayment"/>
   <table-filter match-name="userprofile"/>
-  <table-filter match-name="requirement"/>
-  <table-filter match-name="team"/>
 </hibernate-reverse-engineering>
