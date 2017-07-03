@@ -136,6 +136,12 @@ body{
 	z-index:1360 !important;
 }
 
+#modal-confirm-remove-personal-team{
+	z-index:1390 !important;
+}
+
+
+
 #modal-product-properties-order{
 
   z-index:1600 !important;

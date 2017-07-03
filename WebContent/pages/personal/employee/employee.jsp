@@ -89,23 +89,23 @@ $('.datepicker').datepicker({
             </div>
             <div class="ibox-content">
             <div class="row">
-            <button  class="btn btn-primary dim"  ng-click="new_register()" data-toggle="modal" data-target="#myModal" href="javascript:void(0);" >Crear Personal</button>
+            <button  class="btn btn-primary dim"  ng-click="new_register()" data-toggle="modal" data-target="#myModal"  >Crear Personal</button>
 			</div>
 			 <div class="row">
          
             <div class="col-sm-4"> 
             <div class="ibox float-e-margins">  
                                  
-               <div class="form-group" id="data_1">
-                  <span>Equipo</span> <br />    
-                     <datalist id="product">
-										<option id="{{prod.id}}" value="{{prod.name | uppercase}}" 	ng-repeat="prod in products2.list">
-									</datalist>
-										<input id="filterclient" type="text"											
-											ng-model="product_filter" class="form-control"
-											list="product" />
+<!--                <div class="form-group" id="data_1"> -->
+<!--                   <span>Equipo</span> <br />     -->
+<!--                      <datalist id="product"> -->
+<!-- 										<option id="{{prod.id}}" value="{{prod.name | uppercase}}" 	ng-repeat="prod in products2.list"> -->
+<!-- 									</datalist> -->
+<!-- 										<input id="filterclient" type="text"											 -->
+<!-- 											ng-model="product_filter" class="form-control" -->
+<!-- 											list="product" /> -->
                      
-                    </div>
+<!--                     </div> -->
                    
                     </div>
             </div>
@@ -113,7 +113,7 @@ $('.datepicker').datepicker({
              
              
                <div class="col-sm-3"> <br /> 
-                    <button class="btn btn-primary" ng-disabled="filterbuttoninactive" title="Filtrar" ng-click="filter()">Filtrar</button>
+<!--                     <button class="btn btn-primary" ng-disabled="filterbuttoninactive" title="Filtrar" ng-click="filter()">Filtrar</button> -->
      				<button class="btn btn-info"ng-disabled="filterbuttoninactive" ng-click="exportToExcel('#exportable')"><span class="glyphicon glyphicon-share"></span>Excel</button>
                </div>
             
@@ -135,8 +135,8 @@ $('.datepicker').datepicker({
                 <th>EMAIL</th>
                 <th>TELEFONO</th>
                 <th>TIPO</th>    
-                <th>JEFE INMEDIATO</th>        
-<!--                 <th>ACCION</th>             -->
+<!--                 <th>JEFE INMEDIATO</th>         -->
+                <th>ACCION</th>            
             </tr>
             </thead>
             <tbody>
@@ -149,13 +149,13 @@ $('.datepicker').datepicker({
                 <td>{{ item.businesssubject.mail }} </td>
                 <td>{{ item.businesssubject.phone }} </td>
                 <td>{{  item.businesssubjecttype.name}} </td>
-                 <td>{{  item.businesssubject.businessubjectname }}  {{  item.businesssubject.businessubjectlastname }} {{  item.businesssubject.businessubjectsecondlastname }} </td>
+<!--                  <td>{{  item.businesssubject.businessubjectname }}  {{  item.businesssubject.businessubjectlastname }} {{  item.businesssubject.businessubjectsecondlastname }} </td> -->
                 
 
                 <td class="center">
 <!--                	    <button title="Propiedades" type="button" ng-click="new_asign_properties(product.id)"  data-toggle="modal" data-target="#modal-product-properties" class="btn btn-success btn-sm"><i class="fa fa-sort-amount-asc"></i></button> -->
-<!--                     <button title="Editar" type="button" ng-click="edit(item)"  data-toggle="modal" data-target="#myModal" class="btn btn-warning btn-sm" onclick="clearuploadfile()"><i class="fa fa-edit"></i></button> -->
-<!--                     <button title="Eliminar"  type="button"  ng-click="edit(item)" onclick='question_remove()' class="btn btn-danger btn-sm" href><i class="fa fa-trash-o"></i></button> -->
+                    <button title="Editar" type="button" ng-click="edit(item)"  data-toggle="modal" data-target="#myModal" class="btn btn-warning btn-sm" ><i class="fa fa-edit"></i></button>
+                    <button title="Eliminar"  type="button"  ng-click="edit(item)" onclick='question_remove()' class="btn btn-danger btn-sm" href><i class="fa fa-trash-o"></i></button>
               
                 </td>
                 
@@ -212,8 +212,8 @@ $('.datepicker').datepicker({
                                           <div class="modal-footer">
                                          
                                       
-					         <button type="button" class="btn btn-primary dim btnclose" data-dismiss="modal" >Cancelar</button>
-					                <button type="button" id='confirm-remove-btn'   onclick="hide_modal_remove()"  ng-click='confirmRemove(product.id)' class="btn btn-primary dim"  >Confirmar</button>
+					         <button type="button" class="btn btn-primary dim btnclose"  onclick="hide_modal_remove()"  data-dismiss="modal" >Cancelar</button>
+					                <button type="button" id='confirm-remove-btn'   onclick="hide_modal_remove()"  ng-click='confirmRemove()' class="btn btn-primary dim"  >Confirmar</button>
 					 			</div>	
 							
 					 			
@@ -243,16 +243,27 @@ $('.datepicker').datepicker({
 <!--  					<div ng-show="!newreg" id="fileuploader">Upload</div> -->
 <!--   			      <input id='product_id' type='hidden' ng-model='product.id' value='{{product.id}}' /> -->
   			      
+  			     			  <div class="form-group"><label class="col-sm-3 control-label" >Tipo</label>
+
+                                  
+                                     <datalist id="role_list">
+									<option ng-repeat="item in roles" id={{item.businesssubjecttype.id}} value={{item.businesssubjecttype.name}} > 
+									</datalist>
+                                    <div class="col-sm-9"><input  id="idtiporol" type="text" class="form-control" ng-change="select_role()" ng-model="employee.role" list="role_list"  ></div>
+                                 
+                                    
+                                    
+                                </div>
 						
                                    <div class="form-group"><label class="col-sm-3 control-label" >Nombre</label>
 
                                     <div class="col-sm-9"><input type="text" class="form-control" ng-model="employee.name" /></div>
                                 </div>
-                                <div class="form-group"><label class="col-sm-3 control-label" >Apellido Materno</label>
+                                <div class="form-group"><label class="col-sm-3 control-label" >Apellido Paterno</label>
 
                                     <div class="col-sm-9"><input type="text" class="form-control" ng-model="employee.lastname" /></div>
                                 </div>
-                                 <div class="form-group"><label class="col-sm-3 control-label" >Apellido Paterno</label>
+                                 <div class="form-group"><label class="col-sm-3 control-label" >Apellido Materno</label>
 
                                     <div class="col-sm-9"><input type="text" class="form-control" ng-model="employee.secondlastname" /></div>
                                 </div>
@@ -275,7 +286,7 @@ $('.datepicker').datepicker({
                                     
                                                <label class="col-md-3 control-label" >N°</label>
 
-                                    <div class="col-md-3"><input type="text" class="form-control" ng-model="employee.officialdocument" /></div>
+                                    <div class="col-md-3"><input type="text" onkeypress="return isNumberKey(event)" maxlength="8" class="form-control" ng-model="employee.officialdocument" /></div>
                                     
                                 </div>
                                 
@@ -286,25 +297,40 @@ $('.datepicker').datepicker({
 
                                     <div class="col-sm-9"><input type="text" class="form-control" ng-model="employee.location" /></div>
                                 </div>
-                                 <div class="form-group"><label class="col-sm-3 control-label" >Fecha de Nacimiento</label>
+                                 <div class="form-group">
+									<label class="col-sm-3 control-label">Fecha de Nacimiento:</label>
 
-                                    <div class="col-sm-9"><input type="text" class="form-control" ng-model="employee.birthday" /></div>
-                                </div>
+									<div class="col-md-9">
+                                    <div class="input-group date" >
+														<span class="input-group-addon"><i
+															class="fa fa-calendar"></i></span><input type="text"
+															class="form-control" 
+															 ng-model="employee.birthdate"
+															placeholder="haga click aqui para seleccionar la fecha...">
+													</div>
+                                    
+                                    </div> 
+                                    
+								</div>
                                 <div class="form-group"><label class="col-sm-3 control-label" >Direccion</label>
 
                                     <div class="col-sm-9"><input type="text" class="form-control" ng-model="employee.address" /></div>
                                 </div>
                                   <div class="form-group"><label class="col-sm-3 control-label" >Telefono Fijo</label>
 
-                                    <div class="col-sm-9"><input type="text" class="form-control" ng-model="employee.phone" /></div>
+                                    <div class="col-sm-9"><input type="text" onkeypress="return isNumberKey(event)" maxlength="15" class="form-control" ng-model="employee.phone" /></div>
                                 </div>
                                 <div class="form-group"><label class="col-sm-3 control-label" >Telefono Personal</label>
 
-                                    <div class="col-sm-9"><input type="text" class="form-control" ng-model="employee.phone2" /></div>
+                                    <div class="col-sm-9"><input type="text" onkeypress="return isNumberKey(event)" maxlength="15" class="form-control" ng-model="employee.phone2" /></div>
                                 </div>
                                   <div class="form-group"><label class="col-sm-3 control-label" >Email</label>
 
                                     <div class="col-sm-9"><input type="text" class="form-control" ng-model="employee.mail" /></div>
+                                </div>
+                                <div class="form-group"><label class="col-sm-3 control-label" >Pago por Hora.</label>
+
+                                    <div class="col-sm-9"><input type="number" class="form-control" ng-model="employee.costbyhour" /></div>
                                 </div>
                                 
                                 

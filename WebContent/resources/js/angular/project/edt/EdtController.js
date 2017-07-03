@@ -1,6 +1,7 @@
 
 app.controller('EdtController', function ($scope,TaskService,ProjectService) {
-
+	$scope.employees={list:[],params:{page:1, maxResults:20}};
+	$scope.employee=[];
 	$scope.select=[];
 	
 	$scope.select.project="Proyecto 1";
@@ -23,6 +24,8 @@ app.controller('EdtController', function ($scope,TaskService,ProjectService) {
 	$scope.pager=0;//paginador del paginador
 	$scope.tasks={list:[],params:{page:$scope.page, maxResults:20,activityid:'',phasename:''}};
 	$scope.task=[];
+	
+	
 	$scope.task.activityid=0;
 	
 	$scope.activity=[];
@@ -78,7 +81,7 @@ app.controller('EdtController', function ($scope,TaskService,ProjectService) {
 	//CARGA Todo EL SIDEBAR A PARTIR DE LA SELECCION DE UN PROYECTO
 	$scope.load_sidebar=function()
 	{
-  	
+		
 		TaskService.list_project_to_edt({projectid:$scope.select.projectid}).success(function(data){
 			
 			$scope.detailsedt=data;
@@ -86,7 +89,20 @@ app.controller('EdtController', function ($scope,TaskService,ProjectService) {
 		});	
 	}
 
-
+	$scope.select_employee=function()
+	{
+		$scope.task.employeeid=0;
+		        var x = $('#employeeeee').val();
+	            var z = $('#employees_list');
+	            var val = $(z).find('option[value="' + x + '"]');
+	            var endval = val.attr('id');
+	            if(endval)
+	            	$scope.task.employeeid=endval.substring(1) ;  
+	            
+	           console.log(endval);
+	           console.log(endval.substring(1) );
+      
+	}	
 	
 	
 	$scope.select_activity=function()
@@ -105,7 +121,8 @@ app.controller('EdtController', function ($scope,TaskService,ProjectService) {
 	
 	$scope.valor=function()
 	{	var valor=false;
-		if($scope.task.activityid!=0 && $scope.task.shortname!="" && $scope.task.name!="" && $scope.task.description!="")
+		if($scope.task.shortname!="" && $scope.task.shortname!=null && $scope.task.name!="" && $scope.task.name!=null && $scope.task.description!="" && $scope.task.description!=null && $scope.task.employeeid!=0 && $scope.task.employeeid!=null && 
+				 $scope.task.actividad!="" &&  $scope.task.actividad!=null)
 			{
 			valor=true;
 			}
@@ -141,6 +158,24 @@ app.controller('EdtController', function ($scope,TaskService,ProjectService) {
 			}
 		
 		});
+		
+		$scope.employees.list=[];
+		
+
+		ProjectService.businesssubject_list_view_main($scope.employees.params).success(function(data){
+			if(data.list){			 
+				$scope.employees.list=data.list;
+				      
+				for(var i=0;i<$scope.employees.list.length;i++)
+				{
+				$scope.employees.list[i].show=$scope.employees.list[i].businesssubject.name+" "+$scope.employees.list[i].businesssubject.lastname+" "+$scope.employees.list[i].businesssubject.secondlastname;
+				}
+
+			}else{
+				$scope.message="datos no encontrados";
+			}
+		});
+		
 	}
 	$scope.filter=function(productname)
 	{
@@ -153,7 +188,7 @@ app.controller('EdtController', function ($scope,TaskService,ProjectService) {
 		var stateid = 1;
 		var businesssubjectcreatorid = 1;
 		var businesssubjectmodifierid = 1;
-		var businesssubjectresponsableid=1;
+//		var businesssubjectresponsableid=1;
 		//var activityid = $scope.task.activityid;
 		
 		if($scope.newreg==false)
@@ -164,7 +199,7 @@ app.controller('EdtController', function ($scope,TaskService,ProjectService) {
 			//$scope.task.businesssubjectcreatorid;
 	    businesssubjectmodifierid =1;
 	    	//$scope.task.businesssubjectmodifierid;
-		businesssubjectresponsableid=1;
+//		businesssubjectresponsableid=1;
 		//	$scope.task.businesssubjectresponsableid;
 		//activityid =$scope.task.activityid;		
 		}
@@ -185,7 +220,7 @@ app.controller('EdtController', function ($scope,TaskService,ProjectService) {
 							id:businesssubjectcreatorid
 						},
 						businessubjectByBusinesssubjectresponsableid : {
-							id : businesssubjectresponsableid
+							id : $scope.task.employeeid
 						},
 						businessubjectByBusinesssubjectmodifierid:
 						{
@@ -219,7 +254,7 @@ app.controller('EdtController', function ($scope,TaskService,ProjectService) {
 
 
 	$scope.new_register=function(){		
-		//$scope.task=[];
+		$scope.task=[];
 		
 		$scope.newreg=true;
 
@@ -230,12 +265,19 @@ app.controller('EdtController', function ($scope,TaskService,ProjectService) {
 	
 	$scope.edit=function(item){
 
-			
+		console.log(item);
+		$scope.newreg=false;
 		$scope.task=[];
 		
-		$scope.task=item;			
-		$scope.newreg=false;
-		console.debug($scope.task);
+		$scope.task=item;	
+		$scope.task.actividad=item.activityname;
+		$scope.task.activityid=item.activityid;
+		$scope.task.employeeeeeee=item.responsable;
+		$scope.task.employeeid=item.businesssubjectresponsableid;
+		
+		console.log($scope.task.actividad);
+		console.log($scope.task.activityid);
+		
 
 	}
 
@@ -332,13 +374,14 @@ app.controller('EdtController', function ($scope,TaskService,ProjectService) {
 		
 		$scope.tasks.params.activityid=id;		
 		$scope.task.activityid=id;// mando un id de actividad fijo para todos los procesos con esta tabla.
+		
 		console.log('process_activity'+id);
 		$scope.list();
 		
 	}
 	
 	$scope.projectselect=function(name)
-	{
+	{		
 		$scope.select.projectid=0;
 		for(var i=0; i<$scope.listprojects.list.length;i++)
 		{
@@ -356,8 +399,20 @@ app.controller('EdtController', function ($scope,TaskService,ProjectService) {
 	
 	ProjectService.list_all_projects({portfolioid:1}).success(
 			function(data) {
-		
-				$scope.listprojects=data;
+
+				$scope.listprojects=data;			
+				for(var i=0; i<$scope.listprojects.list.length;i++)
+				{
+//						alert("entro");
+					if($scope.listprojects.list[i].id ==$scope.select.projectid)
+					{
+//						alert("lo encontro");
+						$scope.select.project=$scope.listprojects.list[i].name;
+					}				
+								
+				}
+				
+				$scope.projectselect();
 			  //  $scope.listprojects.list.push({id:'agregar',name:'***Agregar Proyecto***'})
     
 			});

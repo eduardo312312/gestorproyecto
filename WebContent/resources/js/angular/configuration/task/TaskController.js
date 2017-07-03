@@ -213,7 +213,11 @@ app.controller('TaskController', function ($scope,TaskService,ProjectService) {
 		$scope.task=[];
 		$scope.task.actividad=item.activityname;
 		$scope.task.employeeeeeee=item.responsable;
-		$scope.task=item;			
+		$scope.task=item;		
+		$scope.task.actividad=item.activityname;
+		$scope.task.activityid=item.activityid;
+		$scope.task.employeeeeeee=item.responsable;
+		$scope.task.employeeid=item.businesssubjectresponsableid;
 		$scope.newreg=false;
 		console.debug($scope.task);
 

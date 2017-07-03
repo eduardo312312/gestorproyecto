@@ -1,5 +1,5 @@
 package com.model;
-// Generated 21/06/2017 07:36:26 AM by Hibernate Tools 3.4.0.CR1
+// Generated 02/07/2017 08:22:41 AM by Hibernate Tools 3.4.0.CR1
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -56,6 +56,8 @@ public class Project implements java.io.Serializable {
 	private String clientmail;
 	private String clientaddress;
 	private Set<Phase> phases = new HashSet<Phase>(0);
+	private Set<Stakeholder> stakeholders = new HashSet<Stakeholder>(0);
+	private Set<Team> teams = new HashSet<Team>(0);
 	private Set<Requirement> requirements = new HashSet<Requirement>(0);
 
 	public Project() {
@@ -72,7 +74,7 @@ public class Project implements java.io.Serializable {
 			Double daysleft, Double totalamount, String location, String size, String institutionalcost,
 			String shortname, String clientname, String clientcontact, String clientphone, String clientfax,
 			String clientmovil, String clientmail, String clientaddress, Set<Phase> phases,
-			Set<Requirement> requirements) {
+			Set<Stakeholder> stakeholders, Set<Team> teams, Set<Requirement> requirements) {
 		this.id = id;
 		this.businessubjectByBusinesssubjectcontrolid = businessubjectByBusinesssubjectcontrolid;
 		this.businessline = businessline;
@@ -104,6 +106,8 @@ public class Project implements java.io.Serializable {
 		this.clientmail = clientmail;
 		this.clientaddress = clientaddress;
 		this.phases = phases;
+		this.stakeholders = stakeholders;
+		this.teams = teams;
 		this.requirements = requirements;
 	}
 
@@ -398,6 +402,24 @@ public class Project implements java.io.Serializable {
 
 	public void setPhases(Set<Phase> phases) {
 		this.phases = phases;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "project")
+	public Set<Stakeholder> getStakeholders() {
+		return this.stakeholders;
+	}
+
+	public void setStakeholders(Set<Stakeholder> stakeholders) {
+		this.stakeholders = stakeholders;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "project")
+	public Set<Team> getTeams() {
+		return this.teams;
+	}
+
+	public void setTeams(Set<Team> teams) {
+		this.teams = teams;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "project")

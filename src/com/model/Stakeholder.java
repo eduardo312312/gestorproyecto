@@ -1,5 +1,5 @@
 package com.model;
-// Generated 21/06/2017 07:36:26 AM by Hibernate Tools 3.4.0.CR1
+// Generated 02/07/2017 08:22:41 AM by Hibernate Tools 3.4.0.CR1
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -24,6 +24,7 @@ public class Stakeholder implements java.io.Serializable {
 
 	private int id;
 	private Businessubject businessubject;
+	private Project project;
 	private State state;
 	private String position;
 	private String role;
@@ -41,10 +42,12 @@ public class Stakeholder implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public Stakeholder(int id, Businessubject businessubject, State state, String position, String role,
-			String expectation, String influence, String interest, Date createadate, Date update, Integer priorirty) {
+	public Stakeholder(int id, Businessubject businessubject, Project project, State state, String position,
+			String role, String expectation, String influence, String interest, Date createadate, Date update,
+			Integer priorirty) {
 		this.id = id;
 		this.businessubject = businessubject;
+		this.project = project;
 		this.state = state;
 		this.position = position;
 		this.role = role;
@@ -75,6 +78,16 @@ public class Stakeholder implements java.io.Serializable {
 
 	public void setBusinessubject(Businessubject businessubject) {
 		this.businessubject = businessubject;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "projectid")
+	public Project getProject() {
+		return this.project;
+	}
+
+	public void setProject(Project project) {
+		this.project = project;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)

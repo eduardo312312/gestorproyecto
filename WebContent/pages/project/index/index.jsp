@@ -464,6 +464,8 @@ $('.datepicker').datepicker({
 									<option ng-repeat="item2 in employees.list" id={{'l'+item2.businesssubject.id}} value={{item2.show}} > 
 									</datalist>
                                     <div class="col-sm-9"><input style={{stylenew}} ng-disabled="indedit" id="employeeeee2" type="text" class="form-control" ng-change="select_leader()" ng-model="project.businesssubjectleader" list="employees_list2"  ></div>
+                                 
+                                 
                                  </div>   
                                 </div> 
                                 
@@ -501,7 +503,7 @@ $('.datepicker').datepicker({
                                  <label ng-show="!indicador_nuevo"  class="col-md-2 control-label alineacion_i">Subir Documento</label>
                                      <div ng-show="!indicador_nuevo" id="fileuploader">Upload</div>
   			     				 <input id='document_id' type='hidden'  ng-model='document.id' value={{document.id}} />
-  			     				  <a ng-show="!indicador_nuevo"  href="http://localhost:8080/gestorproyecto/resources/pdf/index/{{document.id}}.pdf" target="_blank">Abrir</a>
+  			     				  <a ng-show="!indicador_nuevo"  href="resources/pdf/index/{{document.id}}.pdf" target="_blank">Abrir</a>
                                 </div>  
                                
                               
@@ -561,7 +563,7 @@ $('.datepicker').datepicker({
                                 
                                   <div class="row" style="margin-top: 10px !important;">
                                  <label class="col-md-2 control-label alineacion_i">Email:</label>
-                                    <div class="col-md-10"><input style={{stylenew}} type="mail" class="form-control" ng-model="project.clientmail" ></div>   
+                                    <div class="col-md-10"><input style={{stylenew}} type="text" ng-blur="enterclientmail(project.clientmail)" class="form-control" ng-model="project.clientmail" ></div>   
                                 </div>  
                                  
                                 

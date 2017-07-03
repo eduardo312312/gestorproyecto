@@ -44,23 +44,13 @@ app.controller('EmployeeController', function ($scope,ProjectService) {
 		});	
 	}
 	
-	$scope.select_activity=function()
-	{
-		$scope.employee.activityid=0;
-		        var x = $('#activityy').val();
-	            var z = $('#activities_list');
-	            var val = $(z).find('option[value="' + x + '"]');
-	            var endval = val.attr('id');
-	            if(endval)
-	            $scope.employee.activityid=endval;  
-	            
-	           console.log(endval);
-      
-	}	
+	
 	
 	$scope.valor=function()
 	{	var valor=false;
-		if($scope.employee.activityid!=0)
+		if($scope.employee.activityid!=0 && $scope.employee.roleid!=0 && $scope.employee.roleid!=null && $scope.employee.name!="" && $scope.employee.lastname!="" && $scope.employee.secondlastname!=""
+			&& $scope.employee.name!=null && $scope.employee.lastname!=null && $scope.employee.secondlastname!=null
+		)
 			{
 			valor=true;
 			}
@@ -69,16 +59,31 @@ app.controller('EmployeeController', function ($scope,ProjectService) {
 	
 	$scope.load=function()
 	{
-		ProjectService.list_activities({abc:123}).success(function(data){
-			console.log(data.list);
-			$scope.activities.list=data.list;
-			for(var i=0;i<$scope.activities.list.length;i++)
-				{
-				$scope.activities.list[i].show=$scope.activities.list[i].phase.name+"-"+$scope.activities.list[i].activity.name;
-				}
+		ProjectService.list_all_roles({abc:123}).success(function(data){
+			//console.log(data.list);
+		$scope.roles=data;
+			
 		
 		});
 	}
+	
+	$scope.select_role=function()
+	{
+		$scope.employee.roleid=0;
+		        var x = $('#idtiporol').val();
+	            var z = $('#role_list');//id de datalist
+	            var val = $(z).find('option[value="' + x + '"]');
+	            var endval = val.attr('id');
+	            if(endval)
+	            	$scope.employee.roleid=endval ;  
+	            
+	           console.log(endval);
+	           console.log($scope.employee.roleid );
+      
+	}	
+	
+	
+	
 	$scope.filter=function(productname)
 	{
 		$scope.products.params.productname=productname.toUpperCase();
@@ -87,6 +92,14 @@ app.controller('EmployeeController', function ($scope,ProjectService) {
 
 	$scope.save=function(){
 		
+		var fecha = $scope.employee.birthdate;
+		var t = fecha.split("/");
+		var fe=new Date(t[2], t[1] - 1, t[0]);
+		var dd = fe.getDate();
+		var mm = (fe.getMonth() + 1);
+		if (dd < 10) {	dd = '0' + dd}
+		if (mm < 10) {		mm = '0' + mm	}
+		var birthdate = fe.getFullYear() + '-' + mm + '-' +dd ;
 		
 		var employeeid = 0;
 		var stateid = 1;
@@ -97,10 +110,10 @@ app.controller('EmployeeController', function ($scope,ProjectService) {
 		
 		if($scope.newreg==false)
 		{
-		employeeid = $scope.employee.businesssubject.id;	
-		stateid = $scope.employee.businesssubject.stateid ;
-		businesssubjectbossid=$scope.employee.businesssubject.id
-		businesssubjecttypeid=$scope.employee.businesssubjecttype.id
+		employeeid = $scope.employee.id;	
+		stateid = $scope.employee.stateid ;
+		businesssubjectbossid=$scope.employee.businessubjectid.id
+		businesssubjecttypeid=$scope.employee.roleid
 	
 		}
 		
@@ -118,19 +131,21 @@ app.controller('EmployeeController', function ($scope,ProjectService) {
 						startdate : systemdate,
 						enddate : systemdate,
 						updateat:systemdate,
+						performancebyday:8,
+						costbyhour:$scope.employee.costbyhour,
 						businesssubjecttype:
 						{
-							id:3
+							id:$scope.employee.roleid
 						},
 						createdate:systemdate,
 						state : {
-							id : 1
+							id : stateid
 						},
 						
 						businessubject:{
 							id:1
 						},
-						birthday:systemdate,
+						birthday:birthdate,
 						officialdocument:$scope.employee.officialdocument,
 						officialdocumenttype:$scope.employee.officialdocumenttype
 					
@@ -164,13 +179,26 @@ app.controller('EmployeeController', function ($scope,ProjectService) {
 
 	$scope.edit=function(item){
 
+		
 			
 		$scope.employee=[];
 		
-		$scope.employee=item;			
+		$scope.employee=item.businesssubject;
+		//$scope.employee.birthdate=item.businesssubject.birthday;
+		$scope.employee.role=item.businesssubjecttype.name;
+		$scope.employee.roleid=item.businesssubjecttype.id;
 		$scope.newreg=false;
+	
+///////////////////////fecha birthdate
+//		var fe=new Date($scope.employee.birthdate)
+//		var dd = fe.getDate();
+//		var mm = (fe.getMonth() + 1);
+//		if (dd < 10) {	dd = '0' + dd}
+//		if (mm < 10) {		mm = '0' + mm	}
+//		$scope.employee.birthdate =dd +"/" + mm + "/"+fe.getFullYear();
+		//////////////////////////////////////
 		console.debug($scope.employee);
-
+		
 	}
 
 
@@ -179,7 +207,7 @@ app.controller('EmployeeController', function ($scope,ProjectService) {
 	$scope.confirmRemove=function(){
 		
 		$scope.employee.stateid=2;
-		$scope.anadir()
+		$scope.save()
 	}
 
 
@@ -222,7 +250,7 @@ app.controller('EmployeeController', function ($scope,ProjectService) {
 
 	$scope.list();
 
-//	$scope.load();
+	$scope.load();
 
 
 	$scope.exportToExcel=function(tableId){ // ex: '#my-table'

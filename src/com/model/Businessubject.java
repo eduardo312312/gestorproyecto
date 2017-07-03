@@ -1,5 +1,5 @@
 package com.model;
-// Generated 21/06/2017 07:36:26 AM by Hibernate Tools 3.4.0.CR1
+// Generated 23/06/2017 05:20:26 PM by Hibernate Tools 3.4.0.CR1
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -42,6 +42,8 @@ public class Businessubject implements java.io.Serializable {
 	private Date updateat;
 	private Date createdate;
 	private Date birthday;
+	private Double costbyhour;
+	private Double performancebyday;
 	private String officialdocument;
 	private String officialdocumenttype;
 	private Set<Task> tasksForBusinesssubjectresponsableid = new HashSet<Task>(0);
@@ -60,6 +62,7 @@ public class Businessubject implements java.io.Serializable {
 	private Set<Project> projectsForBusinesssubjectcontrolid = new HashSet<Project>(0);
 	private Set<Task> tasksForBusinesssubjectcreatorid = new HashSet<Task>(0);
 	private Set<Groupteam> groupteams = new HashSet<Groupteam>(0);
+	private Set<Team> teams = new HashSet<Team>(0);
 
 	public Businessubject() {
 	}
@@ -78,7 +81,7 @@ public class Businessubject implements java.io.Serializable {
 			Set<Activity> activitiesForBusinesssubjectresponsableid,
 			Set<Activity> activitiesForBusinesssubjectmodifierid, Set<Systemuser> systemusers, Set<Trace> traces,
 			Set<Meetingrecord> meetingrecords, Set<Project> projectsForBusinesssubjectcontrolid,
-			Set<Task> tasksForBusinesssubjectcreatorid, Set<Groupteam> groupteams) {
+			Set<Task> tasksForBusinesssubjectcreatorid, Set<Groupteam> groupteams, Set<Team> teams, Double costbyhour, Double performancebyday) {
 		this.id = id;
 		this.businesssubjecttype = businesssubjecttype;
 		this.businessubject = businessubject;
@@ -114,6 +117,9 @@ public class Businessubject implements java.io.Serializable {
 		this.projectsForBusinesssubjectcontrolid = projectsForBusinesssubjectcontrolid;
 		this.tasksForBusinesssubjectcreatorid = tasksForBusinesssubjectcreatorid;
 		this.groupteams = groupteams;
+		this.teams = teams;
+		this.costbyhour=costbyhour;
+		this.performancebyday=performancebyday;
 	}
 
 	@Id
@@ -174,7 +180,28 @@ public class Businessubject implements java.io.Serializable {
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
+	///////////////
+	@Column(name = "costbyhour", precision = 17, scale = 17)
+	public Double getCostbyhour() {
+		return this.costbyhour;
+	}
 
+	public void setCostbyhour(Double cost) {
+		this.costbyhour = cost;
+	}
+
+	
+	@Column(name = "performancebyday", precision = 17, scale = 17)
+	public Double getPerformancebyday() {
+		return this.performancebyday;
+	}
+
+	public void setPerformancebyday(Double performancebyday) {
+		this.performancebyday = performancebyday;
+	}
+	
+	
+	
 	@Column(name = "secondlastname", length = 250)
 	public String getSecondlastname() {
 		return this.secondlastname;
@@ -439,6 +466,15 @@ public class Businessubject implements java.io.Serializable {
 
 	public void setGroupteams(Set<Groupteam> groupteams) {
 		this.groupteams = groupteams;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "businessubject")
+	public Set<Team> getTeams() {
+		return this.teams;
+	}
+
+	public void setTeams(Set<Team> teams) {
+		this.teams = teams;
 	}
 
 }

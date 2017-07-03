@@ -327,7 +327,7 @@ $('.datepicker').datepicker({
 									<datalist id="activities_list">
 									<option ng-repeat="item in activities.list" id="{{item.activity.id}}" value={{item.show}} > 
 									</datalist>
-                                    <div class="col-sm-9"><input ng-disabled="indedit" id="activityy" type="text" class="form-control" ng-change="select_activity()" ng-model="task.actividad" list="activities_list"  ></div>
+                                    <div class="col-sm-9"><input  id="activityy" type="text" class="form-control" ng-change="select_activity()" ng-model="task.actividad" list="activities_list"  ></div>
                                     
                                 </div>
                                 
@@ -335,7 +335,7 @@ $('.datepicker').datepicker({
 									<datalist id="employees_list">
 									<option ng-repeat="item2 in employees.list" id={{'e'+item2.businesssubject.id}} value={{item2.show}} > 
 									</datalist>
-                                    <div class="col-sm-9"><input ng-disabled="indedit" id="employeeeee" type="text" class="form-control" ng-change="select_employee()" ng-model="task.employeeeeeee" list="employees_list"  ></div>
+                                    <div class="col-sm-9"><input  id="employeeeee" type="text" class="form-control" ng-change="select_employee()" ng-model="task.employeeeeeee" list="employees_list"  ></div>
                                     
                                 </div>
                                  

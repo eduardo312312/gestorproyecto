@@ -30,10 +30,12 @@
                     <a title='Configuraciones' id="BordeSideMenu" class="fa fa-cogs" href="#"> <span>CONFIGURACIONES</span></a>
                     <ul class="nav nav-second-level">
 
-                          <li  id="proyectos"><a title='Productos' class="fa fa-pagelines" href="projects"> <span>Proyectos</span></a></li>
-                          <li  id="fases"><a title='Productos' class="fa fa-pagelines" href="phases"> <span>Fases</span></a></li>
-                           <li  id="actividades"><a title='Productos' class="fa fa-pagelines" href="activities"> <span>Actividades</span></a></li>
-                        <li  id="tareas"><a title='Productos' class="fa fa-pagelines" href="tasks"> <span>Tareas</span></a></li>
+<!--                           <li  id="proyectos"><a title='Proyectos' class="fa fa-pagelines" href="projects"> <span>Proyectos</span></a></li> -->
+                          <li  id="fases"><a title='Fases' class="fa fa-pagelines" href="phases"> <span>Fases</span></a></li>
+                           <li  id="actividades"><a title='Actividades' class="fa fa-pagelines" href="activities"> <span>Actividades</span></a></li>
+                        <li  id="tareas"><a title='Tareas' class="fa fa-pagelines" href="tasks"> <span>Tareas</span></a></li>
+                        <li  id="team"><a title='Team' class="fa fa-pagelines" href="team"> <span>Equipos</span></a></li>
+                          <li  id="usuarios"><a title='Team' class="fa fa-user" href="users"> <span>Usuarios</span></a></li>
                    
 
               

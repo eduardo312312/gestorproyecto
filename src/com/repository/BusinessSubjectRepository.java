@@ -8,6 +8,7 @@ import org.hibernate.Session;
 
 
 import com.model.Businessubject;
+import com.model.Stakeholder;
 
 import util.HiberanteUtil;
 
@@ -48,6 +49,35 @@ public class BusinessSubjectRepository {
 			}	
 				
     }
+	
+	public List<Object[]> list_view_main_stakeholders(Map params,String projectid) 
+	{	
+		System.out.println("rr11");
+			Query query = session.createQuery("select s,b from Stakeholder s inner join s.businessubject b where s.state.id!=2 order by s.id asc");
+			
+			if(projectid!="" )//objmodel
+			{
+				query = session.createQuery("select s,b from Stakeholder s inner join s.businessubject b where s.state.id!=2 and s.project.id="+projectid+" and b. order by s.id asc");
+				   
+			}
+			
+			if(params!=null){
+				return query.setMaxResults( Integer.parseInt(params.get("maxResults").toString()) )
+						.setFirstResult( Integer.parseInt(params.get("firstResult").toString()) ).list();
+			}else{
+				return query.list();
+			}	
+				
+    }
+	
+	public List<Object[]> get_all_roles() 
+	{	
+		
+			Query query = session.createQuery("select bst, s from Businesssubjecttype bst inner join bst.state s where s.id=6  ");
+			return query.list();
+			
+				
+    }
 		
 
 	
@@ -55,6 +85,13 @@ public class BusinessSubjectRepository {
 	   {	
 			session.beginTransaction();	 
 			session.saveOrUpdate(project);	
+			session.getTransaction().commit();
+		}
+	   
+	   public void save_stakeholder(Stakeholder  stakeholder)
+	   {	
+			session.beginTransaction();	 
+			session.saveOrUpdate(stakeholder);	
 			session.getTransaction().commit();
 		}
 	

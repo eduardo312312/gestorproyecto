@@ -75,6 +75,8 @@ public String projectid="";
 		{
 			e1.put("businesssubjectresponsableid",e.getBusinessubjectByBusinesssubjectresponsableid().getId());
 			e1.put("responsable", repository.get(e.getBusinessubjectByBusinesssubjectresponsableid().getId()).getName()+" "+repository.get(e.getBusinessubjectByBusinesssubjectresponsableid().getId()).getLastname()+" "+repository.get(e.getBusinessubjectByBusinesssubjectresponsableid().getId()).getSecondlastname() );
+			e1.put("personal_cost_by_hour",e.getBusinessubjectByBusinesssubjectresponsableid().getCostbyhour());
+		
 		}
 		if(e.getChangedate()!=null) e1.put("changedate",e.getChangedate());
 		if(e.getShortname()!=null) e1.put("shortname",e.getShortname());

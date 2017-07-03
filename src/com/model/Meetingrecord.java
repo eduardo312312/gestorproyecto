@@ -1,5 +1,5 @@
 package com.model;
-// Generated 21/06/2017 07:36:26 AM by Hibernate Tools 3.4.0.CR1
+// Generated 23/06/2017 05:20:26 PM by Hibernate Tools 3.4.0.CR1
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -26,13 +26,13 @@ public class Meetingrecord implements java.io.Serializable {
 	private Businessubject businessubject;
 	private State state;
 	private String meetname;
-	private String description;
-	private String location;
-	private String comment;
 	private Date meetdate;
 	private Date createdate;
 	private Date updateat;
 	private Integer priority;
+	private String description;
+	private String location;
+	private String comment;
 
 	public Meetingrecord() {
 	}
@@ -51,9 +51,9 @@ public class Meetingrecord implements java.io.Serializable {
 		this.createdate = createdate;
 		this.updateat = updateat;
 		this.priority = priority;
-		this.description=description;
-		this.location=location;
-		this.comment=comment;
+		this.description = description;
+		this.location = location;
+		this.comment = comment;
 	}
 
 	@Id
@@ -95,40 +95,6 @@ public class Meetingrecord implements java.io.Serializable {
 	public void setMeetname(String meetname) {
 		this.meetname = meetname;
 	}
-	
-	
-	@Column(name = "description", length = 250)
-	public String getDescription() {
-		return this.description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	
-	
-	
-	@Column(name = "location", length = 250)
-	public String getLocation() {
-		return this.location;
-	}
-
-	public void setLocation(String location) {
-		this.location = location;
-	}
-	
-	@Column(name = "comment", length = 250)
-	public String getComment() {
-		return this.comment;
-	}
-
-	public void setComment(String comment) {
-		this.comment = comment;
-	}
-	
-	
-	
-	
 
 	@Temporal(TemporalType.DATE)
 	@Column(name = "meetdate", length = 13)
@@ -167,6 +133,33 @@ public class Meetingrecord implements java.io.Serializable {
 
 	public void setPriority(Integer priority) {
 		this.priority = priority;
+	}
+
+	@Column(name = "description", length = 250)
+	public String getDescription() {
+		return this.description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	@Column(name = "location", length = 250)
+	public String getLocation() {
+		return this.location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	@Column(name = "comment", length = 250)
+	public String getComment() {
+		return this.comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 
 }

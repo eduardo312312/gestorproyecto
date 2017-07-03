@@ -62,6 +62,8 @@ app.controller('CostController', function ($scope,TaskService,ProjectService) {
 				  $scope.detailreport[contador]=$scope.detailsedt[0].detail[i] .detail[j]//aca jalo toda la actividad
 				  $scope.detailreport[contador].realhour=0;
 				  $scope.detailreport[contador].estimatehour=0;
+				  $scope.detailreport[contador].ac=0;//agregue 30/06/2017 por el costo de personal.
+				  $scope.detailreport[contador].bc=0;//agregue 30/06/2017 por el costo de personal.
 				 
 				  $scope.detailreport[contador].contador=contador+1
 				  
@@ -69,18 +71,15 @@ app.controller('CostController', function ($scope,TaskService,ProjectService) {
 				    	  {
 				    	  $scope.detailreport[contador].realhour+=$scope.detailsedt[0].detail[i].detail[j].detail[k].realhour;
 				    	  $scope.detailreport[contador].estimatehour+=$scope.detailsedt[0].detail[i].detail[j].detail[k].estimatehour;
+				    	  $scope.detailreport[contador].ac+= $scope.detailsedt[0].detail[i].detail[j].detail[k].personal_cost_by_hour*$scope.detailsedt[0].detail[i].detail[j].detail[k].realhour;//agregue 30/06/2017 por el costo de personal.
+						  $scope.detailreport[contador].bc+= $scope.detailsedt[0].detail[i].detail[j].detail[k].personal_cost_by_hour*$scope.detailsedt[0].detail[i].detail[j].detail[k].estimatehour;//agregue 30/06/2017 por el costo de personal.
+				    	
 				    	  }
-				 
-				  
-				
 				    	   
-				  
 				  
 				  contador++;
 				  }
-				  //console.log("Actividad"+$scope.detailreport[contador].name);
-				 // console.log("Total Horas Reales"+$scope.detailreport[contador].realhour);
-				 // console.log("Total Horas estimadas"+$scope.detailreport[contador].estimatehour);
+				
 				}
 			$scope.contador=contador;
 			
@@ -99,9 +98,10 @@ app.controller('CostController', function ($scope,TaskService,ProjectService) {
 				
 				
 				
-					  $scope.detailreport[i].ac = constante * $scope.detailreport[i].realhour;	
-					  $scope.detailreport[i].bc = constante * $scope.detailreport[i].estimatehour;	
-					  $scope.detailreport[i].pe = $scope.detailreport[i].realhour / $scope.detailreport[i].estimatehour ;
+					  $scope.detailreport[i].ac = $scope.detailreport[i].ac;	
+					  $scope.detailreport[i].bc = $scope.detailreport[i].bc ;	
+					  
+					  $scope.detailreport[i].pe = $scope.detailreport[i].estimatehour / $scope.detailreport[i].realhour ;
 					  if($scope.detailreport[i].estimatehour==0)
 						   $scope.detailreport[i].pe=0;
 					

@@ -66,7 +66,7 @@
 <!--                         <li id="view-kitchen"><a href="kitchen" class="fa fa-file-text"> <span>Alcance</span></a></li> -->
 <!--                         <li id="view-kitchen"><a href="kitchen" class="fa fa-file-text"> <span>Tiempos del Proyecto</span></a></li> -->
            
-                        <li id="view-order"><a class="fa fa-file-text" href="order"> <span>Interesados</span></a></li>
+                        <li id="stakeholder"><a class="fa fa-file-text" href="stakeholders"> <span>Interesados</span></a></li>
 
                     </ul>
                 </li>
@@ -84,8 +84,8 @@
  
   <li class='level1'><a title="Compromisos" id="BordeSideMenu"  class='fa fa-file-text'> <span>SEGUIMIENTO Y CONTROL</span></a>
   <ul class="nav nav-third-level">
-                    <li id="view-boxsales"><a href="sales" class="fa fa-file-text"> <span>Actas de Reunion</span></a></li>
-                        <li id="view-kitchen"><a href="kitchen" class="fa fa-file-text"> <span>Control de Cambios</span></a></li>   
+                    <li id="meetingrecord"><a href="meeting" class="fa fa-file-text"> <span>Actas de Reunion</span></a></li>
+                        <li id="cambios"><a href="controlchange" class="fa fa-file-text"> <span>Control de Cambios</span></a></li>   
                         <li id="view-order"><a class="fa fa-file-text" href="order"> <span>Control de Entregables</span></a></li>
                         <li id="view-order"><a class="fa fa-file-text" href="order"> <span>Control de Asistencias</span></a></li>
                         <li id="view-order"><a class="fa fa-file-text" href="order"> <span>Control de Presupuesto</span></a></li>

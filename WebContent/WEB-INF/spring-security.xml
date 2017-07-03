@@ -3,12 +3,12 @@
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/security"
  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd">
  <http auto-config="true">
- <intercept-url pattern="/index" access="hasAnyRole('ROLE_ADMINISTRADOR')" />
- <intercept-url pattern="/tasks" access="hasAnyRole('ROLE_ADMINISTRADOR')" />
-  <intercept-url pattern="/reportperformance" access="hasAnyRole('ROLE_ADMINISTRADOR')" />
-   <intercept-url pattern="/indexfile" access="hasAnyRole('ROLE_ADMINISTRADOR')" />
-    <intercept-url pattern="/edt" access="hasAnyRole('ROLE_ADMINISTRADOR')" />
-   <intercept-url pattern="/resources/*" access="hasAnyRole('ROLE_ADMINISTRADOR')" />
+ <intercept-url pattern="/index" access="hasAnyRole('ROLE_SUPERADMIN')" />
+ <intercept-url pattern="/tasks" access="hasAnyRole('ROLE_SUPERADMIN')" />
+  <intercept-url pattern="/reportperformance" access="hasAnyRole('ROLE_SUPERADMIN')" />
+   <intercept-url pattern="/indexfile" access="hasAnyRole('ROLE_SUPERADMIN')" />
+    <intercept-url pattern="/edt" access="hasAnyRole('ROLE_SUPERADMIN')" />
+   <intercept-url pattern="/resources/*" access="hasAnyRole('ROLE_SUPERADMIN')" />
    
  <access-denied-handler error-page="/403" />
   <form-login 

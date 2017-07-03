@@ -1,5 +1,5 @@
 package com.model;
-// Generated 21/06/2017 07:36:26 AM by Hibernate Tools 3.4.0.CR1
+// Generated 29/06/2017 05:54:28 PM by Hibernate Tools 3.4.0.CR1
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -11,6 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -24,29 +26,32 @@ import javax.persistence.TemporalType;
 public class Team implements java.io.Serializable {
 
 	private int id;
+	private Businessubject businessubject;
+	private Project project;
+	private State state;
 	private String name;
 	private String description;
-	private Integer businesssubjectid;
 	private Date updateat;
-	private Integer stateid;
 	private Date createdate;
 	private Set<Groupteam> groupteams = new HashSet<Groupteam>(0);
 
 	public Team() {
 	}
 
-	public Team(int id) {
+	public Team(int id, Date updateat) {
 		this.id = id;
+		this.updateat = updateat;
 	}
 
-	public Team(int id, String name, String description, Integer businesssubjectid, Date updateat, Integer stateid,
-			Date createdate, Set<Groupteam> groupteams) {
+	public Team(int id, Businessubject businessubject, Project project, State state, String name, String description,
+			Date updateat, Date createdate, Set<Groupteam> groupteams) {
 		this.id = id;
+		this.businessubject = businessubject;
+		this.project = project;
+		this.state = state;
 		this.name = name;
 		this.description = description;
-		this.businesssubjectid = businesssubjectid;
 		this.updateat = updateat;
-		this.stateid = stateid;
 		this.createdate = createdate;
 		this.groupteams = groupteams;
 	}
@@ -60,6 +65,36 @@ public class Team implements java.io.Serializable {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "businesssubjectid")
+	public Businessubject getBusinessubject() {
+		return this.businessubject;
+	}
+
+	public void setBusinessubject(Businessubject businessubject) {
+		this.businessubject = businessubject;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "projectid")
+	public Project getProject() {
+		return this.project;
+	}
+
+	public void setProject(Project project) {
+		this.project = project;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "stateid")
+	public State getState() {
+		return this.state;
+	}
+
+	public void setState(State state) {
+		this.state = state;
 	}
 
 	@Column(name = "name", length = 250)
@@ -80,32 +115,14 @@ public class Team implements java.io.Serializable {
 		this.description = description;
 	}
 
-	@Column(name = "businesssubjectid")
-	public Integer getBusinesssubjectid() {
-		return this.businesssubjectid;
-	}
-
-	public void setBusinesssubjectid(Integer businesssubjectid) {
-		this.businesssubjectid = businesssubjectid;
-	}
-
 	@Temporal(TemporalType.DATE)
-	@Column(name = "updateat", length = 13)
+	@Column(name = "updateat", nullable = false, length = 13)
 	public Date getUpdateat() {
 		return this.updateat;
 	}
 
 	public void setUpdateat(Date updateat) {
 		this.updateat = updateat;
-	}
-
-	@Column(name = "stateid")
-	public Integer getStateid() {
-		return this.stateid;
-	}
-
-	public void setStateid(Integer stateid) {
-		this.stateid = stateid;
 	}
 
 	@Temporal(TemporalType.DATE)

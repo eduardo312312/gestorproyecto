@@ -35,7 +35,12 @@ public class LinkController {
 	public String projectmanagement(){
 		return "configuration/project/project";
 	}
+	@RequestMapping(value="/users", method = RequestMethod.GET)
+	public String users(){
+		return "configuration/users/users";
+	}
 	 
+	
 
 	
 	
@@ -46,9 +51,15 @@ public class LinkController {
 	public String edt(){
 		return "project/edt/edt";
 	}
+	
 	@RequestMapping(value="/indexfile", method = RequestMethod.GET)
 	public String fileindex(){
 		return "project/index/index";
+	}
+	
+	@RequestMapping(value="/stakeholders", method = RequestMethod.GET)
+	public String stakeholders(){
+		return "project/stakeholder/stakeholder";
 	}
 	
 	@RequestMapping(value="/busssubject", method = RequestMethod.GET)
@@ -85,6 +96,15 @@ public class LinkController {
 //		System.out.println("entro a matrixxxxxxxxxxxxxxxxxxxxxxxxxxx");
 		return "project/meetingrecord/meetingrecord";
 	}
+	
+	@RequestMapping(value="/team", method = RequestMethod.GET)
+	public String configuration_team(){
+//		System.out.println("entro a matrixxxxxxxxxxxxxxxxxxxxxxxxxxx");
+		return "configuration/team/team";
+	}
+	
+	
+	
 	
 	
 	

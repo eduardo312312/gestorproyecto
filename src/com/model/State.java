@@ -1,5 +1,5 @@
 package com.model;
-// Generated 21/06/2017 07:36:26 AM by Hibernate Tools 3.4.0.CR1
+// Generated 29/06/2017 05:54:28 PM by Hibernate Tools 3.4.0.CR1
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -26,6 +26,7 @@ public class State implements java.io.Serializable {
 	private Set<Businesssubjecttype> businesssubjecttypes = new HashSet<Businesssubjecttype>(0);
 	private Set<Controlchange> controlchanges = new HashSet<Controlchange>(0);
 	private Set<Systemuser> systemusers = new HashSet<Systemuser>(0);
+	private Set<Team> teams = new HashSet<Team>(0);
 	private Set<Taskhistory> taskhistories = new HashSet<Taskhistory>(0);
 	private Set<Activity> activities = new HashSet<Activity>(0);
 	private Set<Taskdetail> taskdetails = new HashSet<Taskdetail>(0);
@@ -60,20 +61,22 @@ public class State implements java.io.Serializable {
 	}
 
 	public State(int id, String name, String description, Set<Businesssubjecttype> businesssubjecttypes,
-			Set<Controlchange> controlchanges, Set<Systemuser> systemusers, Set<Taskhistory> taskhistories,
-			Set<Activity> activities, Set<Taskdetail> taskdetails, Set<Permissionprofile> permissionprofiles,
-			Set<Portfolio> portfolios, Set<Typepayment> typepayments, Set<Marketline> marketlines,
-			Set<Riskmatrix> riskmatrixes, Set<Groupteam> groupteams, Set<Documenttype> documenttypes,
-			Set<Document> documents, Set<Profile> profiles, Set<Userprofile> userprofiles, Set<Document> documents_1,
-			Set<Task> tasks, Set<Meetingrecord> meetingrecords, Set<Detailfile> detailfiles,
-			Set<Businessubject> businessubjects, Set<Trace> traces, Set<Stakeholder> stakeholders,
-			Set<Project> projects, Set<Permission> permissions, Set<Phase> phases) {
+			Set<Controlchange> controlchanges, Set<Systemuser> systemusers, Set<Team> teams,
+			Set<Taskhistory> taskhistories, Set<Activity> activities, Set<Taskdetail> taskdetails,
+			Set<Permissionprofile> permissionprofiles, Set<Portfolio> portfolios, Set<Typepayment> typepayments,
+			Set<Marketline> marketlines, Set<Riskmatrix> riskmatrixes, Set<Groupteam> groupteams,
+			Set<Documenttype> documenttypes, Set<Document> documents, Set<Profile> profiles,
+			Set<Userprofile> userprofiles, Set<Document> documents_1, Set<Task> tasks,
+			Set<Meetingrecord> meetingrecords, Set<Detailfile> detailfiles, Set<Businessubject> businessubjects,
+			Set<Trace> traces, Set<Stakeholder> stakeholders, Set<Project> projects, Set<Permission> permissions,
+			Set<Phase> phases) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.businesssubjecttypes = businesssubjecttypes;
 		this.controlchanges = controlchanges;
 		this.systemusers = systemusers;
+		this.teams = teams;
 		this.taskhistories = taskhistories;
 		this.activities = activities;
 		this.taskdetails = taskdetails;
@@ -153,6 +156,15 @@ public class State implements java.io.Serializable {
 
 	public void setSystemusers(Set<Systemuser> systemusers) {
 		this.systemusers = systemusers;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "state")
+	public Set<Team> getTeams() {
+		return this.teams;
+	}
+
+	public void setTeams(Set<Team> teams) {
+		this.teams = teams;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "state")

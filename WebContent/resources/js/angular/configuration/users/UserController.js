@@ -1,26 +1,22 @@
 
-app.controller('UserController', function ($scope,$window,UserService,ContributorService) {
+app.controller('UserController', function ($scope,ProjectService) {
 	
 	$scope.employeds={list:[]};
 	$scope.page=1;
 	$scope.pagesPaginator=null;//paginador de paginador
 	$scope.pager=0;//paginador del paginador
-	$scope.users={list:[],params:{page:$scope.page, maxResults:20}};	
+	$scope.users={list:[],params:{page:$scope.page, maxResults:20}};
+	$scope.user=[];
+	
 	$scope.indicador=0;
+	
+	$scope.employees={list:[],params:{page:$scope.page, maxResults:9999}};
+	$scope.employee=[];
+	
 	$scope.employed=[];
 	
-	$scope.load = function() {
-		UserService.list_employed_user().success(
-				function(data) {							
-			$scope.employeds.list=data.list;    
-			
-				});	
-		
 	
-		
-		    
-		
-	}
+	
 	$scope.preparePagination=function(pages){
 		
 	     $scope.pagers=[[]];
@@ -55,56 +51,80 @@ app.controller('UserController', function ($scope,$window,UserService,Contributo
 	
 	$scope.list= function()
 	{		
-		$scope.message="Cargando...";
 		$scope.users.list=[];
-		UserService.list_view_main($scope.users.params).success(function(data){
-			 if(data.list){
-				 $scope.users.list=data.list;       
-		         $scope.message="Se encontraron "+data.totalItems+" registros";
-		         $scope.pages= Math.ceil(data.totalItems/$scope.users.params.maxResults);
-		         $scope.preparePagination($scope.pages);			         
-		         $scope.pagesPaginator=$scope.pagers[0];
-		         $scope.page=data.page;
-		        
-			 }else{
-				 $scope.message="datos no encontrados";
-			 }
-		 });
+		$scope.message="Cargando...";
+
+		ProjectService.systemuser_list_view_main($scope.users.params).success(function(data){
+			if(data.list){			 
+				$scope.users.list=data.list;
+				//console.log($scope.employees.list)
+				$scope.message="Se encontraron "+data.totalItems+" registros";	      
+				$scope.pages= Math.ceil(data.totalItems/$scope.users.params.maxResults); 
+				$scope.preparePagination($scope.pages); 
+				$scope.pagesPaginator=$scope.pagers[0];         
+				$scope.page=data.page;	      
+
+			}else{
+				$scope.message="datos no encontrados";
+			}
+		});	
 	}
 	
+	$scope.valor=function()
+	{	var valor=false;
+		if($scope.user.login!="" && $scope.user.login!=null &&
+		   $scope.user.password!="" && $scope.user.password!=null &&
+		   $scope.user.businesssubjectname!="" && $scope.user.businesssubjectname!=null &&
+		   $scope.user.businessubjectid!=0 && $scope.user.businessubjectid!=null &&
+		   $scope.user.comment!="" && $scope.user.comment!=null)
+			{
+			valor=true;
+			}
+			return valor;			
+	}
 	
-	
-	$scope.select_personal=function(pnombre)
+	$scope.select_personal=function()
 	{
-		console.debug(pnombre);
-		 $scope.businesssubjectid_select=0;
-		
-			  var i=0;
-				$scope.index;
-				$scope.status=false;
-				while(i<$scope.employeds.list.length)
-				{
-					
-				if($scope.employeds.list[i].businesssubject.businessname.toUpperCase()==pnombre)
-					{				
-			
-					$scope.employed=$scope.employeds.list[i].employed;
-					$scope.index= i;
-					$scope.status=true;
-					 $scope.businesssubjectid_select=$scope.employeds.list[i].businesssubject.id;
-					 console.debug($scope.businesssubjectid_select);
-					}
-				i=i+1;
-				}
+		$scope.user.businessubjectid=0;
+		        var x = $('#employeeeee2').val();
+	            var z = $('#employees_list2');
+	            var val = $(z).find('option[value="' + x + '"]');
+	            var endval = val.attr('id');
+	            if(endval)
+	            	$scope.user.businessubjectid=endval ;  
+	            
+	           console.log(endval);
+//	           console.log(endval.substring(1) );
+      
 	}
 	
 	$scope.Nuevo=function(){
-		$scope.indicador=-1;
 		$scope.user=[];
-		$scope.user.rol="VENTAS";
-		$scope.systemuserid=0;
-		$scope.systemuserstateid=0;
-		$scope.systemuserstatusid=18;
+		$scope.user.stateid=1;
+		$scope.user.id=0;
+		$scope.newreg=true;
+	}
+	
+	$scope.edit=function(item)
+	{
+	    $scope.user=[];
+		
+	    $scope.user.id=item.systemuser.id;
+		$scope.user.businesssubjectname=item.systemuser.businesssubjectname;
+		$scope.user.businessubjectid=item.systemuser.businesssubjectid;
+		$scope.user.login=item.systemuser.login;
+		$scope.user.password=item.systemuser.password;
+		$scope.user.comment=item.systemuser.comment;
+		$scope.user.stateid=item.systemuser.stateid;
+		
+		$scope.newreg=false;
+		console.debug($scope.employee);
+	}
+	
+	$scope.confirmRemove=function()
+	{
+		$scope.user.stateid=2;
+		$scope.Anadir();
 	}
 	
 	$scope.Anadir=function()
@@ -112,75 +132,49 @@ app.controller('UserController', function ($scope,$window,UserService,Contributo
 		
 		
 		 var systemuser_enviar={
-		    		id:$scope.systemuserid,
-		    		name:$scope.user.name,
+		    		id:$scope.user.id,
+		    		login:$scope.user.login,
 		    		password:$scope.user.password,
-		    		businesssubject:{id:$scope.businesssubjectid_select}		    	
+		    		createdate:new Date(),
+		    		businessubject:{id:$scope.user.businessubjectid},
+		    		state:{id:$scope.user.stateid},
+		    		updateat:new Date(),
+		    		comment:$scope.user.comment		    	
 		    		}
 			var params_systemuser={systemuser:systemuser_enviar};
-		 UserService.savesystemuser(params_systemuser).success(function(data){	
-				 var systemuserstate_enviar={
-				    		id:$scope.systemuserstateid,
-				    		systemuser:{id:data.id},
-				    		state:{id:$scope.systemuserstatusid},
-				    		atdate:$scope.user.date,
-				    		comment:""	
-				    		}
-					var params_systemuserstate={systemuserstate:systemuserstate_enviar};
-				 UserService.savesystemuserstate(params_systemuserstate).success(function(data){
-					
-					  var employed_enviar={
-				 				 id:$scope.employed.id,
-				 				 businesssubject:{id:$scope.employed.businesssubjectid},
-				 				 position:$scope.user.rol,//PREGUNTAR
-				 				 subsidiary:{id:$scope.employed.subsidiaryid}  				 
-				 		 }
-				 		
-				 		 var params_employed={employed:employed_enviar};
-				 		
-				 		 ContributorService.saveemployed(params_employed).success(function(data){	
+	
+		 	ProjectService.save_systemuser(params_systemuser).success(function(data){	
 				 			 $scope.list();       
 				 		 })
 					
-					 
-					 
-					 
-				 })
-			 
-		 })
-		 
 		
-		 
-		 if($scope.systemuserstatusid!=17)
-			 {
-			$("#myModal_user").modal('toggle');
-			 }
 
 	}
 	
-	$scope.edit=function(item)
-	{
-		$scope.employed=[];
-		$scope.employed=item.employed;		
-		$scope.systemuserid=item.systemuser.id;
-		$scope.systemuserstateid=item.systemuserstate.id;
-		$scope.user.personal=item.businesssubject.businessname.toUpperCase();
-		$scope.user.name=item.systemuser.name;
-		$scope.businesssubjectid_select=item.businesssubject.id;
-		$scope.status=true;
-		$scope.user.date=item.systemuserstate.atdate;
-		$scope.user.password=item.systemuser.password;
-		$scope.user.rol=item.employed.position.toUpperCase();
-		$scope.systemuserstatusid=18;
-		$scope.indicador=1;
-	}
-	$scope.confirmRemove=function()
-	{
-		$scope.systemuserstatusid=17;
-		$scope.Anadir();
-	}
+	
+	
+	$scope.load = function() {
+		$scope.employees.list=[];
+	
+
+	ProjectService.businesssubject_list_view_main($scope.employees.params).success(function(data){
+		if(data.list){			 
+			$scope.employees.list=data.list;
+			      
+			for(var i=0;i<$scope.employees.list.length;i++)
+			{
+			$scope.employees.list[i].show=$scope.employees.list[i].businesssubject.name+" "+$scope.employees.list[i].businesssubject.lastname+" "+$scope.employees.list[i].businesssubject.secondlastname;
+			}
+
+		}else{
+			$scope.message="datos no encontrados";
+		}
+	});
+    }
 	
 	
 	$scope.load();
+	
 	$scope.list();
+	
 });

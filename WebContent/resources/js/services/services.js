@@ -26,6 +26,8 @@ app.factory('TaskService', function($http) {
 		
 		
 		
+		
+		
 		remove:function(params){
 	        return $http({method:'DELETE',url:'subtransactiondetail/'+params,headers:csrf_header} );  
 	        },
@@ -100,7 +102,15 @@ app.factory('ProjectService', function($http) {
 	
 
 	return {
+		systemuser_list_view_main : function(params) {
+				return $http.post('systemuser/list_view', params ,{headers:csrf_header});
+			}, 
+		save_systemuser:function(params){return $http.post('systemuser',params ,{headers:csrf_header});},
 		
+		 stakeholder_list_view_main : function(params) {
+				return $http.post('stakeholders/list_view', params ,{headers:csrf_header});
+			}, 
+			 save_stakeholder:function(params){return $http.post('stakeholder',params ,{headers:csrf_header});},
 		 save_project:function(params){return $http.post('project',params ,{headers:csrf_header});},
 		 search_project: function (params) {
 	        	return $http.post('project/'+params ,{},{headers:csrf_header});
@@ -111,6 +121,10 @@ app.factory('ProjectService', function($http) {
 		}, 
 		list_all_projects : function(params) {
 			return $http.post('project/list_all_projects', params ,{headers:csrf_header});
+		},
+		
+		list_all_roles : function(params) {
+			return $http.post('businesssubject/get_all_roles', params ,{headers:csrf_header});
 		},
 		save_phase_activities:function(params){return $http.post('phasesactivities',params ,{headers:csrf_header});},
 		 //
@@ -128,6 +142,43 @@ app.factory('ProjectService', function($http) {
 		save_meetingrecord:function(params){return $http.post('newmeeting',params ,{headers:csrf_header});}
 	}
 });
+
+
+
+
+app.factory('TeamService', function($http) {
+	
+
+	return {
+		
+		team_list_view_main : function(params) {
+			return $http.post('team/list_view', params ,{headers:csrf_header});
+			
+		},
+		delete_groupteam: function (params) {
+        	return $http.post('delete_groupteam/'+params ,{},{headers:csrf_header});
+    		 },
+        save_team:function(params){return $http.post('team',params ,{headers:csrf_header});},
+   	   save_groupteam:function(params){return $http.post('groupteam',params ,{headers:csrf_header});}
+	    	 
+	}
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
